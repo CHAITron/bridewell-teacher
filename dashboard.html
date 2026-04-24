@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Classroom · Bridewell AI · KESW</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="mask-icon" href="favicon.svg" color="#0f1a2e" />
+<meta name="theme-color" content="#0f1a2e" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -824,18 +827,22 @@
     font-family: 'Fraunces', serif;
   }
 
-  /* ============ BOTTOM CHARTS ============ */
+  /* ============ BOTTOM CHARTS (inside left column) ============ */
   .charts {
-    grid-column: 1 / -1;
-    background: var(--paper);
+    margin-top: 28px;
+    padding-top: 24px;
     border-top: 1px solid var(--line);
-    padding: 24px 28px 32px;
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
-  @media (max-width: 1400px) {
-    .charts { grid-template-columns: 1fr 1fr; }
+  /* Wider viewports → 4 across for the left column */
+  @media (min-width: 1600px) {
+    .charts { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  }
+  /* Narrow → single column */
+  @media (max-width: 720px) {
+    .charts { grid-template-columns: 1fr; }
   }
   .chart-card {
     background: var(--cream);
@@ -1210,9 +1217,103 @@
   ::-webkit-scrollbar-thumb { background: var(--line-strong); }
   ::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
 
+  /* ============ RESPONSIVE ============ */
+
+  /* Tablet: stack details pane below grid */
   @media (max-width: 1100px) {
     .main { grid-template-columns: 1fr; }
-    .details-pane { border-top: 1px solid var(--line); }
+    .details-pane { border-top: 1px solid var(--line); border-right: none; }
+  }
+
+  /* Small tablet / large phone */
+  @media (max-width: 820px) {
+    .topbar { padding: 10px 16px; flex-wrap: wrap; gap: 10px; }
+    .topnav { order: 3; width: 100%; justify-content: center; overflow-x: auto; }
+    .topnav a { padding: 7px 12px; font-size: 11px; }
+    .top-right { gap: 10px; }
+    .teacher-chip .role { display: none; }
+    .teacher-chip { padding: 4px 4px 4px 10px; }
+
+    .page-head { padding: 22px 18px 16px; gap: 16px; }
+    h1.page-title { font-size: 30px; }
+    .head-sub { font-size: 15px; }
+    .metrics { gap: 16px; flex-wrap: wrap; }
+    .metric .v { font-size: 22px; }
+    .metric .l { font-size: 8px; }
+
+    .grid-pane { padding: 16px 18px 24px; }
+    .filter-bar { gap: 8px; }
+    .legend-group { width: 100%; margin-left: 0; gap: 10px; font-size: 8px; }
+    .filter-select { font-size: 12px; padding: 7px 28px 7px 12px; }
+
+    .section-head h2 { font-size: 17px; }
+    .stu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .stu-card { padding: 10px 10px 8px; min-height: 96px; }
+    .stu-name { font-size: 13px; }
+    .stu-subject { font-size: 10px; }
+    .stu-snippet { font-size: 10px; }
+
+    .pair-strip { grid-template-columns: 1fr 1fr; }
+
+    .tab-content { padding: 18px 18px; }
+    .passport-name { font-size: 22px; }
+    .passport-avatar { width: 60px; height: 60px; font-size: 24px; }
+    .ana-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .chart-card { padding: 14px 16px; min-height: 220px; }
+    .chart-title { font-size: 14px; }
+
+    .fab { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 12px; }
+
+    .modal-backdrop { padding: 12px; }
+    .modal-head { padding: 18px 20px; }
+    .modal-head h2 { font-size: 22px; }
+    .modal-body { padding: 18px 20px; }
+    .subject-tab { padding: 8px 12px; font-size: 10px; }
+    .mode-toggle { flex-direction: column; }
+    .modal-foot { flex-direction: column; gap: 10px; align-items: stretch; padding: 14px 20px; }
+    .modal-foot .hint { text-align: center; }
+  }
+
+  /* Phone */
+  @media (max-width: 560px) {
+    .brand-text .product { font-size: 15px; }
+    .brand-text .school { font-size: 8px; }
+    .brand .crest-mini { width: 28px; height: 34px; }
+    .class-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.1em; }
+    .teacher-chip .name { font-size: 11px; }
+    .teacher-avatar { width: 28px; height: 28px; font-size: 11px; }
+
+    .page-head { flex-direction: column; align-items: stretch; }
+    h1.page-title { font-size: 26px; }
+    .metrics { justify-content: space-between; gap: 10px; }
+    .metric { text-align: left; flex: 1 1 auto; min-width: 60px; }
+    .metric .v { justify-content: flex-start; font-size: 20px; }
+
+    .stu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pair-strip { grid-template-columns: 1fr; }
+
+    .charts { grid-template-columns: 1fr; }
+    .cog-bars { height: 140px; }
+    .cog-bar-wrap .lbl { font-size: 8px; }
+
+    .radial-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
+    .radial { width: 100px; height: 100px; margin: 0 auto; }
+
+    .passport-head { flex-direction: column; gap: 12px; }
+    .passport-tags { width: 100%; }
+    .passport-row { flex-direction: column; gap: 2px; padding: 4px 0; }
+    .passport-row .v { text-align: left; }
+
+    .timeline-legend { gap: 6px 10px; }
+
+    .fab { padding: 10px 14px; font-size: 11px; }
+    .fab svg { width: 14px; height: 14px; }
+
+    .subject-tabs { flex-wrap: wrap; }
+
+    /* Horizontal scroll guard */
+    body { overflow-x: hidden; }
   }
 </style>
 </head>
@@ -1548,6 +1649,185 @@
       </div>
     </div>
 
+  <!-- ============ BOTTOM: CHARTS ============ -->
+  <section class="charts">
+
+    <!-- Chart 1: Cognitive load per active pupil -->
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">Cognitive Load</div>
+          <div class="chart-sub">Active pupils · Last 5 min</div>
+        </div>
+        <div class="live-indicator"><span class="live-dot"></span>Live</div>
+      </div>
+      <div class="chart-body">
+        <div class="cog-bars">
+          <div class="threshold"></div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar bad" style="height: 82%"><span class="val">0.82</span></div>
+            <div class="lbl">Tom</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar warn" style="height: 64%"><span class="val">0.64</span></div>
+            <div class="lbl">Priya</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar good" style="height: 38%"><span class="val">0.38</span></div>
+            <div class="lbl">Samira</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar good" style="height: 44%"><span class="val">0.44</span></div>
+            <div class="lbl">Oliver</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar warn" style="height: 58%"><span class="val">0.58</span></div>
+            <div class="lbl">George</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar good" style="height: 40%"><span class="val">0.40</span></div>
+            <div class="lbl">Daisy</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar good" style="height: 36%"><span class="val">0.36</span></div>
+            <div class="lbl">Freya</div>
+          </div>
+          <div class="cog-bar-wrap">
+            <div class="cog-bar good" style="height: 42%"><span class="val">0.42</span></div>
+            <div class="lbl">Mia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 2: Engagement over time (SVG line chart) -->
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">Engagement · 30 min</div>
+          <div class="chart-sub">4 active pupils</div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="timeline">
+          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
+            <!-- Grid -->
+            <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
+            <line x1="0" y1="80" x2="300" y2="80" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
+            <line x1="0" y1="120" x2="300" y2="120" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
+            <!-- Labels -->
+            <text x="2" y="36" font-family="JetBrains Mono" font-size="8" fill="#4a5878">100%</text>
+            <text x="2" y="76" font-family="JetBrains Mono" font-size="8" fill="#4a5878">75%</text>
+            <text x="2" y="116" font-family="JetBrains Mono" font-size="8" fill="#4a5878">50%</text>
+            <!-- Samira (green) -->
+            <polyline fill="none" stroke="#4a8a4c" stroke-width="2"
+              points="0,55 40,50 80,48 120,42 160,38 200,35 240,32 280,30 300,28"/>
+            <!-- Oliver (green) -->
+            <polyline fill="none" stroke="#3d6b3d" stroke-width="2" stroke-dasharray="4 2"
+              points="0,60 40,55 80,52 120,50 160,48 200,45 240,44 280,42 300,40"/>
+            <!-- Priya (amber, dipping) -->
+            <polyline fill="none" stroke="#d89a2f" stroke-width="2"
+              points="0,45 40,42 80,48 120,60 160,78 200,92 240,98 280,92 300,88"/>
+            <!-- Tom (red, low) -->
+            <polyline fill="none" stroke="#b83b3b" stroke-width="2"
+              points="0,70 40,78 80,90 120,98 160,110 200,120 240,128 280,130 300,128"/>
+            <!-- Now marker -->
+            <line x1="298" y1="20" x2="298" y2="140" stroke="#8a1c2b" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="275" y="16" font-family="JetBrains Mono" font-size="8" fill="#8a1c2b" font-weight="600">NOW</text>
+          </svg>
+        </div>
+        <div class="timeline-legend">
+          <span class="k"><span class="k-dot" style="background:#4a8a4c"></span>Samira</span>
+          <span class="k"><span class="k-dot" style="background:#3d6b3d"></span>Oliver</span>
+          <span class="k"><span class="k-dot" style="background:#d89a2f"></span>Priya</span>
+          <span class="k"><span class="k-dot" style="background:#b83b3b"></span>Tom</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 3: Topics wrestled with -->
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">Topics pupils are wrestling with</div>
+          <div class="chart-sub">Mentions in last hour</div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="topic-list">
+          <div class="topic-row hot">
+            <span class="tname">Comparing fractions</span>
+            <span class="tcount">14×</span>
+            <div class="tbar" style="--f: 100%"></div>
+          </div>
+          <div class="topic-row warm">
+            <span class="tname">Opening sentences</span>
+            <span class="tcount">9×</span>
+            <div class="tbar" style="--f: 64%"></div>
+          </div>
+          <div class="topic-row">
+            <span class="tname">"bl" vs "br" blends</span>
+            <span class="tcount">7×</span>
+            <div class="tbar" style="--f: 50%"></div>
+          </div>
+          <div class="topic-row">
+            <span class="tname">Show-don't-tell</span>
+            <span class="tcount">6×</span>
+            <div class="tbar" style="--f: 42%"></div>
+          </div>
+          <div class="topic-row">
+            <span class="tname">Equivalent fractions</span>
+            <span class="tcount">5×</span>
+            <div class="tbar" style="--f: 36%"></div>
+          </div>
+          <div class="topic-row">
+            <span class="tname">Character voice</span>
+            <span class="tcount">4×</span>
+            <div class="tbar" style="--f: 28%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 4: Help-seeking behaviours (radial / donut) -->
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">Behaviour Mix</div>
+          <div class="chart-sub">All AI interactions · today</div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="radial-wrap">
+          <svg class="radial" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background -->
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#e8dcc6" stroke-width="5"/>
+            <!-- Deep questions (moss) 42% -->
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3d6b3d" stroke-width="5"
+              stroke-dasharray="42 58" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+            <!-- Scaffolded engagement (ink) 28% -->
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#0f1a2e" stroke-width="5"
+              stroke-dasharray="28 72" stroke-dashoffset="-17" transform="rotate(-90 21 21)"/>
+            <!-- Off-topic (amber) 18% -->
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#d89a2f" stroke-width="5"
+              stroke-dasharray="18 82" stroke-dashoffset="-45" transform="rotate(-90 21 21)"/>
+            <!-- Answer-seeking (red) 12% -->
+            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b83b3b" stroke-width="5"
+              stroke-dasharray="12 88" stroke-dashoffset="-63" transform="rotate(-90 21 21)"/>
+            <text x="21" y="22" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-weight="500" fill="#0f1a2e">69</text>
+            <text x="21" y="27" text-anchor="middle" font-family="JetBrains Mono" font-size="2.2" fill="#4a5878" letter-spacing="0.3">MSGS</text>
+          </svg>
+          <div class="radial-legend">
+            <div class="radial-item"><span class="radial-dot" style="background:#3d6b3d"></span>Deep questions<span class="radial-num">42%</span></div>
+            <div class="radial-item"><span class="radial-dot" style="background:#0f1a2e"></span>Scaffolded<span class="radial-num">28%</span></div>
+            <div class="radial-item"><span class="radial-dot" style="background:#d89a2f"></span>Off-topic<span class="radial-num">18%</span></div>
+            <div class="radial-item"><span class="radial-dot" style="background:#b83b3b"></span>Answer-seeking<span class="radial-num">12%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
   </section>
 
   <!-- RIGHT: Details -->
@@ -1795,186 +2075,6 @@
     </div>
 
   </aside>
-
-  <!-- ============ BOTTOM: CHARTS ============ -->
-  <section class="charts">
-
-    <!-- Chart 1: Cognitive load per active pupil -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Cognitive Load</div>
-          <div class="chart-sub">Active pupils · Last 5 min</div>
-        </div>
-        <div class="live-indicator"><span class="live-dot"></span>Live</div>
-      </div>
-      <div class="chart-body">
-        <div class="cog-bars">
-          <div class="threshold"></div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar bad" style="height: 82%"><span class="val">0.82</span></div>
-            <div class="lbl">Tom</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar warn" style="height: 64%"><span class="val">0.64</span></div>
-            <div class="lbl">Priya</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 38%"><span class="val">0.38</span></div>
-            <div class="lbl">Samira</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 44%"><span class="val">0.44</span></div>
-            <div class="lbl">Oliver</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar warn" style="height: 58%"><span class="val">0.58</span></div>
-            <div class="lbl">George</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 40%"><span class="val">0.40</span></div>
-            <div class="lbl">Daisy</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 36%"><span class="val">0.36</span></div>
-            <div class="lbl">Freya</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 42%"><span class="val">0.42</span></div>
-            <div class="lbl">Mia</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart 2: Engagement over time (SVG line chart) -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Engagement · 30 min</div>
-          <div class="chart-sub">4 active pupils</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="timeline">
-          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-            <!-- Grid -->
-            <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <line x1="0" y1="120" x2="300" y2="120" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <!-- Labels -->
-            <text x="2" y="36" font-family="JetBrains Mono" font-size="8" fill="#4a5878">100%</text>
-            <text x="2" y="76" font-family="JetBrains Mono" font-size="8" fill="#4a5878">75%</text>
-            <text x="2" y="116" font-family="JetBrains Mono" font-size="8" fill="#4a5878">50%</text>
-            <!-- Samira (green) -->
-            <polyline fill="none" stroke="#4a8a4c" stroke-width="2"
-              points="0,55 40,50 80,48 120,42 160,38 200,35 240,32 280,30 300,28"/>
-            <!-- Oliver (green) -->
-            <polyline fill="none" stroke="#3d6b3d" stroke-width="2" stroke-dasharray="4 2"
-              points="0,60 40,55 80,52 120,50 160,48 200,45 240,44 280,42 300,40"/>
-            <!-- Priya (amber, dipping) -->
-            <polyline fill="none" stroke="#d89a2f" stroke-width="2"
-              points="0,45 40,42 80,48 120,60 160,78 200,92 240,98 280,92 300,88"/>
-            <!-- Tom (red, low) -->
-            <polyline fill="none" stroke="#b83b3b" stroke-width="2"
-              points="0,70 40,78 80,90 120,98 160,110 200,120 240,128 280,130 300,128"/>
-            <!-- Now marker -->
-            <line x1="298" y1="20" x2="298" y2="140" stroke="#8a1c2b" stroke-width="1" stroke-dasharray="3 3"/>
-            <text x="275" y="16" font-family="JetBrains Mono" font-size="8" fill="#8a1c2b" font-weight="600">NOW</text>
-          </svg>
-        </div>
-        <div class="timeline-legend">
-          <span class="k"><span class="k-dot" style="background:#4a8a4c"></span>Samira</span>
-          <span class="k"><span class="k-dot" style="background:#3d6b3d"></span>Oliver</span>
-          <span class="k"><span class="k-dot" style="background:#d89a2f"></span>Priya</span>
-          <span class="k"><span class="k-dot" style="background:#b83b3b"></span>Tom</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart 3: Topics wrestled with -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Topics pupils are wrestling with</div>
-          <div class="chart-sub">Mentions in last hour</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="topic-list">
-          <div class="topic-row hot">
-            <span class="tname">Comparing fractions</span>
-            <span class="tcount">14×</span>
-            <div class="tbar" style="--f: 100%"></div>
-          </div>
-          <div class="topic-row warm">
-            <span class="tname">Opening sentences</span>
-            <span class="tcount">9×</span>
-            <div class="tbar" style="--f: 64%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">"bl" vs "br" blends</span>
-            <span class="tcount">7×</span>
-            <div class="tbar" style="--f: 50%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Show-don't-tell</span>
-            <span class="tcount">6×</span>
-            <div class="tbar" style="--f: 42%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Equivalent fractions</span>
-            <span class="tcount">5×</span>
-            <div class="tbar" style="--f: 36%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Character voice</span>
-            <span class="tcount">4×</span>
-            <div class="tbar" style="--f: 28%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart 4: Help-seeking behaviours (radial / donut) -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Behaviour Mix</div>
-          <div class="chart-sub">All AI interactions · today</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="radial-wrap">
-          <svg class="radial" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#e8dcc6" stroke-width="5"/>
-            <!-- Deep questions (moss) 42% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3d6b3d" stroke-width="5"
-              stroke-dasharray="42 58" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
-            <!-- Scaffolded engagement (ink) 28% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#0f1a2e" stroke-width="5"
-              stroke-dasharray="28 72" stroke-dashoffset="-17" transform="rotate(-90 21 21)"/>
-            <!-- Off-topic (amber) 18% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#d89a2f" stroke-width="5"
-              stroke-dasharray="18 82" stroke-dashoffset="-45" transform="rotate(-90 21 21)"/>
-            <!-- Answer-seeking (red) 12% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b83b3b" stroke-width="5"
-              stroke-dasharray="12 88" stroke-dashoffset="-63" transform="rotate(-90 21 21)"/>
-            <text x="21" y="22" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-weight="500" fill="#0f1a2e">69</text>
-            <text x="21" y="27" text-anchor="middle" font-family="JetBrains Mono" font-size="2.2" fill="#4a5878" letter-spacing="0.3">MSGS</text>
-          </svg>
-          <div class="radial-legend">
-            <div class="radial-item"><span class="radial-dot" style="background:#3d6b3d"></span>Deep questions<span class="radial-num">42%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#0f1a2e"></span>Scaffolded<span class="radial-num">28%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#d89a2f"></span>Off-topic<span class="radial-num">18%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#b83b3b"></span>Answer-seeking<span class="radial-num">12%</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
 
 </main>
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded-square background -->
+  <rect width="64" height="64" rx="10" fill="#0f1a2e"/>
+
+  <!-- Crown -->
+  <g transform="translate(32, 14)">
+    <path d="M -12 5 L -12 -1 L -8 2 L -5 -4 L -3 2 L 0 -5 L 3 2 L 5 -4 L 8 2 L 12 -1 L 12 5 Z"
+          fill="#d4a858"/>
+    <rect x="-13" y="5" width="26" height="2.5" fill="#d4a858"/>
+    <circle cx="-8" cy="-1" r="0.9" fill="#8a1c2b"/>
+    <circle cx="0" cy="-5" r="1.1" fill="#8a1c2b"/>
+    <circle cx="8" cy="-1" r="0.9" fill="#8a1c2b"/>
+  </g>
+
+  <!-- Shield -->
+  <path d="M 16 26 L 48 26 L 48 42 Q 48 54 32 58 Q 16 54 16 42 Z"
+        fill="none"
+        stroke="#b58a3c"
+        stroke-width="2"/>
+
+  <!-- Cross -->
+  <rect x="30" y="29" width="4" height="26" fill="#8a1c2b"/>
+  <rect x="19" y="39" width="26" height="4" fill="#8a1c2b"/>
+</svg>
