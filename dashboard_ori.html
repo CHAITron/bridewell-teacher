@@ -1315,294 +1315,6 @@
     /* Horizontal scroll guard */
     body { overflow-x: hidden; }
   }
-
-  /* ============ DARK THEME ============
-     Tonal sectional palette so each surface reads as a separate panel.
-     Cards inside dark surfaces also go dark (elevated tone) — content
-     text inverts to cream so legibility holds.
-  */
-
-  /* Tonal palette */
-  :root {
-    --bg-deepest: #0a1424;     /* topbar */
-    --bg-base:    #0f1a2e;     /* left grid pane (existing --ink) */
-    --bg-warm:    #13203a;     /* page header, modal, right pane */
-    --bg-tinted:  #162338;     /* details pane variant */
-    --bg-elevated:#1c2a45;     /* cards on dark */
-    --bg-elevated-2:#22324f;   /* hover / selected card */
-    --line-dark:  rgba(181, 138, 60, 0.22);
-    --line-dark-strong: rgba(181, 138, 60, 0.4);
-    --text-on-dark: #faf6ee;
-    --text-muted-on-dark: rgba(250, 246, 238, 0.6);
-    --text-faint-on-dark: rgba(250, 246, 238, 0.42);
-  }
-
-  body { background: var(--bg-base); color: var(--text-on-dark); }
-  body::before { opacity: 0.4; }
-
-  /* TOP BAR — deepest */
-  .topbar { background: var(--bg-deepest); }
-
-  /* PAGE HEADER */
-  .page-head {
-    background: var(--bg-warm);
-    border-bottom-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .crumb { color: var(--text-muted-on-dark); }
-  .crumb .here { color: var(--gold); }
-  h1.page-title { color: var(--text-on-dark); }
-  h1.page-title em { color: var(--gold); }
-  .head-sub { color: var(--text-muted-on-dark); }
-  .metric .v { color: var(--text-on-dark); }
-  .metric .v .unit { color: var(--text-muted-on-dark); }
-  .metric .l { color: var(--text-muted-on-dark); }
-
-  /* LEFT GRID PANE — base ink */
-  .grid-pane {
-    background: var(--bg-base);
-    color: var(--text-on-dark);
-    border-right-color: var(--line-dark);
-  }
-  .grid-pane .filter-bar { border-bottom-color: var(--line-dark); }
-  .filter-label { color: var(--gold); opacity: 0.85; }
-  .filter-select {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23faf6ee' stroke-width='1.5' fill='none'/></svg>");
-  }
-  .filter-select option { background: var(--bg-base); color: var(--text-on-dark); }
-  .legend-group { color: var(--text-muted-on-dark); }
-
-  .section-head h2 { color: var(--text-on-dark); }
-  .section-head h2 em { color: rgba(181, 138, 60, 0.85); }
-  .section-head .count { color: var(--text-muted-on-dark); }
-
-  /* Live indicator on dark */
-  .live-indicator { color: #8fc28d; }
-  .live-dot { background: #8fc28d; box-shadow: 0 0 8px rgba(143, 194, 141, 0.7); }
-
-  /* STUDENT CARDS — elevated dark surface */
-  .stu-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .stu-card:hover {
-    background: var(--bg-elevated-2);
-    border-color: var(--gold);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  }
-  .stu-card.selected {
-    background: var(--bg-elevated-2);
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.3);
-  }
-  .stu-name { color: var(--text-on-dark); }
-  .stu-subject { color: var(--text-muted-on-dark); }
-  .stu-snippet { color: rgba(250, 246, 238, 0.78); }
-  .stu-progress { background: rgba(255, 255, 255, 0.08); }
-  .stu-progress::after { background: var(--gold); }
-
-  /* Status-coloured pupil pair-borders & flag still need to pop on dark */
-  .stu-card.solver-pair { background: rgba(43, 106, 138, 0.18); }
-  .stu-card.tutor-pair  { background: rgba(122, 60, 138, 0.18); }
-
-  /* PAIR CARDS — dark elevated; this is where text was vanishing */
-  .pair-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .pair-members { color: var(--text-on-dark); }
-  .pair-member { color: var(--text-on-dark); }
-  .pair-task { color: var(--text-on-dark); }
-  .pair-progress { background: rgba(255, 255, 255, 0.08); }
-  .pair-progress::after { background: var(--gold); }
-  .pair-card .pair-icon { background: var(--gold); color: var(--bg-base); }
-  /* Solver/tutor dots stay vibrant — bump them slightly for dark contrast */
-  .pair-dot.solver { background: #4a9bbf; }
-  .pair-dot.tutor  { background: #b06fc4; }
-
-  /* CHARTS canvas */
-  .charts {
-    border-top: 1px solid var(--line-dark);
-    margin-top: 32px;
-    padding-top: 28px;
-  }
-  .chart-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .chart-title { color: var(--text-on-dark); }
-  .chart-sub { color: var(--text-muted-on-dark); }
-
-  /* Cognitive load chart axis line */
-  .cog-bars { border-bottom-color: var(--line-dark-strong); }
-  .cog-bars .threshold { border-top-color: rgba(184, 59, 59, 0.7); }
-  .cog-bars .threshold::after { color: #e07a7a; }
-  .cog-bar .val { color: var(--text-on-dark); }
-  .cog-bar-wrap .lbl { color: var(--text-muted-on-dark); }
-
-  /* Topic list */
-  .topic-row { color: var(--text-on-dark); }
-  .topic-row .tname { color: var(--text-on-dark); }
-  .topic-row .tcount { color: var(--text-muted-on-dark); }
-  .topic-row .tbar { background: rgba(255, 255, 255, 0.08); }
-  .topic-row .tbar::after { background: var(--gold); }
-  .topic-row.hot .tbar::after { background: #d94c4c; }
-  .topic-row.warm .tbar::after { background: #e8a93f; }
-
-  /* Timeline legend */
-  .timeline-legend { color: var(--text-muted-on-dark); }
-
-  /* Radial chart text on dark */
-  .radial text { fill: var(--text-on-dark) !important; }
-  .radial circle[stroke="#e8dcc6"] { stroke: rgba(255, 255, 255, 0.08) !important; }
-  .radial-item { color: var(--text-on-dark); }
-  .radial-num { color: var(--text-on-dark); }
-
-  /* SVG line-chart grid + axis labels */
-  .timeline svg line[stroke="rgba(15,26,46,0.08)"] { stroke: rgba(255, 255, 255, 0.08) !important; }
-  .timeline svg text { fill: var(--text-muted-on-dark) !important; }
-
-  /* RIGHT DETAILS PANE — warm tinted dark */
-  .details-pane {
-    background: var(--bg-tinted);
-    color: var(--text-on-dark);
-  }
-  .tab-bar { background: var(--bg-warm); border-bottom-color: var(--line-dark); }
-  .tab { color: var(--text-muted-on-dark); }
-  .tab.active { background: var(--bg-tinted); color: var(--gold); border-bottom-color: var(--gold); }
-  .tab:hover:not(.active) { color: var(--text-on-dark); }
-
-  .passport-head { border-bottom-color: var(--line-dark); }
-  .passport-name { color: var(--text-on-dark); }
-  .passport-sub { color: var(--text-muted-on-dark); }
-  .passport-avatar { background: var(--gold); color: var(--bg-base); }
-  .passport-avatar::after { border-color: var(--bg-tinted); }
-
-  .tag {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-  }
-  /* Keep semantic tag styles strong */
-  .tag.send, .tag.mode, .tag.status-amber { /* defaults already work on dark */ }
-
-  .passport-section { border-bottom-color: var(--line-dark); }
-  .passport-section h3 { color: var(--gold); opacity: 0.85; }
-  .passport-row .l { color: var(--text-muted-on-dark); }
-  .passport-row .v { color: var(--text-on-dark); }
-
-  /* AI summary on dark — keep gold left rail */
-  .ai-summary {
-    background: linear-gradient(180deg, rgba(181, 138, 60, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    color: rgba(250, 246, 238, 0.88);
-    border-left-color: var(--gold);
-  }
-  .ai-summary mark {
-    background: rgba(216, 154, 47, 0.3);
-    color: var(--text-on-dark);
-  }
-  .ai-summary .meta { color: var(--text-muted-on-dark); border-top-color: var(--line-dark); }
-  .ai-summary strong { color: var(--text-on-dark); }
-
-  /* Action buttons on dark */
-  .action-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .action-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--gold);
-  }
-  .action-btn .icon { background: rgba(255, 255, 255, 0.06); }
-  .action-btn.primary { background: var(--gold); color: var(--bg-base); border-color: var(--gold); }
-  .action-btn.primary:hover { background: #d4a858; color: var(--bg-base); border-color: #d4a858; }
-  .action-btn .action-d { color: var(--text-muted-on-dark); }
-  .action-btn.primary .action-d { color: rgba(15, 26, 46, 0.7); }
-  /* warn variant keeps amber, still readable */
-
-  /* Pair tab specifics */
-  .pair-config { background: rgba(255, 255, 255, 0.04); border-color: var(--line-dark); color: var(--text-on-dark); }
-  .pair-slot {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .pair-slot.solver { background: rgba(43, 106, 138, 0.22); border-color: #4a9bbf; }
-  .pair-slot.solver .role { color: #8ec3d8; }
-  .pair-slot.tutor { background: rgba(122, 60, 138, 0.22); border-color: #b06fc4; }
-  .pair-slot.tutor .role { color: #d2a3da; }
-  .pair-slot .n { color: var(--text-on-dark); }
-
-  /* Past pair-up cards inside details pane */
-  .details-pane .passport-section > div[style*="background: var(--cream)"] {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: var(--line-dark) !important;
-    color: var(--text-on-dark) !important;
-  }
-
-  /* Generic buttons */
-  .btn { background: var(--gold); color: var(--bg-base); }
-  .btn:hover { background: #d4a858; color: var(--bg-base); }
-  .btn.ghost { background: transparent; color: var(--text-on-dark); border-color: var(--line-dark); }
-  .btn.ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(255, 255, 255, 0.04); }
-
-  /* Transcript mini (still kept in CSS for completeness — used in pair tab if any) */
-  .transcript-mini { background: rgba(255, 255, 255, 0.04); border-color: var(--line-dark); }
-  .tr-msg { border-bottom-color: var(--line-dark); }
-  .tr-text { color: rgba(250, 246, 238, 0.85); }
-
-  /* MODAL on dark */
-  .modal-backdrop { background: rgba(5, 10, 20, 0.75); }
-  .modal {
-    background: var(--bg-warm);
-    border-color: var(--gold);
-    color: var(--text-on-dark);
-  }
-  .modal-head { background: var(--bg-deepest); border-bottom: 1px solid var(--line-dark); }
-  .modal-body { color: var(--text-on-dark); }
-  .modal-foot { background: var(--bg-tinted); border-top-color: var(--line-dark); }
-  .modal-foot .hint { color: var(--text-muted-on-dark); }
-  .subject-tabs { border-bottom-color: var(--line-dark); }
-  .subject-tab { color: var(--text-muted-on-dark); }
-  .subject-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .mode-opt {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .mode-opt.active { background: var(--gold); color: var(--bg-base); border-color: var(--gold); }
-  .prompt-editor {
-    background: rgba(0, 0, 0, 0.3);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-  }
-  .prompt-editor:focus { border-color: var(--gold); }
-  .guardrail-list {
-    background: rgba(255, 255, 255, 0.03);
-    border-left-color: var(--gold);
-    color: var(--text-on-dark);
-  }
-  .guardrail-list h4 { color: var(--gold); opacity: 0.85; }
-  .guardrail-list label { color: var(--text-on-dark); }
-
-  /* FAB looks good on dark already, just give it a clearer ring */
-  .fab { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5); }
-
-  /* Scrollbar on dark */
-  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
-
-  /* Responsive — preserve dark theme on narrow */
-  @media (max-width: 1100px) {
-    .details-pane { border-top: 1px solid var(--line-dark); border-right: none; }
-  }
 </style>
 </head>
 <body>
@@ -2161,6 +1873,66 @@
       </div>
 
       <div class="passport-section">
+        <h3>Session Analysis · Live</h3>
+        <div class="ana-grid">
+          <div class="ana-card">
+            <div class="lbl">Cognitive Load</div>
+            <div class="val">High</div>
+            <div class="trend warn">↑ rising 8 min</div>
+            <div class="ana-bar warn" style="--f: 78%"></div>
+          </div>
+          <div class="ana-card">
+            <div class="lbl">Engagement</div>
+            <div class="val">62<span style="font-size:13px;color:var(--ink-muted)">%</span></div>
+            <div class="trend down">↓ from 84%</div>
+            <div class="ana-bar bad" style="--f: 62%"></div>
+          </div>
+          <div class="ana-card">
+            <div class="lbl">Help-Seeking</div>
+            <div class="val">2×</div>
+            <div class="trend warn">asking for answers</div>
+            <div class="ana-bar warn" style="--f: 40%"></div>
+          </div>
+          <div class="ana-card">
+            <div class="lbl">Misconception</div>
+            <div class="val">Low</div>
+            <div class="trend up">↓ on target</div>
+            <div class="ana-bar good" style="--f: 22%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="passport-section">
+        <h3>Recent Transcript</h3>
+        <div class="transcript-mini">
+          <div class="tr-msg">
+            <div class="tr-who ai">BRIDEWELL</div>
+            <div class="tr-text">Lovely start! What three things could your old dragon have seen?</div>
+          </div>
+          <div class="tr-msg">
+            <div class="tr-who student">PRIYA</div>
+            <div class="tr-text">idk. like it saw castles maybe?</div>
+          </div>
+          <div class="tr-msg">
+            <div class="tr-who ai">BRIDEWELL</div>
+            <div class="tr-text">Castles — being built, or falling down? Which feels right?</div>
+          </div>
+          <div class="tr-msg">
+            <div class="tr-who student">PRIYA</div>
+            <div class="tr-text">can u just give me a better opening line? i cant think<span class="tr-flag">⚑ Answer-seeking</span></div>
+          </div>
+          <div class="tr-msg">
+            <div class="tr-who ai">BRIDEWELL</div>
+            <div class="tr-text">Let's try one word. Fierce? Tired? Sneaky?</div>
+          </div>
+          <div class="tr-msg">
+            <div class="tr-who student">PRIYA</div>
+            <div class="tr-text">tired i guess</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="passport-section">
         <h3>Teacher-in-the-Loop Actions</h3>
         <div class="action-list">
           <button class="action-btn warn">
@@ -2569,6 +2341,16 @@ ESCALATE TO TEACHER IF
       <div class="passport-section">
         <h3>Student Passport</h3>
         ${passportRows}
+      </div>
+
+      <div class="passport-section">
+        <h3>Session Analysis · Live</h3>
+        <div class="ana-grid">${anaCards}</div>
+      </div>
+
+      <div class="passport-section">
+        <h3>Recent Transcript</h3>
+        <div class="transcript-mini">${transcript}</div>
       </div>
 
       <div class="passport-section">
