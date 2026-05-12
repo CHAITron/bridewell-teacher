@@ -1,181 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Classroom · Bridewell AI · KESW</title>
+<title>Classrooms · Bridewell AI · KESW</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="mask-icon" href="favicon.svg" color="#0f1a2e" />
 <meta name="theme-color" content="#0f1a2e" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --ink: #0f1a2e;
-    --ink-soft: #1f2b44;
-    --ink-muted: #4a5878;
-    --parchment: #f3ece0;
-    --parchment-deep: #e8dcc6;
-    --cream: #faf6ee;
-    --paper: #fbf8f1;
-    --crimson: #8a1c2b;
-    --crimson-deep: #5a1119;
     --gold: #b58a3c;
     --gold-light: #d4a858;
-    --moss: #3d6b3d;
-    --amber: #c78a1a;
+    --crimson: #8a1c2b;
 
-    --status-green: #4a8a4c;
-    --status-green-bg: #e6efd9;
-    --status-amber: #d89a2f;
-    --status-amber-bg: #faeac0;
-    --status-red: #b83b3b;
-    --status-red-bg: #f6dada;
-    --status-idle: #8a8fa3;
-    --status-idle-bg: #e4e6ed;
-
-    --solver: #2b6a8a;
-    --tutor: #7a3c8a;
-
-    --line: rgba(15, 26, 46, 0.1);
-    --line-strong: rgba(15, 26, 46, 0.18);
+    /* Status colours — same in both themes */
+    --green: #4a8a4c;
+    --amber: #d89a2f;
+    --red:   #b83b3b;
+    --idle:  #8a8fa3;
   }
+
+  /* DARK THEME (default) */
+  [data-theme="dark"] {
+    --bg-deepest:  #0a1424;
+    --bg-base:     #0f1a2e;
+    --bg-warm:     #13203a;
+    --bg-tinted:   #162338;
+    --bg-elevated: #1c2a45;
+    --bg-elevated-2:#22324f;
+    --text:        #faf6ee;
+    --text-muted:  rgba(250, 246, 238, 0.62);
+    --text-faint:  rgba(250, 246, 238, 0.42);
+    --line:        rgba(181, 138, 60, 0.22);
+    --line-strong: rgba(181, 138, 60, 0.4);
+    --shadow:      rgba(0, 0, 0, 0.4);
+  }
+
+  /* LIGHT THEME */
+  [data-theme="light"] {
+    --bg-deepest:  #efe7d5;
+    --bg-base:     #f3ece0;
+    --bg-warm:     #faf6ee;
+    --bg-tinted:   #fbf8f1;
+    --bg-elevated: #ffffff;
+    --bg-elevated-2:#fbf8f1;
+    --text:        #0f1a2e;
+    --text-muted:  rgba(15, 26, 46, 0.6);
+    --text-faint:  rgba(15, 26, 46, 0.4);
+    --line:        rgba(15, 26, 46, 0.12);
+    --line-strong: rgba(15, 26, 46, 0.22);
+    --shadow:      rgba(15, 26, 46, 0.1);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
+  html, body { min-height: 100%; }
   body {
     font-family: 'Inter Tight', sans-serif;
-    background: var(--parchment);
-    color: var(--ink);
+    background: var(--bg-base);
+    color: var(--text);
     font-size: 14px;
     line-height: 1.5;
-  }
-  body::before {
-    content: "";
-    position: fixed; inset: 0;
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.1 0 0 0 0 0.18 0 0 0 0.03 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    pointer-events: none;
-    z-index: 0;
+    transition: background 0.2s, color 0.2s;
   }
 
   /* ============ TOP BAR ============ */
   .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--ink);
-    color: var(--cream);
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg-deepest);
+    color: var(--text);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 14px 28px;
-    border-bottom: 1px solid rgba(181, 138, 60, 0.25);
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+    flex-wrap: wrap;
   }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .brand .crest-mini { width: 34px; height: 40px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .crest-mini { width: 32px; height: 38px; }
   .brand-text .school {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--gold);
-    opacity: 0.9;
   }
   .brand-text .product {
     font-family: 'Fraunces', serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     letter-spacing: -0.01em;
   }
   .brand-text .product em { font-style: italic; font-weight: 300; color: var(--gold); }
-  .topnav {
-    display: flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(181, 138, 60, 0.15);
-    padding: 3px;
-  }
-  .topnav a {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px 16px;
-    color: rgba(250, 246, 238, 0.65);
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .topnav a.active { background: var(--cream); color: var(--ink); }
-  .topnav a:hover:not(.active) { color: var(--cream); }
 
-  .top-right { display: flex; align-items: center; gap: 18px; }
-  .class-pill {
+  .top-right { display: flex; align-items: center; gap: 12px; }
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 7px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 7px 14px;
-    background: var(--crimson-deep);
-    color: var(--cream);
-    cursor: pointer;
-    display: flex; align-items: center; gap: 8px;
+    transition: all 0.15s;
   }
-  .class-pill::after { content: "▾"; font-size: 8px; opacity: 0.7; }
+  [data-theme="light"] .theme-toggle { background: rgba(15, 26, 46, 0.04); }
+  .theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .theme-toggle svg { width: 13px; height: 13px; }
+
   .teacher-chip {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 6px 6px 14px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(181, 138, 60, 0.2);
-    cursor: pointer;
+    padding: 5px 5px 5px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
   }
+  [data-theme="light"] .teacher-chip { background: rgba(15, 26, 46, 0.04); }
   .teacher-chip .name { font-size: 12px; font-weight: 500; }
   .teacher-chip .role {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    opacity: 0.6;
+    color: var(--text-muted);
   }
   .teacher-avatar {
-    width: 32px; height: 32px;
+    width: 30px; height: 30px;
     border-radius: 50%;
     background: var(--gold);
-    color: var(--ink);
+    color: var(--bg-deepest);
     font-family: 'Fraunces', serif;
     font-weight: 600;
     display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* ============ PAGE HEADER ============ */
   .page-head {
-    padding: 28px 28px 20px;
+    background: var(--bg-warm);
+    padding: 24px 28px 18px;
     border-bottom: 1px solid var(--line);
-    background: var(--paper);
-    position: relative;
-    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 40px;
+    gap: 32px;
     flex-wrap: wrap;
   }
-  .crumb {
+  .page-head .crumb {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-bottom: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
   }
-  .crumb .sep { margin: 0 10px; opacity: 0.5; }
-  .crumb .here { color: var(--crimson); }
+  .page-head .crumb .sep { margin: 0 8px; opacity: 0.5; }
+  .page-head .crumb .here { color: var(--gold); }
+  .page-head .crumb button.back-btn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .page-head .crumb button.back-btn:hover { border-color: var(--gold); color: var(--gold); }
 
   h1.page-title {
     font-family: 'Fraunces', serif;
-    font-size: 42px;
+    font-size: 38px;
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.025em;
@@ -184,123 +191,45 @@
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-weight: 300;
-    color: var(--crimson);
-  }
-  .head-sub {
-    font-family: 'Instrument Serif', serif;
-    font-size: 18px;
-    color: var(--ink-muted);
-    margin-top: 8px;
-    max-width: 540px;
+    color: var(--gold);
   }
 
   .metrics { display: flex; gap: 28px; }
   .metric { text-align: right; }
   .metric .v {
     font-family: 'Fraunces', serif;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 500;
     line-height: 1;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    justify-content: flex-end;
   }
-  .metric .v .unit { font-size: 13px; color: var(--ink-muted); font-weight: 400; }
   .metric .l {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-top: 6px;
+    color: var(--text-muted);
+    margin-top: 5px;
   }
-  .metric.alert .v { color: var(--status-red); }
-  .metric.warn .v { color: var(--status-amber); }
-  .metric.good .v { color: var(--moss); }
 
-  /* ============ MAIN LAYOUT ============ */
+  /* ============ LAYOUT ============ */
   .main {
     display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 0;
-    position: relative;
-    z-index: 1;
+    grid-template-columns: 1fr 380px;
+    min-height: calc(100vh - 200px);
   }
 
-  /* ============ LEFT: FILTER + GRID ============ */
-  .grid-pane {
-    background: var(--paper);
-    padding: 20px 28px 28px;
+  /* ============ LEFT PANEL ============ */
+  .left-pane {
+    background: var(--bg-base);
+    padding: 22px 28px 28px;
     border-right: 1px solid var(--line);
-  }
-  .filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
-  }
-  .filter-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .filter-select {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 32px 8px 14px;
-    background: var(--cream) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%230f1a2e' stroke-width='1.5' fill='none'/></svg>") no-repeat right 12px center;
-    border: 1px solid var(--line-strong);
-    color: var(--ink);
-    cursor: pointer;
-    appearance: none;
-  }
-  .legend-group {
-    margin-left: auto;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-
-  .live-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--moss);
-    font-weight: 600;
-  }
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--moss);
-    box-shadow: 0 0 8px rgba(61, 107, 61, 0.6);
-    animation: livepulse 1.6s ease-in-out infinite;
-  }
-  @keyframes livepulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
   }
 
   .section-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin: 22px 0 14px;
+    margin-bottom: 16px;
   }
   .section-head h2 {
     font-family: 'Fraunces', serif;
@@ -309,59 +238,147 @@
     letter-spacing: -0.01em;
   }
   .section-head h2 em {
-    font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-weight: 300;
-    color: var(--ink-muted);
+    color: var(--text-muted);
   }
-  .section-head .count {
+  .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-muted);
+    color: #8fc28d;
+    font-weight: 600;
+  }
+  [data-theme="light"] .live { color: #3d6b3d; }
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
   }
 
-  /* Student grid — 5 cols × 2 rows = 10 students */
-  .stu-grid {
+  /* CLASSROOM CARDS */
+  .classroom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .classroom-card {
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--line);
+    padding: 18px 20px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .classroom-card:hover {
+    background: var(--bg-elevated-2);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px var(--shadow);
+  }
+  .classroom-card.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.25);
+  }
+  .classroom-card .open-hint {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .classroom-card:hover .open-hint { opacity: 1; }
+
+  .cl-subject {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  .cl-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .cl-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 14px;
+  }
+  .cl-pupils {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .cl-pupils strong { color: var(--text); font-weight: 600; }
+  .cl-status {
+    display: flex;
+    gap: 4px;
+  }
+  .cl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+  }
+  .cl-dot.green { color: var(--green); background: var(--green); }
+  .cl-dot.amber { color: var(--amber); background: var(--amber); }
+  .cl-dot.red { color: var(--red); background: var(--red); }
+  .cl-dot.idle { color: var(--idle); background: transparent; }
+
+  /* STUDENT GRID (drilled-in) */
+  .student-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 12px;
   }
-  @media (max-width: 1240px) { .stu-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (max-width: 960px) { .stu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 1240px) { .student-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 820px) { .student-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .student-grid { grid-template-columns: repeat(2, 1fr); } }
 
   .stu-card {
-    background: var(--cream);
-    border: 1.5px solid var(--line-strong);
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--line);
     padding: 14px 14px 12px;
     cursor: pointer;
-    position: relative;
     transition: all 0.15s;
-    min-height: 110px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .stu-card:hover {
-    border-color: var(--ink);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(15, 26, 46, 0.08);
+    background: var(--bg-elevated-2);
+    border-color: var(--gold);
   }
   .stu-card.selected {
-    border-color: var(--crimson);
-    background: var(--paper);
-    box-shadow: 0 0 0 3px rgba(138, 28, 43, 0.15);
+    border-color: var(--gold);
+    background: var(--bg-elevated-2);
+    box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.25);
   }
-  .stu-card.solver-pair {
-    border-color: var(--solver);
-    background: #e8f2f5;
-  }
-  .stu-card.tutor-pair {
-    border-color: var(--tutor);
-    background: #f1e6f3;
-  }
-
   .stu-top {
     display: flex;
     justify-content: space-between;
@@ -370,1239 +387,358 @@
   }
   .stu-name {
     font-family: 'Fraunces', serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 1.1;
-    letter-spacing: -0.01em;
   }
-
-  /* Human icon with colored background */
   .stu-figure {
-    width: 24px; height: 24px;
+    width: 22px; height: 22px;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
-    position: relative;
+    color: white;
   }
-  .stu-figure.green {
-    background: var(--status-green);
-    color: var(--cream);
-  }
-  .stu-figure.amber {
-    background: var(--status-amber);
-    color: var(--ink);
-    animation: amberpulse 2.2s ease-in-out infinite;
-  }
-  .stu-figure.red {
-    background: var(--status-red);
-    color: var(--cream);
-    animation: redpulse 1.4s ease-in-out infinite;
-  }
-  .stu-figure.idle {
-    background: var(--status-idle);
-    color: var(--cream);
-  }
-  .stu-figure svg { width: 14px; height: 14px; }
-
-  @keyframes amberpulse {
+  .stu-figure.green { background: var(--green); }
+  .stu-figure.amber { background: var(--amber); color: #0f1a2e; animation: pulseRing 2.2s ease-in-out infinite; }
+  .stu-figure.red { background: var(--red); animation: pulseRingFast 1.4s ease-in-out infinite; }
+  .stu-figure.idle { background: var(--idle); }
+  .stu-figure svg { width: 12px; height: 12px; }
+  @keyframes pulseRing {
     0%, 100% { box-shadow: 0 0 0 0 rgba(216, 154, 47, 0.55); }
-    50% { box-shadow: 0 0 0 7px rgba(216, 154, 47, 0); }
+    50% { box-shadow: 0 0 0 6px rgba(216, 154, 47, 0); }
   }
-  @keyframes redpulse {
+  @keyframes pulseRingFast {
     0%, 100% { box-shadow: 0 0 0 0 rgba(184, 59, 59, 0.6); }
-    50% { box-shadow: 0 0 0 9px rgba(184, 59, 59, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(184, 59, 59, 0); }
   }
-
   .stu-subject {
-    font-size: 11px;
-    color: var(--ink-muted);
-    line-height: 1.3;
-    margin-top: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
   }
-  .stu-snippet {
-    font-size: 11px;
-    color: var(--ink-soft);
-    font-style: italic;
-    margin-top: 6px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.35;
-    min-height: 28px;
-  }
-
   .stu-progress {
     height: 3px;
-    background: var(--parchment-deep);
+    background: rgba(127, 127, 127, 0.18);
     margin-top: 10px;
     position: relative;
-    overflow: hidden;
   }
   .stu-progress::after {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    background: var(--ink);
-    width: var(--p, 50%);
+    content: ""; position: absolute; inset: 0 auto 0 0;
+    background: var(--gold); width: var(--p, 50%);
   }
-  .stu-card.solver-pair .stu-progress::after { background: var(--solver); }
-  .stu-card.tutor-pair .stu-progress::after { background: var(--tutor); }
 
-  .stu-flag {
-    position: absolute;
-    top: -8px; right: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 2px 7px;
-    background: var(--status-red);
-    color: var(--cream);
-    font-weight: 600;
+  /* ============ STATS ROW (bottom) ============ */
+  .stats-row {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
   }
-  .stu-flag.amber { background: var(--status-amber); color: var(--ink); }
-
-  /* Pair-up strip */
-  .pair-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-  }
-  .pair-card {
-    background: var(--cream);
-    border: 1.5px solid var(--line-strong);
-    padding: 10px 12px;
-    position: relative;
-  }
-  .pair-card .pair-icon {
-    position: absolute;
-    top: -8px; right: 8px;
-    width: 22px; height: 22px;
-    background: var(--ink);
-    color: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .pair-card .pair-icon svg { width: 12px; height: 12px; }
-  .pair-members {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  .stats-row .stats-title {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
   }
-  .pair-member { display: flex; align-items: center; gap: 4px; }
-  .pair-dot { width: 8px; height: 8px; }
-  .pair-dot.solver { background: var(--solver); }
-  .pair-dot.tutor { background: var(--tutor); }
-  .pair-task {
-    font-size: 12px;
-    margin-top: 6px;
-    font-weight: 500;
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
   }
-  .pair-progress {
-    height: 3px;
-    background: var(--parchment-deep);
-    margin-top: 6px;
-    position: relative;
-    overflow: hidden;
-  }
-  .pair-progress::after {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    background: var(--ink);
-    width: var(--p, 50%);
-  }
+  @media (max-width: 1100px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .stats-grid { grid-template-columns: 1fr; } }
 
-  /* ============ RIGHT: DETAILS ============ */
-  .details-pane {
-    background: var(--paper);
+  .stat-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    padding: 16px 18px;
     display: flex;
     flex-direction: column;
+    min-height: 180px;
   }
-  .tab-bar {
-    display: flex;
-    border-bottom: 1px solid var(--line);
-    background: var(--parchment-deep);
+  .stat-card .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
   }
-  .tab {
-    flex: 1;
-    text-align: center;
-    padding: 14px 16px;
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    letter-spacing: 0.03em;
-  }
-  .tab.active {
-    background: var(--paper);
-    color: var(--crimson);
-    border-bottom-color: var(--crimson);
-  }
-  .tab-content { display: none; padding: 22px 24px; flex: 1; overflow-y: auto; }
-  .tab-content.active { display: block; }
-
-  .passport-head {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .passport-avatar {
-    width: 72px; height: 72px;
-    background: var(--ink);
-    color: var(--cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .stat-card .stat-headline {
     font-family: 'Fraunces', serif;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .passport-avatar::after {
-    content: "";
-    position: absolute;
-    bottom: -3px; right: -3px;
-    width: 20px; height: 20px;
-    background: var(--status-amber);
-    border: 3px solid var(--paper);
-    border-radius: 50%;
-  }
-  .passport-info { flex: 1; min-width: 0; }
-  .passport-name {
-    font-family: 'Fraunces', serif;
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: -0.015em;
     line-height: 1.1;
   }
-  .passport-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-top: 6px;
-  }
-  .passport-tags {
-    display: flex;
-    gap: 6px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-  .tag {
+  .stat-card .stat-source {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    background: var(--parchment-deep);
-    color: var(--ink-soft);
-    border: 1px solid var(--line-strong);
+    color: var(--text-faint);
+    margin-top: auto;
+    padding-top: 12px;
   }
-  .tag.send { background: var(--crimson); color: var(--cream); border-color: var(--crimson); }
-  .tag.mode { background: var(--ink); color: var(--gold); border-color: var(--ink); }
-  .tag.status-amber { background: var(--status-amber); color: var(--ink); border-color: var(--amber); }
 
-  .passport-section {
-    padding: 18px 0;
-    border-bottom: 1px solid var(--line);
+  /* Frequency chart — horizontal bars for the 3 buttons */
+  .freq-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
   }
-  .passport-section:last-child { border-bottom: none; }
-  .passport-section h3 {
+  .freq-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .freq-row .freq-name { color: var(--text); }
+  .freq-row .freq-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .freq-bar {
+    grid-column: 1 / -1;
+    height: 4px;
+    background: rgba(127, 127, 127, 0.18);
+    position: relative;
+    margin-top: 2px;
+  }
+  .freq-bar::after {
+    content: ""; position: absolute; inset: 0 auto 0 0;
+    background: var(--gold); width: var(--f, 40%);
+  }
+  .freq-row.rephrase .freq-bar::after { background: var(--amber); }
+  .freq-row.simplify .freq-bar::after { background: #4a9bbf; }
+  .freq-row.hint .freq-bar::after { background: #b06fc4; }
+
+  /* Time-series line charts for the three derived metrics */
+  .ts-wrap { margin-top: 10px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .ts-chart {
+    position: relative;
+    width: 100%;
+    height: 64px;
+    margin: 4px 0 2px;
+    cursor: crosshair;
+  }
+  .ts-chart svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .ts-chart .ts-grid { stroke: rgba(127, 127, 127, 0.18); stroke-width: 1; }
+  .ts-chart .ts-threshold { stroke: rgba(184, 59, 59, 0.45); stroke-width: 1; stroke-dasharray: 3 3; }
+  .ts-chart .ts-area { fill: currentColor; fill-opacity: 0.12; }
+  .ts-chart .ts-line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Hover crosshair + dot inside the SVG */
+  .ts-chart .ts-hover-line {
+    stroke: var(--text);
+    stroke-width: 1;
+    stroke-dasharray: 2 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+  }
+  .ts-chart .ts-hover-dot {
+    fill: currentColor;
+    stroke: var(--bg-elevated);
+    stroke-width: 1.5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+  }
+  .ts-chart:hover .ts-hover-line,
+  .ts-chart:hover .ts-hover-dot { opacity: 1; }
+
+  /* HTML tooltip overlay — not subject to SVG viewBox stretching */
+  .ts-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--bg-deepest);
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    padding: 5px 9px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-bottom: 12px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    transform: translate(-50%, calc(-100% - 10px));
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
+  .ts-tooltip strong { color: currentColor; font-weight: 600; }
+  .ts-chart:hover .ts-tooltip { opacity: 1; }
+  .ts-chart.struggle .ts-tooltip strong { color: var(--amber); }
+  .ts-chart.load     .ts-tooltip strong { color: #4a9bbf; }
+  .ts-chart.creative .ts-tooltip strong { color: #b06fc4; }
 
-  .passport-row {
+  .ts-chart.struggle { color: var(--amber); }
+  .ts-chart.load     { color: #4a9bbf; }
+  .ts-chart.creative { color: #b06fc4; }
+  .ts-axis {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
-    font-size: 13px;
-    gap: 16px;
-  }
-  .passport-row .l { color: var(--ink-muted); flex-shrink: 0; }
-  .passport-row .v { color: var(--ink); font-weight: 500; text-align: right; }
-
-  .ana-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .ana-card {
-    background: var(--cream);
-    border: 1px solid var(--line);
-    padding: 12px 14px;
-  }
-  .ana-card .lbl {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-top: 4px;
   }
-  .ana-card .val {
+  .trend {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    margin-top: 8px;
+  }
+  .trend.up { color: var(--green); }
+  .trend.down { color: var(--red); }
+  .trend.warn { color: var(--amber); }
+  .trend.flat { color: var(--text-muted); }
+
+  /* ============ RIGHT PANEL ============ */
+  .right-pane {
+    background: var(--bg-tinted);
+    padding: 22px 24px;
+    overflow-y: auto;
+  }
+
+  .detail-head {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .detail-avatar {
+    width: 60px; height: 60px;
+    background: var(--gold);
+    color: var(--bg-deepest);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .detail-avatar.classroom {
+    background: var(--bg-elevated);
+    color: var(--gold);
+    border: 1.5px solid var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+  }
+  .detail-info { flex: 1; min-width: 0; }
+  .detail-name {
     font-family: 'Fraunces', serif;
     font-size: 22px;
     font-weight: 500;
     line-height: 1.1;
-    margin-top: 4px;
-  }
-  .ana-card .trend {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    margin-top: 4px;
-  }
-  .trend.up { color: var(--moss); }
-  .trend.down { color: var(--status-red); }
-  .trend.warn { color: var(--amber); }
-  .ana-bar {
-    height: 3px;
-    background: var(--parchment-deep);
-    margin-top: 8px;
-    position: relative;
-  }
-  .ana-bar::after {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: var(--f, 50%);
-    background: var(--ink);
-  }
-  .ana-bar.warn::after { background: var(--status-amber); }
-  .ana-bar.good::after { background: var(--moss); }
-  .ana-bar.bad::after { background: var(--status-red); }
-
-  .ai-summary {
-    background: linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
-    padding: 14px 16px;
-    border-left: 3px solid var(--gold);
-    font-family: 'Instrument Serif', serif;
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-  .ai-summary mark {
-    background: rgba(216, 154, 47, 0.25);
-    color: var(--ink);
-    padding: 0 3px;
-  }
-  .ai-summary .meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid var(--line);
-    font-style: normal;
-  }
-
-  .action-list { display: flex; flex-direction: column; gap: 8px; }
-  .action-btn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: var(--cream);
-    border: 1px solid var(--line-strong);
-    cursor: pointer;
-    text-align: left;
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 13px;
-    color: var(--ink);
-    transition: all 0.15s;
-    width: 100%;
-  }
-  .action-btn:hover {
-    border-color: var(--ink);
-    background: var(--parchment-deep);
-  }
-  .action-btn .icon {
-    width: 28px; height: 28px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .action-btn .icon svg { width: 16px; height: 16px; }
-  .action-btn.primary { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-  .action-btn.primary:hover { background: var(--crimson-deep); border-color: var(--crimson-deep); }
-  .action-btn.warn { background: var(--status-amber); color: var(--ink); border-color: var(--amber); }
-  .action-btn.warn:hover { background: var(--amber); color: var(--cream); }
-  .action-body { flex: 1; }
-  .action-t { font-weight: 500; line-height: 1.2; }
-  .action-d { font-size: 11px; color: var(--ink-muted); margin-top: 2px; line-height: 1.3; }
-  .action-btn.primary .action-d, .action-btn.warn .action-d { color: currentColor; opacity: 0.75; }
-
-  .transcript-mini {
-    max-height: 180px;
-    overflow-y: auto;
-    background: var(--cream);
-    border: 1px solid var(--line);
-    padding: 10px 12px;
-  }
-  .tr-msg { padding: 6px 0; border-bottom: 1px dashed var(--line); }
-  .tr-msg:last-child { border-bottom: none; }
-  .tr-who {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .tr-who.ai { color: var(--gold); }
-  .tr-who.student { color: var(--crimson); }
-  .tr-text {
-    font-size: 12px;
-    line-height: 1.4;
-    color: var(--ink-soft);
-    margin-top: 2px;
-  }
-  .tr-flag {
-    display: inline-block;
-    margin-left: 6px;
-    background: var(--status-amber);
-    color: var(--ink);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    padding: 1px 5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  .pair-config { background: var(--cream); border: 1px solid var(--line); padding: 16px; }
-  .pair-config .row-side {
-    display: grid;
-    grid-template-columns: 1fr 32px 1fr;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-  }
-  .pair-slot {
-    background: var(--parchment);
-    padding: 10px;
-    border: 1px dashed var(--line-strong);
-    text-align: center;
-  }
-  .pair-slot .role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .pair-slot .n {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 4px;
-  }
-  .pair-slot.solver { border-color: var(--solver); background: #e8f2f5; }
-  .pair-slot.solver .role { color: var(--solver); font-weight: 600; }
-  .pair-slot.tutor { border-color: var(--tutor); background: #f1e6f3; }
-  .pair-slot.tutor .role { color: var(--tutor); font-weight: 600; }
-  .pair-arrow {
-    text-align: center;
-    font-size: 20px;
-    color: var(--gold);
-    font-family: 'Fraunces', serif;
-  }
-
-  /* ============ BOTTOM CHARTS (inside left column) ============ */
-  .charts {
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  /* Wider viewports → 4 across for the left column */
-  @media (min-width: 1600px) {
-    .charts { grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  }
-  /* Narrow → single column */
-  @media (max-width: 720px) {
-    .charts { grid-template-columns: 1fr; }
-  }
-  .chart-card {
-    background: var(--cream);
-    border: 1px solid var(--line);
-    padding: 18px 20px;
-    min-height: 240px;
-    display: flex;
-    flex-direction: column;
-  }
-  .chart-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 14px;
-  }
-  .chart-title {
-    font-family: 'Fraunces', serif;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.2;
-  }
-  .chart-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-top: 3px;
-  }
-  .chart-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-
-  /* Cognitive load bar chart */
-  .cog-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 6px;
-    height: 160px;
-    padding: 16px 4px 0;
-    border-bottom: 1px solid var(--line-strong);
-    position: relative;
-  }
-  .cog-bars .threshold {
-    position: absolute;
-    left: 0; right: 0;
-    top: 30%;
-    border-top: 1px dashed var(--crimson);
-  }
-  .cog-bars .threshold::after {
-    content: "HIGH LOAD";
-    position: absolute;
-    right: 0; top: -13px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 0.15em;
-    color: var(--crimson);
-  }
-  .cog-bar-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    height: 100%;
-    justify-content: flex-end;
-  }
-  .cog-bar {
-    width: 100%;
-    max-width: 36px;
-    background: var(--ink);
-    position: relative;
-    transition: height 0.6s ease;
-  }
-  .cog-bar.warn { background: var(--status-amber); }
-  .cog-bar.bad { background: var(--status-red); }
-  .cog-bar.good { background: var(--moss); }
-  .cog-bar .val {
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    font-weight: 600;
-  }
-  .cog-bar-wrap .lbl {
-    margin-top: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    white-space: nowrap;
-  }
-
-  /* Engagement timeline */
-  .timeline { width: 100%; height: 160px; position: relative; }
-
-  .timeline-legend {
-    display: flex;
-    gap: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-  .timeline-legend .k { display: flex; align-items: center; gap: 4px; }
-  .timeline-legend .k-dot { width: 10px; height: 2px; }
-
-  /* Topic list */
-  .topic-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .topic-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-  }
-  .topic-row .tname { font-weight: 500; }
-  .topic-row .tbar {
-    grid-column: 1 / -1;
-    height: 4px;
-    background: var(--parchment-deep);
-    position: relative;
-    margin-top: 2px;
-  }
-  .topic-row .tbar::after {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    background: var(--ink);
-    width: var(--f, 40%);
-  }
-  .topic-row.hot .tbar::after { background: var(--crimson); }
-  .topic-row.warm .tbar::after { background: var(--status-amber); }
-  .topic-row .tcount {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--ink-muted);
-  }
-
-  /* Help-seeking radial */
-  .radial-wrap {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .radial { width: 110px; height: 110px; flex-shrink: 0; }
-  .radial-legend {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    font-size: 11px;
-    flex: 1;
-  }
-  .radial-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .radial-dot {
-    width: 10px; height: 10px;
-  }
-  .radial-num {
-    margin-left: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-  }
-
-  /* FAB + Modal */
-  .fab {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    background: var(--ink);
-    color: var(--cream);
-    padding: 12px 20px;
-    cursor: pointer;
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    display: flex; align-items: center; gap: 10px;
-    box-shadow: 0 10px 28px rgba(15, 26, 46, 0.3);
-    z-index: 40;
-    border: 1px solid var(--gold);
-    transition: all 0.2s;
-  }
-  .fab:hover {
-    background: var(--crimson-deep);
-    transform: translateY(-2px);
-  }
-  .fab svg { width: 16px; height: 16px; }
-
-  .modal-backdrop {
-    position: fixed; inset: 0;
-    background: rgba(15, 26, 46, 0.65);
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    backdrop-filter: blur(4px);
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal {
-    background: var(--paper);
-    width: 100%;
-    max-width: 820px;
-    max-height: 90vh;
-    overflow-y: auto;
-    border: 1px solid var(--gold);
-  }
-  .modal-head {
-    padding: 22px 28px;
-    background: var(--ink);
-    color: var(--cream);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .modal-head h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 26px;
-    font-weight: 500;
     letter-spacing: -0.015em;
   }
-  .modal-head h2 em { color: var(--gold); font-style: italic; font-weight: 300; }
-  .modal-head .sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(250, 246, 238, 0.6);
-    margin-top: 4px;
-  }
-  .modal-close {
-    background: transparent;
-    border: 1px solid rgba(250, 246, 238, 0.3);
-    color: var(--cream);
-    padding: 7px 12px;
-    cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-  }
-  .modal-body { padding: 24px 28px; }
-  .subject-tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-  .subject-tab {
-    padding: 10px 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: var(--ink-muted);
-    border-bottom: 2px solid transparent;
-  }
-  .subject-tab.active {
-    color: var(--crimson);
-    border-bottom-color: var(--crimson);
-  }
-  .mode-toggle { display: flex; gap: 10px; margin-bottom: 18px; }
-  .mode-opt {
-    flex: 1;
-    padding: 12px 14px;
-    border: 1px solid var(--line-strong);
-    cursor: pointer;
-    background: var(--cream);
-  }
-  .mode-opt.active {
-    border-color: var(--ink);
-    background: var(--ink);
-    color: var(--cream);
-  }
-  .mode-opt .ml {
+  .detail-sub {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.7;
+    color: var(--text-muted);
+    margin-top: 5px;
   }
-  .mode-opt .mn {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 3px;
+  .detail-tags {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    flex-wrap: wrap;
   }
-  .mode-opt .md { font-size: 12px; margin-top: 5px; opacity: 0.8; line-height: 1.4; }
-  .prompt-editor {
-    width: 100%;
-    min-height: 200px;
+  .tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    line-height: 1.6;
-    padding: 16px;
-    background: var(--cream);
-    border: 1px solid var(--line-strong);
-    resize: vertical;
-    color: var(--ink);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    background: rgba(127, 127, 127, 0.1);
+    border: 1px solid var(--line);
+    color: var(--text);
   }
-  .prompt-editor:focus { outline: none; border-color: var(--ink); }
-  .guardrail-list {
-    margin-top: 18px;
-    background: var(--parchment);
-    padding: 14px 18px;
-    border-left: 3px solid var(--gold);
+  .tag.send { background: var(--crimson); color: #faf6ee; border-color: var(--crimson); }
+  .tag.mode { background: var(--bg-deepest); color: var(--gold); border-color: var(--bg-deepest); }
+  .tag.amber { background: var(--amber); color: #0f1a2e; border-color: var(--amber); }
+  .tag.green { background: var(--green); color: #faf6ee; border-color: var(--green); }
+
+  .detail-section {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
   }
-  .guardrail-list h4 {
+  .detail-section:last-child { border-bottom: none; }
+  .detail-section h3 {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    margin-bottom: 8px;
-    color: var(--ink-soft);
+    color: var(--gold);
+    margin-bottom: 10px;
   }
-  .guardrail-list label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px 0;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  .guardrail-list input { accent-color: var(--crimson); }
-  .modal-foot {
-    padding: 16px 28px;
-    border-top: 1px solid var(--line);
+  .detail-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background: var(--parchment-deep);
+    padding: 5px 0;
+    font-size: 13px;
+    gap: 16px;
   }
-  .modal-foot .hint {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--ink-muted);
+  .detail-row .l { color: var(--text-muted); }
+  .detail-row .v { color: var(--text); font-weight: 500; text-align: right; }
+
+  .summary-prose {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--text);
+    padding: 12px 14px;
+    background: rgba(181, 138, 60, 0.06);
+    border-left: 3px solid var(--gold);
   }
-  .btn {
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    padding: 9px 18px;
-    background: var(--ink);
-    color: var(--cream);
-    border: none;
-    cursor: pointer;
+  [data-theme="light"] .summary-prose { background: rgba(181, 138, 60, 0.08); }
+  .summary-prose strong { font-style: normal; font-weight: 600; }
+  .summary-prose mark {
+    background: rgba(216, 154, 47, 0.3);
+    color: var(--text);
+    padding: 0 3px;
   }
-  .btn:hover { background: var(--crimson-deep); }
-  .btn.ghost {
-    background: transparent;
-    color: var(--ink-soft);
-    border: 1px solid var(--line-strong);
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1100px) {
+    .main { grid-template-columns: 1fr; }
+    .right-pane { border-top: 1px solid var(--line); border-right: none; }
   }
-  .btn.ghost:hover { border-color: var(--ink); color: var(--ink); background: var(--parchment-deep); }
+  @media (max-width: 820px) {
+    .topbar { padding: 12px 16px; }
+    .page-head { padding: 20px 18px 14px; gap: 18px; }
+    h1.page-title { font-size: 28px; }
+    .metrics { gap: 16px; flex-wrap: wrap; }
+    .metric .v { font-size: 22px; }
+    .left-pane { padding: 18px 18px 24px; }
+    .right-pane { padding: 18px; }
+    .classroom-grid { grid-template-columns: 1fr; }
+    .teacher-chip .role { display: none; }
+    .stat-card { min-height: 160px; }
+  }
+  @media (max-width: 560px) {
+    body { overflow-x: hidden; }
+    .page-head { flex-direction: column; align-items: stretch; }
+    .metrics { justify-content: space-between; }
+    .metric { text-align: left; }
+    .brand-text .school { font-size: 8px; }
+  }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--line-strong); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
-
-  /* ============ RESPONSIVE ============ */
-
-  /* Tablet: stack details pane below grid */
-  @media (max-width: 1100px) {
-    .main { grid-template-columns: 1fr; }
-    .details-pane { border-top: 1px solid var(--line); border-right: none; }
-  }
-
-  /* Small tablet / large phone */
-  @media (max-width: 820px) {
-    .topbar { padding: 10px 16px; flex-wrap: wrap; gap: 10px; }
-    .topnav { order: 3; width: 100%; justify-content: center; overflow-x: auto; }
-    .topnav a { padding: 7px 12px; font-size: 11px; }
-    .top-right { gap: 10px; }
-    .teacher-chip .role { display: none; }
-    .teacher-chip { padding: 4px 4px 4px 10px; }
-
-    .page-head { padding: 22px 18px 16px; gap: 16px; }
-    h1.page-title { font-size: 30px; }
-    .head-sub { font-size: 15px; }
-    .metrics { gap: 16px; flex-wrap: wrap; }
-    .metric .v { font-size: 22px; }
-    .metric .l { font-size: 8px; }
-
-    .grid-pane { padding: 16px 18px 24px; }
-    .filter-bar { gap: 8px; }
-    .legend-group { width: 100%; margin-left: 0; gap: 10px; font-size: 8px; }
-    .filter-select { font-size: 12px; padding: 7px 28px 7px 12px; }
-
-    .section-head h2 { font-size: 17px; }
-    .stu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-    .stu-card { padding: 10px 10px 8px; min-height: 96px; }
-    .stu-name { font-size: 13px; }
-    .stu-subject { font-size: 10px; }
-    .stu-snippet { font-size: 10px; }
-
-    .pair-strip { grid-template-columns: 1fr 1fr; }
-
-    .tab-content { padding: 18px 18px; }
-    .passport-name { font-size: 22px; }
-    .passport-avatar { width: 60px; height: 60px; font-size: 24px; }
-    .ana-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-
-    .chart-card { padding: 14px 16px; min-height: 220px; }
-    .chart-title { font-size: 14px; }
-
-    .fab { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 12px; }
-
-    .modal-backdrop { padding: 12px; }
-    .modal-head { padding: 18px 20px; }
-    .modal-head h2 { font-size: 22px; }
-    .modal-body { padding: 18px 20px; }
-    .subject-tab { padding: 8px 12px; font-size: 10px; }
-    .mode-toggle { flex-direction: column; }
-    .modal-foot { flex-direction: column; gap: 10px; align-items: stretch; padding: 14px 20px; }
-    .modal-foot .hint { text-align: center; }
-  }
-
-  /* Phone */
-  @media (max-width: 560px) {
-    .brand-text .product { font-size: 15px; }
-    .brand-text .school { font-size: 8px; }
-    .brand .crest-mini { width: 28px; height: 34px; }
-    .class-pill { padding: 6px 10px; font-size: 10px; letter-spacing: 0.1em; }
-    .teacher-chip .name { font-size: 11px; }
-    .teacher-avatar { width: 28px; height: 28px; font-size: 11px; }
-
-    .page-head { flex-direction: column; align-items: stretch; }
-    h1.page-title { font-size: 26px; }
-    .metrics { justify-content: space-between; gap: 10px; }
-    .metric { text-align: left; flex: 1 1 auto; min-width: 60px; }
-    .metric .v { justify-content: flex-start; font-size: 20px; }
-
-    .stu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .pair-strip { grid-template-columns: 1fr; }
-
-    .charts { grid-template-columns: 1fr; }
-    .cog-bars { height: 140px; }
-    .cog-bar-wrap .lbl { font-size: 8px; }
-
-    .radial-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
-    .radial { width: 100px; height: 100px; margin: 0 auto; }
-
-    .passport-head { flex-direction: column; gap: 12px; }
-    .passport-tags { width: 100%; }
-    .passport-row { flex-direction: column; gap: 2px; padding: 4px 0; }
-    .passport-row .v { text-align: left; }
-
-    .timeline-legend { gap: 6px 10px; }
-
-    .fab { padding: 10px 14px; font-size: 11px; }
-    .fab svg { width: 14px; height: 14px; }
-
-    .subject-tabs { flex-wrap: wrap; }
-
-    /* Horizontal scroll guard */
-    body { overflow-x: hidden; }
-  }
-
-  /* ============ DARK THEME ============
-     Tonal sectional palette so each surface reads as a separate panel.
-     Cards inside dark surfaces also go dark (elevated tone) — content
-     text inverts to cream so legibility holds.
-  */
-
-  /* Tonal palette */
-  :root {
-    --bg-deepest: #0a1424;     /* topbar */
-    --bg-base:    #0f1a2e;     /* left grid pane (existing --ink) */
-    --bg-warm:    #13203a;     /* page header, modal, right pane */
-    --bg-tinted:  #162338;     /* details pane variant */
-    --bg-elevated:#1c2a45;     /* cards on dark */
-    --bg-elevated-2:#22324f;   /* hover / selected card */
-    --line-dark:  rgba(181, 138, 60, 0.22);
-    --line-dark-strong: rgba(181, 138, 60, 0.4);
-    --text-on-dark: #faf6ee;
-    --text-muted-on-dark: rgba(250, 246, 238, 0.6);
-    --text-faint-on-dark: rgba(250, 246, 238, 0.42);
-  }
-
-  body { background: var(--bg-base); color: var(--text-on-dark); }
-  body::before { opacity: 0.4; }
-
-  /* TOP BAR — deepest */
-  .topbar { background: var(--bg-deepest); }
-
-  /* PAGE HEADER */
-  .page-head {
-    background: var(--bg-warm);
-    border-bottom-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .crumb { color: var(--text-muted-on-dark); }
-  .crumb .here { color: var(--gold); }
-  h1.page-title { color: var(--text-on-dark); }
-  h1.page-title em { color: var(--gold); }
-  .head-sub { color: var(--text-muted-on-dark); }
-  .metric .v { color: var(--text-on-dark); }
-  .metric .v .unit { color: var(--text-muted-on-dark); }
-  .metric .l { color: var(--text-muted-on-dark); }
-
-  /* LEFT GRID PANE — base ink */
-  .grid-pane {
-    background: var(--bg-base);
-    color: var(--text-on-dark);
-    border-right-color: var(--line-dark);
-  }
-  .grid-pane .filter-bar { border-bottom-color: var(--line-dark); }
-  .filter-label { color: var(--gold); opacity: 0.85; }
-  .filter-select {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23faf6ee' stroke-width='1.5' fill='none'/></svg>");
-  }
-  .filter-select option { background: var(--bg-base); color: var(--text-on-dark); }
-  .legend-group { color: var(--text-muted-on-dark); }
-
-  .section-head h2 { color: var(--text-on-dark); }
-  .section-head h2 em { color: rgba(181, 138, 60, 0.85); }
-  .section-head .count { color: var(--text-muted-on-dark); }
-
-  /* Live indicator on dark */
-  .live-indicator { color: #8fc28d; }
-  .live-dot { background: #8fc28d; box-shadow: 0 0 8px rgba(143, 194, 141, 0.7); }
-
-  /* STUDENT CARDS — elevated dark surface */
-  .stu-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .stu-card:hover {
-    background: var(--bg-elevated-2);
-    border-color: var(--gold);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  }
-  .stu-card.selected {
-    background: var(--bg-elevated-2);
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.3);
-  }
-  .stu-name { color: var(--text-on-dark); }
-  .stu-subject { color: var(--text-muted-on-dark); }
-  .stu-snippet { color: rgba(250, 246, 238, 0.78); }
-  .stu-progress { background: rgba(255, 255, 255, 0.08); }
-  .stu-progress::after { background: var(--gold); }
-
-  /* Status-coloured pupil pair-borders & flag still need to pop on dark */
-  .stu-card.solver-pair { background: rgba(43, 106, 138, 0.18); }
-  .stu-card.tutor-pair  { background: rgba(122, 60, 138, 0.18); }
-
-  /* PAIR CARDS — dark elevated; this is where text was vanishing */
-  .pair-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .pair-members { color: var(--text-on-dark); }
-  .pair-member { color: var(--text-on-dark); }
-  .pair-task { color: var(--text-on-dark); }
-  .pair-progress { background: rgba(255, 255, 255, 0.08); }
-  .pair-progress::after { background: var(--gold); }
-  .pair-card .pair-icon { background: var(--gold); color: var(--bg-base); }
-  /* Solver/tutor dots stay vibrant — bump them slightly for dark contrast */
-  .pair-dot.solver { background: #4a9bbf; }
-  .pair-dot.tutor  { background: #b06fc4; }
-
-  /* CHARTS canvas */
-  .charts {
-    border-top: 1px solid var(--line-dark);
-    margin-top: 32px;
-    padding-top: 28px;
-  }
-  .chart-card {
-    background: var(--bg-elevated);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .chart-title { color: var(--text-on-dark); }
-  .chart-sub { color: var(--text-muted-on-dark); }
-
-  /* Cognitive load chart axis line */
-  .cog-bars { border-bottom-color: var(--line-dark-strong); }
-  .cog-bars .threshold { border-top-color: rgba(184, 59, 59, 0.7); }
-  .cog-bars .threshold::after { color: #e07a7a; }
-  .cog-bar .val { color: var(--text-on-dark); }
-  .cog-bar-wrap .lbl { color: var(--text-muted-on-dark); }
-
-  /* Topic list */
-  .topic-row { color: var(--text-on-dark); }
-  .topic-row .tname { color: var(--text-on-dark); }
-  .topic-row .tcount { color: var(--text-muted-on-dark); }
-  .topic-row .tbar { background: rgba(255, 255, 255, 0.08); }
-  .topic-row .tbar::after { background: var(--gold); }
-  .topic-row.hot .tbar::after { background: #d94c4c; }
-  .topic-row.warm .tbar::after { background: #e8a93f; }
-
-  /* Timeline legend */
-  .timeline-legend { color: var(--text-muted-on-dark); }
-
-  /* Radial chart text on dark */
-  .radial text { fill: var(--text-on-dark) !important; }
-  .radial circle[stroke="#e8dcc6"] { stroke: rgba(255, 255, 255, 0.08) !important; }
-  .radial-item { color: var(--text-on-dark); }
-  .radial-num { color: var(--text-on-dark); }
-
-  /* SVG line-chart grid + axis labels */
-  .timeline svg line[stroke="rgba(15,26,46,0.08)"] { stroke: rgba(255, 255, 255, 0.08) !important; }
-  .timeline svg text { fill: var(--text-muted-on-dark) !important; }
-
-  /* RIGHT DETAILS PANE — warm tinted dark */
-  .details-pane {
-    background: var(--bg-tinted);
-    color: var(--text-on-dark);
-  }
-  .tab-bar { background: var(--bg-warm); border-bottom-color: var(--line-dark); }
-  .tab { color: var(--text-muted-on-dark); }
-  .tab.active { background: var(--bg-tinted); color: var(--gold); border-bottom-color: var(--gold); }
-  .tab:hover:not(.active) { color: var(--text-on-dark); }
-
-  .passport-head { border-bottom-color: var(--line-dark); }
-  .passport-name { color: var(--text-on-dark); }
-  .passport-sub { color: var(--text-muted-on-dark); }
-  .passport-avatar { background: var(--gold); color: var(--bg-base); }
-  .passport-avatar::after { border-color: var(--bg-tinted); }
-
-  .tag {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-  }
-  /* Keep semantic tag styles strong */
-  .tag.send, .tag.mode, .tag.status-amber { /* defaults already work on dark */ }
-
-  .passport-section { border-bottom-color: var(--line-dark); }
-  .passport-section h3 { color: var(--gold); opacity: 0.85; }
-  .passport-row .l { color: var(--text-muted-on-dark); }
-  .passport-row .v { color: var(--text-on-dark); }
-
-  /* AI summary on dark — keep gold left rail */
-  .ai-summary {
-    background: linear-gradient(180deg, rgba(181, 138, 60, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    color: rgba(250, 246, 238, 0.88);
-    border-left-color: var(--gold);
-  }
-  .ai-summary mark {
-    background: rgba(216, 154, 47, 0.3);
-    color: var(--text-on-dark);
-  }
-  .ai-summary .meta { color: var(--text-muted-on-dark); border-top-color: var(--line-dark); }
-  .ai-summary strong { color: var(--text-on-dark); }
-
-  /* Action buttons on dark */
-  .action-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .action-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--gold);
-  }
-  .action-btn .icon { background: rgba(255, 255, 255, 0.06); }
-  .action-btn.primary { background: var(--gold); color: var(--bg-base); border-color: var(--gold); }
-  .action-btn.primary:hover { background: #d4a858; color: var(--bg-base); border-color: #d4a858; }
-  .action-btn .action-d { color: var(--text-muted-on-dark); }
-  .action-btn.primary .action-d { color: rgba(15, 26, 46, 0.7); }
-  /* warn variant keeps amber, still readable */
-
-  /* Pair tab specifics */
-  .pair-config { background: rgba(255, 255, 255, 0.04); border-color: var(--line-dark); color: var(--text-on-dark); }
-  .pair-slot {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .pair-slot.solver { background: rgba(43, 106, 138, 0.22); border-color: #4a9bbf; }
-  .pair-slot.solver .role { color: #8ec3d8; }
-  .pair-slot.tutor { background: rgba(122, 60, 138, 0.22); border-color: #b06fc4; }
-  .pair-slot.tutor .role { color: #d2a3da; }
-  .pair-slot .n { color: var(--text-on-dark); }
-
-  /* Past pair-up cards inside details pane */
-  .details-pane .passport-section > div[style*="background: var(--cream)"] {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: var(--line-dark) !important;
-    color: var(--text-on-dark) !important;
-  }
-
-  /* Generic buttons */
-  .btn { background: var(--gold); color: var(--bg-base); }
-  .btn:hover { background: #d4a858; color: var(--bg-base); }
-  .btn.ghost { background: transparent; color: var(--text-on-dark); border-color: var(--line-dark); }
-  .btn.ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(255, 255, 255, 0.04); }
-
-  /* Transcript mini (still kept in CSS for completeness — used in pair tab if any) */
-  .transcript-mini { background: rgba(255, 255, 255, 0.04); border-color: var(--line-dark); }
-  .tr-msg { border-bottom-color: var(--line-dark); }
-  .tr-text { color: rgba(250, 246, 238, 0.85); }
-
-  /* MODAL on dark */
-  .modal-backdrop { background: rgba(5, 10, 20, 0.75); }
-  .modal {
-    background: var(--bg-warm);
-    border-color: var(--gold);
-    color: var(--text-on-dark);
-  }
-  .modal-head { background: var(--bg-deepest); border-bottom: 1px solid var(--line-dark); }
-  .modal-body { color: var(--text-on-dark); }
-  .modal-foot { background: var(--bg-tinted); border-top-color: var(--line-dark); }
-  .modal-foot .hint { color: var(--text-muted-on-dark); }
-  .subject-tabs { border-bottom-color: var(--line-dark); }
-  .subject-tab { color: var(--text-muted-on-dark); }
-  .subject-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .mode-opt {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-dark);
-    color: var(--text-on-dark);
-  }
-  .mode-opt.active { background: var(--gold); color: var(--bg-base); border-color: var(--gold); }
-  .prompt-editor {
-    background: rgba(0, 0, 0, 0.3);
-    color: var(--text-on-dark);
-    border-color: var(--line-dark);
-  }
-  .prompt-editor:focus { border-color: var(--gold); }
-  .guardrail-list {
-    background: rgba(255, 255, 255, 0.03);
-    border-left-color: var(--gold);
-    color: var(--text-on-dark);
-  }
-  .guardrail-list h4 { color: var(--gold); opacity: 0.85; }
-  .guardrail-list label { color: var(--text-on-dark); }
-
-  /* FAB looks good on dark already, just give it a clearer ring */
-  .fab { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5); }
-
-  /* Scrollbar on dark */
-  ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
-
-  /* Responsive — preserve dark theme on narrow */
-  @media (max-width: 1100px) {
-    .details-pane { border-top: 1px solid var(--line-dark); border-right: none; }
-  }
+  ::-webkit-scrollbar-thumb { background: rgba(127, 127, 127, 0.25); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(127, 127, 127, 0.4); }
 </style>
 </head>
 <body>
@@ -1625,16 +761,14 @@
     </div>
   </div>
 
-  <div class="topnav">
-    <a class="active" href="#">Classroom</a>
-    <a href="#">Pupils</a>
-    <a href="#">Lessons</a>
-    <a href="#">Transcripts</a>
-    <a href="#">Reports</a>
-  </div>
-
   <div class="top-right">
-    <div class="class-pill">Year 5 · Alpha</div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <span id="themeLabel">Light</span>
+    </button>
     <div class="teacher-chip">
       <div>
         <div class="name">Ms J. Harrington</div>
@@ -1648,981 +782,656 @@
 <!-- PAGE HEADER -->
 <header class="page-head">
   <div>
-    <div class="crumb">
+    <div class="crumb" id="crumb">
       <span>Year 5 Trial</span>
       <span class="sep">/</span>
-      <span>Tuesday · 24 April</span>
-      <span class="sep">/</span>
-      <span class="here">Live Classroom</span>
+      <span class="here">Classrooms</span>
     </div>
-    <h1 class="page-title">Good afternoon, <em>Jane.</em></h1>
-    <p class="head-sub">Four pupils are mid-session. One needs your attention — two are progressing beautifully.</p>
+    <h1 class="page-title" id="pageTitle">Good afternoon, <em>Jane.</em></h1>
   </div>
-  <div class="metrics">
-    <div class="metric"><div class="v">4 <span class="unit">/ 10</span></div><div class="l">Active</div></div>
-    <div class="metric"><div class="v">69</div><div class="l">Msgs today</div></div>
-    <div class="metric alert"><div class="v">1</div><div class="l">Needs help</div></div>
-    <div class="metric warn"><div class="v">1</div><div class="l">Focus</div></div>
-    <div class="metric good"><div class="v">82<span class="unit">%</span></div><div class="l">On-task</div></div>
+  <div class="metrics" id="metrics">
+    <div class="metric"><div class="v">4</div><div class="l">Classrooms</div></div>
+    <div class="metric"><div class="v">10</div><div class="l">Pupils</div></div>
+    <div class="metric"><div class="v">127</div><div class="l">Msgs today</div></div>
   </div>
 </header>
 
 <!-- MAIN -->
 <main class="main">
 
-  <!-- LEFT -->
-  <section class="grid-pane">
-
-    <div class="filter-bar">
-      <span class="filter-label">View</span>
-      <select class="filter-select">
-        <option>Status</option>
-        <option>Subject</option>
-        <option>Cognitive Load</option>
-        <option>Last Active</option>
-      </select>
-      <select class="filter-select">
-        <option>Pair by Different Knowledge</option>
-        <option>Pair by Similar Level</option>
-        <option>Pair by SEND Support</option>
-      </select>
-
-      <div class="legend-group">
-        <span class="legend-item">
-          <span class="stu-figure red" style="width:14px;height:14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          Needs help
-        </span>
-        <span class="legend-item">
-          <span class="stu-figure amber" style="width:14px;height:14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          Struggling
-        </span>
-        <span class="legend-item">
-          <span class="stu-figure green" style="width:14px;height:14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          On track
-        </span>
-        <span class="legend-item">
-          <span class="stu-figure idle" style="width:14px;height:14px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </span>
-          Idle
-        </span>
-      </div>
-    </div>
+  <!-- LEFT PANEL -->
+  <section class="left-pane">
 
     <div class="section-head">
-      <h2>Classroom <em>— 5R at 12:26</em></h2>
-      <div class="live-indicator"><span class="live-dot"></span>Live · 10 pupils</div>
+      <h2 id="leftTitle">Classrooms <em>— today</em></h2>
+      <div class="live"><span class="live-dot"></span>Live</div>
     </div>
 
-    <!-- Student grid — 10 pupils total (5 × 2) -->
-    <div class="stu-grid" id="studentGrid">
-
-      <!-- 1. TOM — RED -->
-      <div class="stu-card" data-id="tom" data-status="red">
-        <div class="stu-flag">⚑ URGENT</div>
-        <div class="stu-top">
-          <div class="stu-name">Tom W.</div>
-          <div class="stu-figure red">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Fractions · 19 min</div>
-        <div class="stu-snippet">"but i dont get it why is 1/2 bigger than 1/4"</div>
-        <div class="stu-progress" style="--p: 28%;"></div>
-      </div>
-
-      <!-- 2. PRIYA — AMBER (selected) -->
-      <div class="stu-card selected" data-id="priya" data-status="amber">
-        <div class="stu-flag amber">FOCUS</div>
-        <div class="stu-top">
-          <div class="stu-name">Priya N.</div>
-          <div class="stu-figure amber">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Creative Writing · 26 min</div>
-        <div class="stu-snippet">"can u just give me a better opening line?"</div>
-        <div class="stu-progress" style="--p: 55%;"></div>
-      </div>
-
-      <!-- 3. SAMIRA — GREEN -->
-      <div class="stu-card" data-id="samira" data-status="green">
-        <div class="stu-top">
-          <div class="stu-name">Samira K.</div>
-          <div class="stu-figure green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Fractions · 31 min</div>
-        <div class="stu-snippet">"oh! so 3 out of 8 slices is 3/8"</div>
-        <div class="stu-progress" style="--p: 86%;"></div>
-      </div>
-
-      <!-- 4. OLIVER — GREEN -->
-      <div class="stu-card" data-id="oliver" data-status="green">
-        <div class="stu-top">
-          <div class="stu-name">Oliver B.</div>
-          <div class="stu-figure green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Creative Writing · 24 min</div>
-        <div class="stu-snippet">"what if the dragon is the narrator?"</div>
-        <div class="stu-progress" style="--p: 78%;"></div>
-      </div>
-
-      <!-- 5. George — AMBER (not main focus) -->
-      <div class="stu-card" data-status="amber">
-        <div class="stu-top">
-          <div class="stu-name">George S.</div>
-          <div class="stu-figure amber">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Phonics</div>
-        <div class="stu-snippet">Confusing "bl" and "br" blends</div>
-        <div class="stu-progress" style="--p: 33%;"></div>
-      </div>
-
-      <!-- 6. Daisy — GREEN -->
-      <div class="stu-card" data-status="green">
-        <div class="stu-top">
-          <div class="stu-name">Daisy H.</div>
-          <div class="stu-figure green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Phonics</div>
-        <div class="stu-snippet">Strong with digraphs · helping peers</div>
-        <div class="stu-progress" style="--p: 72%;"></div>
-      </div>
-
-      <!-- 7. Freya — GREEN -->
-      <div class="stu-card" data-status="green">
-        <div class="stu-top">
-          <div class="stu-name">Freya M.</div>
-          <div class="stu-figure green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Fractions</div>
-        <div class="stu-snippet">Steady pace · working on equivalents</div>
-        <div class="stu-progress" style="--p: 50%;"></div>
-      </div>
-
-      <!-- 8. Aarav — IDLE -->
-      <div class="stu-card" data-status="idle">
-        <div class="stu-top">
-          <div class="stu-name">Aarav P.</div>
-          <div class="stu-figure idle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Not in session</div>
-        <div class="stu-snippet">Last active Monday, 15:40</div>
-        <div class="stu-progress" style="--p: 0%;"></div>
-      </div>
-
-      <!-- 9. Mia — GREEN -->
-      <div class="stu-card" data-status="green">
-        <div class="stu-top">
-          <div class="stu-name">Mia O.</div>
-          <div class="stu-figure green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Creative Writing</div>
-        <div class="stu-snippet">Exploring metaphor · engaged</div>
-        <div class="stu-progress" style="--p: 44%;"></div>
-      </div>
-
-      <!-- 10. Leo — IDLE -->
-      <div class="stu-card" data-status="idle">
-        <div class="stu-top">
-          <div class="stu-name">Leo F.</div>
-          <div class="stu-figure idle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          </div>
-        </div>
-        <div class="stu-subject">Not in session</div>
-        <div class="stu-snippet">Absent today</div>
-        <div class="stu-progress" style="--p: 0%;"></div>
-      </div>
-
-    </div>
-
-    <!-- Pair-Up strip -->
-    <div class="section-head">
-      <h2>Suggested Pair-Ups <em>— based on complementary knowledge</em></h2>
-      <div class="live-indicator"><span class="live-dot"></span>Ready</div>
-    </div>
-
-    <div class="pair-strip">
-      <div class="pair-card">
-        <div class="pair-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-            <path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <div class="pair-members">
-          <span class="pair-member"><span class="pair-dot solver"></span>Tom</span>
-          <span>×</span>
-          <span class="pair-member"><span class="pair-dot tutor"></span>Samira</span>
-        </div>
-        <div class="pair-task">Fractions · Peer-teach loop</div>
-        <div class="pair-progress" style="--p: 0%;"></div>
-      </div>
-
-      <div class="pair-card">
-        <div class="pair-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-            <path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <div class="pair-members">
-          <span class="pair-member"><span class="pair-dot solver"></span>Priya</span>
-          <span>×</span>
-          <span class="pair-member"><span class="pair-dot tutor"></span>Oliver</span>
-        </div>
-        <div class="pair-task">Creative Writing · Voice × Imagery</div>
-        <div class="pair-progress" style="--p: 0%;"></div>
-      </div>
-
-      <div class="pair-card">
-        <div class="pair-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-            <path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <div class="pair-members">
-          <span class="pair-member"><span class="pair-dot solver"></span>George</span>
-          <span>×</span>
-          <span class="pair-member"><span class="pair-dot tutor"></span>Daisy</span>
-        </div>
-        <div class="pair-task">Phonics · Blends practice</div>
-        <div class="pair-progress" style="--p: 0%;"></div>
-      </div>
-
-      <div class="pair-card">
-        <div class="pair-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
-            <path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <div class="pair-members">
-          <span class="pair-member"><span class="pair-dot solver"></span>Freya</span>
-          <span>×</span>
-          <span class="pair-member"><span class="pair-dot tutor"></span>Mia</span>
-        </div>
-        <div class="pair-task">Cross-subject · Writing about fractions</div>
-        <div class="pair-progress" style="--p: 0%;"></div>
-      </div>
-    </div>
-
-  <!-- ============ BOTTOM: CHARTS ============ -->
-  <section class="charts">
-
-    <!-- Chart 1: Cognitive load per active pupil -->
-    <div class="chart-card">
-      <div class="chart-head">
+    <!-- CLASSROOM VIEW (default) -->
+    <div class="classroom-grid" id="classroomGrid">
+      <div class="classroom-card selected" data-classroom="english">
+        <div class="open-hint">double-click to open ↗</div>
         <div>
-          <div class="chart-title">Cognitive Load</div>
-          <div class="chart-sub">Active pupils · Last 5 min</div>
+          <div class="cl-subject">English</div>
+          <div class="cl-meta">Year 5 · Creative Writing · 12 May</div>
         </div>
-        <div class="live-indicator"><span class="live-dot"></span>Live</div>
+        <div class="cl-foot">
+          <div class="cl-pupils"><strong>3</strong> / 10 active</div>
+          <div class="cl-status">
+            <span class="cl-dot amber" title="1 struggling"></span>
+            <span class="cl-dot green" title="2 on track"></span>
+          </div>
+        </div>
       </div>
-      <div class="chart-body">
-        <div class="cog-bars">
-          <div class="threshold"></div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar bad" style="height: 82%"><span class="val">0.82</span></div>
-            <div class="lbl">Tom</div>
+
+      <div class="classroom-card" data-classroom="mathematics">
+        <div class="open-hint">double-click to open ↗</div>
+        <div>
+          <div class="cl-subject">Mathematics</div>
+          <div class="cl-meta">Year 5 · Fractions · 12 May</div>
+        </div>
+        <div class="cl-foot">
+          <div class="cl-pupils"><strong>4</strong> / 10 active</div>
+          <div class="cl-status">
+            <span class="cl-dot red" title="1 needs help"></span>
+            <span class="cl-dot green" title="3 on track"></span>
           </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar warn" style="height: 64%"><span class="val">0.64</span></div>
-            <div class="lbl">Priya</div>
+        </div>
+      </div>
+
+      <div class="classroom-card" data-classroom="science">
+        <div class="open-hint">double-click to open ↗</div>
+        <div>
+          <div class="cl-subject">Science</div>
+          <div class="cl-meta">Year 5 · Ecosystems · 11 May</div>
+        </div>
+        <div class="cl-foot">
+          <div class="cl-pupils"><strong>0</strong> / 10 active</div>
+          <div class="cl-status">
+            <span class="cl-dot idle" title="ended"></span>
           </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 38%"><span class="val">0.38</span></div>
-            <div class="lbl">Samira</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 44%"><span class="val">0.44</span></div>
-            <div class="lbl">Oliver</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar warn" style="height: 58%"><span class="val">0.58</span></div>
-            <div class="lbl">George</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 40%"><span class="val">0.40</span></div>
-            <div class="lbl">Daisy</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 36%"><span class="val">0.36</span></div>
-            <div class="lbl">Freya</div>
-          </div>
-          <div class="cog-bar-wrap">
-            <div class="cog-bar good" style="height: 42%"><span class="val">0.42</span></div>
-            <div class="lbl">Mia</div>
+        </div>
+      </div>
+
+      <div class="classroom-card" data-classroom="geography">
+        <div class="open-hint">double-click to open ↗</div>
+        <div>
+          <div class="cl-subject">Geography</div>
+          <div class="cl-meta">Year 5 · Rivers &amp; Mountains · 10 May</div>
+        </div>
+        <div class="cl-foot">
+          <div class="cl-pupils"><strong>0</strong> / 10 active</div>
+          <div class="cl-status">
+            <span class="cl-dot idle" title="ended"></span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Chart 2: Engagement over time (SVG line chart) -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Engagement · 30 min</div>
-          <div class="chart-sub">4 active pupils</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="timeline">
-          <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-            <!-- Grid -->
-            <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <line x1="0" y1="80" x2="300" y2="80" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <line x1="0" y1="120" x2="300" y2="120" stroke="rgba(15,26,46,0.08)" stroke-dasharray="2 3"/>
-            <!-- Labels -->
-            <text x="2" y="36" font-family="JetBrains Mono" font-size="8" fill="#4a5878">100%</text>
-            <text x="2" y="76" font-family="JetBrains Mono" font-size="8" fill="#4a5878">75%</text>
-            <text x="2" y="116" font-family="JetBrains Mono" font-size="8" fill="#4a5878">50%</text>
-            <!-- Samira (green) -->
-            <polyline fill="none" stroke="#4a8a4c" stroke-width="2"
-              points="0,55 40,50 80,48 120,42 160,38 200,35 240,32 280,30 300,28"/>
-            <!-- Oliver (green) -->
-            <polyline fill="none" stroke="#3d6b3d" stroke-width="2" stroke-dasharray="4 2"
-              points="0,60 40,55 80,52 120,50 160,48 200,45 240,44 280,42 300,40"/>
-            <!-- Priya (amber, dipping) -->
-            <polyline fill="none" stroke="#d89a2f" stroke-width="2"
-              points="0,45 40,42 80,48 120,60 160,78 200,92 240,98 280,92 300,88"/>
-            <!-- Tom (red, low) -->
-            <polyline fill="none" stroke="#b83b3b" stroke-width="2"
-              points="0,70 40,78 80,90 120,98 160,110 200,120 240,128 280,130 300,128"/>
-            <!-- Now marker -->
-            <line x1="298" y1="20" x2="298" y2="140" stroke="#8a1c2b" stroke-width="1" stroke-dasharray="3 3"/>
-            <text x="275" y="16" font-family="JetBrains Mono" font-size="8" fill="#8a1c2b" font-weight="600">NOW</text>
-          </svg>
-        </div>
-        <div class="timeline-legend">
-          <span class="k"><span class="k-dot" style="background:#4a8a4c"></span>Samira</span>
-          <span class="k"><span class="k-dot" style="background:#3d6b3d"></span>Oliver</span>
-          <span class="k"><span class="k-dot" style="background:#d89a2f"></span>Priya</span>
-          <span class="k"><span class="k-dot" style="background:#b83b3b"></span>Tom</span>
-        </div>
-      </div>
-    </div>
+    <!-- STUDENT VIEW (drilled-in, hidden by default) -->
+    <div class="student-grid" id="studentGrid" style="display: none;"></div>
 
-    <!-- Chart 3: Topics wrestled with -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Topics pupils are wrestling with</div>
-          <div class="chart-sub">Mentions in last hour</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="topic-list">
-          <div class="topic-row hot">
-            <span class="tname">Comparing fractions</span>
-            <span class="tcount">14×</span>
-            <div class="tbar" style="--f: 100%"></div>
-          </div>
-          <div class="topic-row warm">
-            <span class="tname">Opening sentences</span>
-            <span class="tcount">9×</span>
-            <div class="tbar" style="--f: 64%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">"bl" vs "br" blends</span>
-            <span class="tcount">7×</span>
-            <div class="tbar" style="--f: 50%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Show-don't-tell</span>
-            <span class="tcount">6×</span>
-            <div class="tbar" style="--f: 42%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Equivalent fractions</span>
-            <span class="tcount">5×</span>
-            <div class="tbar" style="--f: 36%"></div>
-          </div>
-          <div class="topic-row">
-            <span class="tname">Character voice</span>
-            <span class="tcount">4×</span>
-            <div class="tbar" style="--f: 28%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- STATS ROW -->
+    <div class="stats-row">
+      <div class="stats-title" id="statsTitle">Button-click signals · English</div>
+      <div class="stats-grid">
 
-    <!-- Chart 4: Help-seeking behaviours (radial / donut) -->
-    <div class="chart-card">
-      <div class="chart-head">
-        <div>
-          <div class="chart-title">Behaviour Mix</div>
-          <div class="chart-sub">All AI interactions · today</div>
-        </div>
-      </div>
-      <div class="chart-body">
-        <div class="radial-wrap">
-          <svg class="radial" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#e8dcc6" stroke-width="5"/>
-            <!-- Deep questions (moss) 42% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3d6b3d" stroke-width="5"
-              stroke-dasharray="42 58" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
-            <!-- Scaffolded engagement (ink) 28% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#0f1a2e" stroke-width="5"
-              stroke-dasharray="28 72" stroke-dashoffset="-17" transform="rotate(-90 21 21)"/>
-            <!-- Off-topic (amber) 18% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#d89a2f" stroke-width="5"
-              stroke-dasharray="18 82" stroke-dashoffset="-45" transform="rotate(-90 21 21)"/>
-            <!-- Answer-seeking (red) 12% -->
-            <circle cx="21" cy="21" r="15.915" fill="none" stroke="#b83b3b" stroke-width="5"
-              stroke-dasharray="12 88" stroke-dashoffset="-63" transform="rotate(-90 21 21)"/>
-            <text x="21" y="22" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-weight="500" fill="#0f1a2e">69</text>
-            <text x="21" y="27" text-anchor="middle" font-family="JetBrains Mono" font-size="2.2" fill="#4a5878" letter-spacing="0.3">MSGS</text>
-          </svg>
-          <div class="radial-legend">
-            <div class="radial-item"><span class="radial-dot" style="background:#3d6b3d"></span>Deep questions<span class="radial-num">42%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#0f1a2e"></span>Scaffolded<span class="radial-num">28%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#d89a2f"></span>Off-topic<span class="radial-num">18%</span></div>
-            <div class="radial-item"><span class="radial-dot" style="background:#b83b3b"></span>Answer-seeking<span class="radial-num">12%</span></div>
+        <!-- 1. Frequency -->
+        <div class="stat-card">
+          <div class="stat-label">Frequency</div>
+          <div class="stat-headline" id="freqHeadline">22 clicks</div>
+          <div class="freq-bars" id="freqBars">
+            <div class="freq-row rephrase">
+              <span class="freq-name">Rephrase Answer</span>
+              <span class="freq-count">4</span>
+              <div class="freq-bar" style="--f: 33%;"></div>
+            </div>
+            <div class="freq-row simplify">
+              <span class="freq-name">Simplify Answer</span>
+              <span class="freq-count">6</span>
+              <div class="freq-bar" style="--f: 50%;"></div>
+            </div>
+            <div class="freq-row hint">
+              <span class="freq-name">Get a Hint</span>
+              <span class="freq-count">12</span>
+              <div class="freq-bar" style="--f: 100%;"></div>
+            </div>
           </div>
+          <div class="stat-source">Buttons used today</div>
         </div>
+
+        <!-- 2. Cognitive Struggle (rephrase) -->
+        <div class="stat-card">
+          <div class="stat-label">Cognitive Struggle</div>
+          <div class="stat-headline" id="struggleHeadline">Low</div>
+          <div class="ts-wrap">
+            <div class="ts-chart struggle" id="chartStruggle"></div>
+            <div class="ts-axis"><span class="ts-start" id="axisStartStruggle">10:15</span><span class="ts-end" id="axisEndStruggle">10:55</span></div>
+            <div class="trend flat" id="trendStruggle">→ understanding fine</div>
+          </div>
+          <div class="stat-source">Derived from Rephrase Answer</div>
+        </div>
+
+        <!-- 3. Cognitive Load (simplify) -->
+        <div class="stat-card">
+          <div class="stat-label">Cognitive Load</div>
+          <div class="stat-headline" id="loadHeadline">Moderate</div>
+          <div class="ts-wrap">
+            <div class="ts-chart load" id="chartLoad"></div>
+            <div class="ts-axis"><span class="ts-start" id="axisStartLoad">10:15</span><span class="ts-end" id="axisEndLoad">10:55</span></div>
+            <div class="trend flat" id="trendLoad">→ steady</div>
+          </div>
+          <div class="stat-source">Derived from Simplify Answer</div>
+        </div>
+
+        <!-- 4. Creative Struggle (hint) -->
+        <div class="stat-card">
+          <div class="stat-label">Creative Struggle</div>
+          <div class="stat-headline" id="creativeHeadline">High</div>
+          <div class="ts-wrap">
+            <div class="ts-chart creative" id="chartCreative"></div>
+            <div class="ts-axis"><span class="ts-start" id="axisStartCreative">10:15</span><span class="ts-end" id="axisEndCreative">10:55</span></div>
+            <div class="trend warn" id="trendCreative">↑ pupils hitting blocks</div>
+          </div>
+          <div class="stat-source">Derived from Get a Hint</div>
+        </div>
+
       </div>
     </div>
 
   </section>
-  </section>
 
-  <!-- RIGHT: Details -->
-  <aside class="details-pane">
-
-    <div class="tab-bar">
-      <button class="tab active" data-tab="individual">Individual</button>
-      <button class="tab" data-tab="pair">Pair</button>
-    </div>
-
-    <!-- INDIVIDUAL -->
-    <div class="tab-content active" id="tab-individual">
-
-      <div class="passport-head">
-        <div class="passport-avatar">PN</div>
-        <div class="passport-info">
-          <div class="passport-name">Priya Nair</div>
-          <div class="passport-sub">5R · 10 yrs · Passport #KESW-Y5-0227</div>
-          <div class="passport-tags">
-            <span class="tag send">SEND · mild dyslexia</span>
-            <span class="tag mode">Guidance Mode</span>
-            <span class="tag status-amber">● Focus</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>AI Briefing · 12:26</h3>
-        <div class="ai-summary">
-          <strong>Priya is on the edge of disengaging.</strong> Over the last <mark>8 minutes</mark> she has twice asked Bridewell to "just give her a better opening line." Guardrails held — the AI redirected to scaffolded prompts — but her typing has slowed. She responds well to verbal modelling.
-          <div class="meta">22 msgs · 3 gaps &gt;90s · 2 answer-seeking · sentiment 0.41</div>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>Student Passport</h3>
-        <div class="passport-row"><span class="l">Reading age</span><span class="v">9y 2m</span></div>
-        <div class="passport-row"><span class="l">Preferred avatar</span><span class="v">"Willow the Fox"</span></div>
-        <div class="passport-row"><span class="l">Preferred mode</span><span class="v">Guidance · short sentences</span></div>
-        <div class="passport-row"><span class="l">Language adaptation</span><span class="v">Max 12 words · one Q at a time</span></div>
-        <div class="passport-row"><span class="l">Strengths</span><span class="v">Imagery · descriptive vocab</span></div>
-        <div class="passport-row"><span class="l">Growth areas</span><span class="v">Sentence structure · persistence</span></div>
-      </div>
-
-      <div class="passport-section">
-        <h3>Teacher-in-the-Loop Actions</h3>
-        <div class="action-list">
-          <button class="action-btn warn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9a2 2 0 01-2 2H5l-3 3V4a2 2 0 012-2h8a2 2 0 012 2v5z"/><path d="M18 9h2a2 2 0 012 2v11l-3-3h-7a2 2 0 01-2-2v-1"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Send Priya a 1-line encouragement</div>
-              <div class="action-d">Pre-written: "You're nearly there — try one word."</div>
-            </div>
-          </button>
-          <button class="action-btn primary" onclick="switchTab('pair')">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Pair Priya with Oliver (5 min)</div>
-              <div class="action-d">Complementary: imagery × narrative voice</div>
-            </div>
-          </button>
-          <button class="action-btn" onclick="openPromptModal()">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Tighten Creative Writing prompt</div>
-              <div class="action-d">3 pupils asked for finished answers today</div>
-            </div>
-          </button>
-          <button class="action-btn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Switch Priya to Expert Mode (10 min)</div>
-              <div class="action-d">Override · allow direct examples</div>
-            </div>
-          </button>
-          <button class="action-btn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Leave note on Priya's passport</div>
-              <div class="action-d">Private to teaching staff</div>
-            </div>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- PAIR -->
-    <div class="tab-content" id="tab-pair">
-      <div class="passport-section" style="padding-top: 0;">
-        <h3>Active Suggestion · Based on Pair-Up research</h3>
-        <div class="pair-config">
-          <div style="font-family: 'Instrument Serif', serif; font-size: 16px; font-style: italic; color: rgba(250, 246, 238, 0.85); line-height: 1.5;">
-            Priya is struggling with opening sentences. Oliver is confidently exploring narrative voice on the same prompt. A 5-minute co-write may help both.
-          </div>
-
-          <div class="row-side">
-            <div class="pair-slot solver">
-              <div class="role">Solver (Tutee)</div>
-              <div class="n">Priya N.</div>
-              <div style="font-size: 11px; color: rgba(250, 246, 238, 0.6); margin-top: 4px;">Stuck · 22 msgs</div>
-            </div>
-            <div class="pair-arrow">⇌</div>
-            <div class="pair-slot tutor">
-              <div class="role">Tutor (Peer)</div>
-              <div class="n">Oliver B.</div>
-              <div style="font-size: 11px; color: rgba(250, 246, 238, 0.6); margin-top: 4px;">Fluent · 15 msgs</div>
-            </div>
-          </div>
-
-          <div style="margin-top: 14px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 8px;">Shared Task</div>
-            <div style="background: rgba(0, 0, 0, 0.25); color: var(--text-on-dark); padding: 10px 12px; font-size: 13px; border-left: 3px solid var(--gold); border-top: 1px solid rgba(181, 138, 60, 0.22); border-right: 1px solid rgba(181, 138, 60, 0.22); border-bottom: 1px solid rgba(181, 138, 60, 0.22);">
-              Write the opening paragraph of a story about an old, tired dragon. <strong>5 minutes.</strong>
-            </div>
-          </div>
-
-          <div style="margin-top: 14px; display: flex; gap: 8px;">
-            <button class="btn" style="flex: 1;">Start Pair-Up Now</button>
-            <button class="btn ghost">Adjust Roles</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>Other Suggestions</h3>
-        <div class="action-list">
-          <button class="action-btn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Tom + Samira · Fractions</div>
-              <div class="action-d">Samira just mastered comparing fractions</div>
-            </div>
-          </button>
-          <button class="action-btn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><circle cx="17" cy="7" r="4"/><path d="M2 21v-2a4 4 0 014-4h12a4 4 0 014 4v2"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Whole-class transition · 10 min</div>
-              <div class="action-d">Move every active pupil into pairs</div>
-            </div>
-          </button>
-          <button class="action-btn">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 9l7-7 7 7"/></svg>
-            </div>
-            <div class="action-body">
-              <div class="action-t">Promote Oliver to "help anyone"</div>
-              <div class="action-d">Opens his queue to idle pupils</div>
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>Past Pair-Ups · Today</h3>
-        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(181, 138, 60, 0.22); padding: 12px 14px; font-size: 12px; color: var(--text-on-dark);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <div><strong style="font-family:'Fraunces',serif;font-size:14px;">Freya + Mia</strong> · Metaphors</div>
-            <div style="font-family:'JetBrains Mono', monospace; font-size: 10px; color: #8fc28d;">+18% conf.</div>
-          </div>
-          <div style="color: rgba(250, 246, 238, 0.6);">11:10–11:18 · Mia helped Freya unpack "the wind was a whisper"</div>
-        </div>
-        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(181, 138, 60, 0.22); padding: 12px 14px; font-size: 12px; margin-top: 8px; color: var(--text-on-dark);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <div><strong style="font-family:'Fraunces',serif;font-size:14px;">Daisy + George</strong> · Phonics blends</div>
-            <div style="font-family:'JetBrains Mono', monospace; font-size: 10px; color: #8fc28d;">+9% conf.</div>
-          </div>
-          <div style="color: rgba(250, 246, 238, 0.6);">10:45–10:52 · Moderate progress; schedule follow-up</div>
-        </div>
-      </div>
-    </div>
-
+  <!-- RIGHT PANEL -->
+  <aside class="right-pane" id="rightPane">
+    <!-- populated by JS -->
   </aside>
 
 </main>
 
-<!-- FAB -->
-<div class="fab" onclick="openPromptModal()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-  </svg>
-  Edit Subject Prompts
-</div>
-
-<!-- MODAL -->
-<div class="modal-backdrop" id="promptModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <h2>System Prompt <em>Designer</em></h2>
-        <div class="sub">Tune how Bridewell AI teaches each subject</div>
-      </div>
-      <button class="modal-close" onclick="closePromptModal()">CLOSE ✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="subject-tabs">
-        <div class="subject-tab active">Fractions (Y5)</div>
-        <div class="subject-tab">Creative Writing (Y5)</div>
-        <div class="subject-tab">Phonics (Y5 SEND)</div>
-        <div class="subject-tab">+ New Subject</div>
-      </div>
-
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 10px;">Answer Mode</div>
-      <div class="mode-toggle">
-        <div class="mode-opt">
-          <div class="ml">Option A</div>
-          <div class="mn">Expert Mode</div>
-          <div class="md">AI gives direct, correct answers with brief explanation.</div>
-        </div>
-        <div class="mode-opt active">
-          <div class="ml">Option B · recommended for Y5</div>
-          <div class="mn">Guidance Mode</div>
-          <div class="md">AI never gives the answer — scaffolds with questions, hints and smaller steps.</div>
-        </div>
-      </div>
-
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 10px;">System Prompt</div>
-      <textarea class="prompt-editor">You are a patient Year 5 maths tutor at King Edward's Witley, working on comparing fractions.
-
-TEACHING RULES
-• Never state the final answer. Guide with questions.
-• Use concrete anchors: pizzas, chocolate bars, number lines.
-• If the pupil loops on the same misconception twice, suggest they draw it.
-• Celebrate partial correctness — "you've nearly got it" before redirecting.
-
-SEND ADAPTATIONS
-• Short sentences (max 12 words).
-• One question at a time.
-• Offer to repeat or rephrase if reply is &lt; 5 words.
-
-ESCALATE TO TEACHER IF
-• Pupil expresses frustration (3+ negative sentiment msgs).
-• Same misconception recurs 3× in a row.
-• Session exceeds 25 minutes with no progress markers.</textarea>
-
-      <div class="guardrail-list">
-        <h4>Guardrails</h4>
-        <label><input type="checkbox" checked> Never produce finished answers</label>
-        <label><input type="checkbox" checked> Flag off-topic drift to teacher after 2 messages</label>
-        <label><input type="checkbox" checked> Age-appropriate language only (Y5 reading level)</label>
-        <label><input type="checkbox" checked> Redirect personal/emotional topics to a trusted adult</label>
-        <label><input type="checkbox"> Require image/drawing submission after 3 stuck turns</label>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <div class="hint">Last published · 23 April by Ms Harrington · Applies to 10 pupils</div>
-      <div style="display:flex;gap:10px;">
-        <button class="btn ghost" onclick="closePromptModal()">Save Draft</button>
-        <button class="btn">Publish to Class</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-  // Pupil data for populating passport on click
-  const pupils = {
-    tom: {
-      initials: 'TW', name: 'Tom Whitmore', sub: '5R · 10 yrs · Passport #KESW-Y5-0144',
-      status: 'red', tags: [
-        {c:'', t:'Confident learner'},
-        {c:'mode', t:'Guidance Mode'},
-        {c:'status-amber', t:'● Needs help', style:'background:var(--status-red);color:var(--cream);border-color:var(--status-red);'}
-      ],
-      briefing: `<strong>Tom is stuck in a loop on comparing fractions.</strong> He has asked <mark>3 times</mark> why 1/2 is bigger than 1/4. Bridewell's guardrails redirected each time, but frustration is rising. Tom learns best with a concrete prop — paper, drawing, or peer explanation.`,
-      meta: '14 msgs · loop ×3 · sentiment 0.28',
-      passport: [
-        ['Reading age', '9y 8m'],
-        ['Preferred avatar', '"Rex the Knight"'],
-        ['Preferred mode', 'Guidance · visual aids'],
-        ['Language adaptation', 'Standard · concrete examples'],
-        ['Strengths', 'Pattern spotting · verbal reasoning'],
-        ['Growth areas', 'Abstract number sense · persistence']
-      ],
-      analysis: [
-        {l:'Cognitive Load', v:'Very High', t:'warn', tt:'↑ rising 12 min', f:82, cls:'bad'},
-        {l:'Engagement', v:'48%', t:'down', tt:'↓ falling', f:48, cls:'bad'},
-        {l:'Help-Seeking', v:'3×', t:'warn', tt:'stuck on 1/2 vs 1/4', f:60, cls:'bad'},
-        {l:'Misconception', v:'High', t:'warn', tt:'size ≠ numerator', f:75, cls:'bad'}
-      ],
-      transcript: [
-        ['ai', 'BRIDEWELL', "Let's think about pizza. If I cut a pizza into 2 and you eat 1 slice, how much did you eat?"],
-        ['student', 'TOM', "half"],
-        ['ai', 'BRIDEWELL', "Brilliant. Now if I cut the same pizza into 4 and you eat 1, how much is that?"],
-        ['student', 'TOM', "but i dont get it why is 1/2 bigger than 1/4", true],
-        ['ai', 'BRIDEWELL', "I hear you! Let's draw it. Can you show me two circles, one split in 2 and one split in 4?"],
-        ['student', 'TOM', "this is confusing", true]
-      ]
+// ============ DATA ============
+const classrooms = {
+  english: {
+    subject: 'English',
+    avatar: 'Year 5\nEnglish',
+    sub: 'Year 5 · Creative Writing · Tuesday 12 May',
+    timeRange: { start: '10:15', end: '10:55' },
+    tags: [{c:'', t:'Guidance Mode'}, {c:'mode', t:'Lesson 3 of 5'}],
+    summary: '<strong>Lesson focus:</strong> opening sentences for narrative fiction. <mark>Priya</mark> has clicked Get-a-Hint repeatedly — likely stuck on the creative leap. Oliver is pushing into meta-narrative territory.',
+    rows: [
+      ['Pupils enrolled', '10'], ['Active now', '3 of 10'],
+      ['Total messages today', '42'], ['Avg session length', '25 min'],
+      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '11 May · Ms Harrington'],
+    ],
+    stats: {
+      title: 'Button-click signals · English',
+      freq: { total: 22, items: [['Rephrase Answer', 4, 33], ['Simplify Answer', 6, 50], ['Get a Hint', 12, 100]] },
+      struggle: { headline: 'Low', value: 28, trend: 'flat', trendText: '→ understanding fine' , series: [10, 12, 18, 22, 24, 26, 30, 28] },
+      load:     { headline: 'Moderate', value: 48, trend: 'flat', trendText: '→ steady' , series: [22, 28, 35, 42, 48, 52, 50, 48] },
+      creative: { headline: 'High', value: 78, trend: 'warn', trendText: '↑ pupils hitting blocks' , series: [18, 24, 35, 48, 62, 78, 86, 78] },
     },
-    priya: {
-      initials: 'PN', name: 'Priya Nair', sub: '5R · 10 yrs · Passport #KESW-Y5-0227',
-      status: 'amber', tags: [
-        {c:'send', t:'SEND · mild dyslexia'},
-        {c:'mode', t:'Guidance Mode'},
-        {c:'status-amber', t:'● Focus'}
-      ],
-      briefing: `<strong>Priya is on the edge of disengaging.</strong> Over the last <mark>8 minutes</mark> she has twice asked Bridewell to "just give her a better opening line." Guardrails held, but her typing has slowed. She responds well to verbal modelling.`,
-      meta: '22 msgs · 3 gaps >90s · 2 answer-seeking · sentiment 0.41',
-      passport: [
-        ['Reading age', '9y 2m'],
-        ['Preferred avatar', '"Willow the Fox"'],
-        ['Preferred mode', 'Guidance · short sentences'],
-        ['Language adaptation', 'Max 12 words · one Q at a time'],
-        ['Strengths', 'Imagery · descriptive vocab'],
-        ['Growth areas', 'Sentence structure · persistence']
-      ],
-      analysis: [
-        {l:'Cognitive Load', v:'High', t:'warn', tt:'↑ rising 8 min', f:78, cls:'warn'},
-        {l:'Engagement', v:'62%', t:'down', tt:'↓ from 84%', f:62, cls:'bad'},
-        {l:'Help-Seeking', v:'2×', t:'warn', tt:'asking for answers', f:40, cls:'warn'},
-        {l:'Misconception', v:'Low', t:'up', tt:'↓ on target', f:22, cls:'good'}
-      ],
-      transcript: [
-        ['ai', 'BRIDEWELL', "Lovely start! What three things could your old dragon have seen?"],
-        ['student', 'PRIYA', "idk. like it saw castles maybe?"],
-        ['ai', 'BRIDEWELL', "Castles — being built, or falling down? Which feels right?"],
-        ['student', 'PRIYA', "can u just give me a better opening line? i cant think", true],
-        ['ai', 'BRIDEWELL', "Let's try one word. Fierce? Tired? Sneaky?"],
-        ['student', 'PRIYA', "tired i guess"]
-      ]
+    students: [
+      { id: 'priya', name: 'Priya N.', initials: 'PN', status: 'amber',
+        subject: 'Creative Writing · 26 min', progress: 55,
+        passportName: 'Priya Nair', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0227',
+        tags: [{c:'send', t:'SEND · dyslexia'}, {c:'amber', t:'● Focus'}],
+        summary: '<strong>Priya is hitting creative blocks.</strong> She has clicked Get-a-Hint <mark>4 times</mark> in 20 minutes. Strong imagery skills — but stuck on the opening.',
+        rows: [['Reading age', '9y 2m'], ['Avatar', 'Willow the Fox'], ['Strengths', 'Imagery, vocabulary'], ['Growth areas', 'Sentence structure']],
+        stats: {
+          title: 'Button-click signals · Priya N.',
+          freq: { total: 9, items: [['Rephrase Answer', 1, 17], ['Simplify Answer', 2, 33], ['Get a Hint', 6, 100]] },
+          struggle: { headline: 'Low', value: 18, trend: 'flat', trendText: '→ comprehending fine' , series: [22, 20, 18, 16, 16, 18, 18, 18] },
+          load:     { headline: 'Moderate', value: 42, trend: 'flat', trendText: '→ manageable' , series: [30, 36, 40, 44, 46, 44, 42, 42] },
+          creative: { headline: 'Very High', value: 86, trend: 'warn', trendText: '↑ stuck on opening' , series: [25, 38, 55, 70, 82, 88, 86, 86] },
+        }
+      },
+      { id: 'oliver', name: 'Oliver B.', initials: 'OB', status: 'green',
+        subject: 'Creative Writing · 24 min', progress: 78,
+        passportName: 'Oliver Bramwell', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0185',
+        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
+        summary: '<strong>Oliver is asking brilliant questions.</strong> Pushed past the prompt to <mark>"what if the dragon is the narrator"</mark> — genuine meta-thinking.',
+        rows: [['Reading age', '11y 1m'], ['Avatar', 'Atlas the Mage'], ['Strengths', 'Narrative voice'], ['Growth areas', 'Editing']],
+        stats: {
+          title: 'Button-click signals · Oliver B.',
+          freq: { total: 4, items: [['Rephrase Answer', 1, 25], ['Simplify Answer', 1, 25], ['Get a Hint', 2, 50]] },
+          struggle: { headline: 'Very Low', value: 12, trend: 'up', trendText: '↓ self-directed' , series: [18, 15, 12, 12, 12, 12, 12, 12] },
+          load:     { headline: 'Light', value: 28, trend: 'flat', trendText: '→ comfortable' , series: [25, 28, 30, 30, 28, 28, 28, 28] },
+          creative: { headline: 'Low', value: 30, trend: 'flat', trendText: '→ flowing' , series: [22, 26, 28, 30, 32, 32, 30, 30] },
+        }
+      },
+      { id: 'mia', name: 'Mia O.', initials: 'MO', status: 'green',
+        subject: 'Creative Writing · 20 min', progress: 44,
+        passportName: 'Mia Okafor', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0264',
+        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
+        summary: 'Exploring metaphor · engaged and steady.',
+        rows: [['Reading age', '10y 3m'], ['Avatar', 'Echo the Bard'], ['Strengths', 'Wordplay'], ['Growth areas', 'Plot structure']],
+        stats: {
+          title: 'Button-click signals · Mia O.',
+          freq: { total: 5, items: [['Rephrase Answer', 1, 33], ['Simplify Answer', 1, 33], ['Get a Hint', 3, 100]] },
+          struggle: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ comfortable' , series: [25, 24, 23, 22, 22, 22, 22, 22] },
+          load:     { headline: 'Light', value: 32, trend: 'flat', trendText: '→ steady' , series: [28, 30, 32, 34, 34, 32, 32, 32] },
+          creative: { headline: 'Moderate', value: 50, trend: 'flat', trendText: '→ working through it' , series: [30, 38, 44, 48, 52, 52, 50, 50] },
+        }
+      },
+    ]
+  },
+
+  mathematics: {
+    subject: 'Mathematics',
+    avatar: 'Year 5\nMaths',
+    sub: 'Year 5 · Fractions · Tuesday 12 May',
+    timeRange: { start: '11:05', end: '11:50' },
+    tags: [{c: '', t: 'Guidance Mode'}, {c: 'mode', t: 'Lesson 4 of 6'}],
+    summary: '<strong>Lesson focus:</strong> comparing fractions and equivalents. <mark>Four pupils</mark> are mid-session; Tom is stuck on the same misconception (1/2 vs 1/4) — three rephrase requests in twelve minutes. Samira just had a breakthrough.',
+    rows: [
+      ['Pupils enrolled', '10'], ['Active now', '4 of 10'],
+      ['Total messages today', '69'], ['Avg session length', '24 min'],
+      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '11 May · Ms Harrington'],
+    ],
+    stats: {
+      title: 'Button-click signals · Mathematics',
+      freq: { total: 28, items: [['Rephrase Answer', 12, 100], ['Simplify Answer', 9, 75], ['Get a Hint', 7, 58]] },
+      struggle: { headline: 'High', value: 72, trend: 'warn', trendText: '↑ above class baseline' , series: [25, 32, 40, 48, 58, 66, 78, 72] },
+      load:     { headline: 'Moderate', value: 56, trend: 'flat', trendText: '→ steady' , series: [32, 40, 46, 54, 58, 60, 58, 56] },
+      creative: { headline: 'Moderate', value: 48, trend: 'down', trendText: '↓ down from morning' , series: [55, 60, 58, 54, 52, 50, 48, 48] },
     },
-    samira: {
-      initials: 'SK', name: 'Samira Khan', sub: '5R · 10 yrs · Passport #KESW-Y5-0311',
-      status: 'green', tags: [
-        {c:'', t:'Fast learner'},
-        {c:'mode', t:'Guidance Mode'},
-        {c:'status-amber', t:'● On track', style:'background:var(--moss);color:var(--cream);border-color:var(--moss);'}
-      ],
-      briefing: `<strong>Samira has just had a breakthrough.</strong> She explained back to Bridewell that "3 slices out of 8 is 3/8" — exactly the kind of <mark>concrete anchoring</mark> we want. She's a strong candidate to peer-teach Tom.`,
-      meta: '18 msgs · 4 mastery markers · sentiment 0.88',
-      passport: [
-        ['Reading age', '10y 4m'],
-        ['Preferred avatar', '"Nova the Explorer"'],
-        ['Preferred mode', 'Guidance · prefers challenge'],
-        ['Language adaptation', 'Standard'],
-        ['Strengths', 'Concrete reasoning · clear explanations'],
-        ['Growth areas', 'Abstract notation · formal language']
-      ],
-      analysis: [
-        {l:'Cognitive Load', v:'Moderate', t:'up', tt:'healthy level', f:38, cls:'good'},
-        {l:'Engagement', v:'94%', t:'up', tt:'↑ high & stable', f:94, cls:'good'},
-        {l:'Help-Seeking', v:'0×', t:'up', tt:'self-directed', f:10, cls:'good'},
-        {l:'Misconception', v:'None', t:'up', tt:'on mastery path', f:8, cls:'good'}
-      ],
-      transcript: [
-        ['ai', 'BRIDEWELL', "Excellent — now, if you cut a pizza into 8 and eat 3, how much did you eat?"],
-        ['student', 'SAMIRA', "3/8!"],
-        ['ai', 'BRIDEWELL', "Perfect. Can you explain *why* 3/8 is smaller than 1/2?"],
-        ['student', 'SAMIRA', "because 1/2 is like 4/8 and 3/8 is less than 4/8"],
-        ['ai', 'BRIDEWELL', "You've cracked it! Fancy a harder one?"]
-      ]
+    students: [
+      { id: 'tom', name: 'Tom W.', initials: 'TW', status: 'red',
+        subject: 'Fractions · 19 min', progress: 28,
+        passportName: 'Tom Whitmore', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0144',
+        tags: [{c:'amber', t:'● Needs help'}, {c:'mode', t:'Guidance'}],
+        summary: '<strong>Tom is stuck.</strong> He has asked Bridewell to <mark>rephrase the answer 3 times</mark> on the same fraction comparison. Frustration rising. Learns best with concrete props.',
+        rows: [['Reading age', '9y 8m'], ['Avatar', 'Rex the Knight'], ['Strengths', 'Pattern spotting'], ['Growth areas', 'Abstract reasoning']],
+        stats: {
+          title: 'Button-click signals · Tom W.',
+          freq: { total: 8, items: [['Rephrase Answer', 5, 100], ['Simplify Answer', 2, 40], ['Get a Hint', 1, 20]] },
+          struggle: { headline: 'Very High', value: 88, trend: 'warn', trendText: '↑ red flag' , series: [40, 52, 64, 72, 80, 88, 92, 88] },
+          load:     { headline: 'High', value: 62, trend: 'warn', trendText: '↑ rising' , series: [35, 42, 50, 56, 62, 66, 64, 62] },
+          creative: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ not asking for hints' , series: [18, 20, 22, 22, 22, 22, 22, 22] },
+        }
+      },
+      { id: 'samira', name: 'Samira K.', initials: 'SK', status: 'green',
+        subject: 'Fractions · 31 min', progress: 86,
+        passportName: 'Samira Khan', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0311',
+        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
+        summary: '<strong>Samira had a breakthrough.</strong> She explained back that "3 out of 8 slices is 3/8" — exactly the concrete anchoring we want.',
+        rows: [['Reading age', '10y 4m'], ['Avatar', 'Nova the Explorer'], ['Strengths', 'Clear explanations'], ['Growth areas', 'Formal notation']],
+        stats: {
+          title: 'Button-click signals · Samira K.',
+          freq: { total: 4, items: [['Rephrase Answer', 0, 0], ['Simplify Answer', 1, 25], ['Get a Hint', 3, 75]] },
+          struggle: { headline: 'Very Low', value: 8, trend: 'up', trendText: '↓ self-directed' , series: [25, 18, 14, 12, 10, 10, 8, 8] },
+          load:     { headline: 'Light', value: 22, trend: 'flat', trendText: '→ comfortable' , series: [30, 28, 26, 24, 22, 22, 22, 22] },
+          creative: { headline: 'Moderate', value: 52, trend: 'up', trendText: '↑ asking productively' , series: [20, 26, 35, 42, 48, 54, 56, 52] },
+        }
+      },
+      { id: 'freya', name: 'Freya M.', initials: 'FM', status: 'green',
+        subject: 'Fractions · 18 min', progress: 50,
+        passportName: 'Freya Martin', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0188',
+        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
+        summary: 'Steady pace · working on equivalents. No flags.',
+        rows: [['Reading age', '10y 0m'], ['Avatar', 'Quill the Scholar'], ['Strengths', 'Persistence'], ['Growth areas', 'Speed']],
+        stats: {
+          title: 'Button-click signals · Freya M.',
+          freq: { total: 6, items: [['Rephrase Answer', 2, 50], ['Simplify Answer', 3, 75], ['Get a Hint', 1, 25]] },
+          struggle: { headline: 'Moderate', value: 40, trend: 'flat', trendText: '→ normal range' , series: [30, 35, 38, 40, 42, 40, 40, 40] },
+          load:     { headline: 'Moderate', value: 50, trend: 'flat', trendText: '→ steady' , series: [38, 44, 48, 50, 52, 52, 50, 50] },
+          creative: { headline: 'Low', value: 20, trend: 'flat', trendText: '→ not stuck' , series: [25, 24, 22, 20, 20, 20, 20, 20] },
+        }
+      },
+      { id: 'jasper', name: 'Jasper D.', initials: 'JD', status: 'green',
+        subject: 'Fractions · 22 min', progress: 81,
+        passportName: 'Jasper Doyle', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0091',
+        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
+        summary: 'Working confidently · last 5 min showed strong number-line intuition.',
+        rows: [['Reading age', '10y 6m'], ['Avatar', 'Astra the Voyager'], ['Strengths', 'Visualisation'], ['Growth areas', 'Word problems']],
+        stats: {
+          title: 'Button-click signals · Jasper D.',
+          freq: { total: 5, items: [['Rephrase Answer', 1, 25], ['Simplify Answer', 1, 25], ['Get a Hint', 3, 75]] },
+          struggle: { headline: 'Low', value: 18, trend: 'flat', trendText: '→ comfortable' , series: [22, 20, 18, 18, 18, 18, 18, 18] },
+          load:     { headline: 'Light', value: 28, trend: 'flat', trendText: '→ steady' , series: [30, 32, 30, 28, 28, 28, 28, 28] },
+          creative: { headline: 'Moderate', value: 56, trend: 'up', trendText: '↑ stretching himself' , series: [30, 38, 46, 52, 56, 58, 56, 56] },
+        }
+      },
+    ]
+  },
+
+  science: {
+    subject: 'Science',
+    avatar: 'Year 5\nScience',
+    sub: 'Year 5 · Ecosystems · Monday 11 May',
+    timeRange: { start: '13:30', end: '14:15' },
+    tags: [{c:'mode', t:'Lesson 5 of 5'}, {c:'', t:'Ended'}],
+    summary: '<strong>Lesson concluded yesterday.</strong> Strong overall engagement. Creative struggle dominated — pupils stretched themselves predicting ecosystem outcomes.',
+    rows: [
+      ['Pupils enrolled', '10'], ['Active now', '0 (ended)'],
+      ['Total messages', '94'], ['Avg session length', '32 min'],
+      ['Mode', 'Guidance + Expert (mixed)'], ['Last edited', '11 May · Mr Brookes'],
+    ],
+    stats: {
+      title: 'Button-click signals · Science',
+      freq: { total: 38, items: [['Rephrase Answer', 6, 32], ['Simplify Answer', 13, 68], ['Get a Hint', 19, 100]] },
+      struggle: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ concepts landing' , series: [18, 20, 22, 26, 24, 22, 22, 22] },
+      load:     { headline: 'Moderate', value: 54, trend: 'flat', trendText: '→ rich content' , series: [40, 45, 52, 56, 58, 60, 56, 54] },
+      creative: { headline: 'High', value: 72, trend: 'up', trendText: '↑ healthy stretch' , series: [30, 38, 48, 58, 68, 76, 78, 72] },
     },
-    oliver: {
-      initials: 'OB', name: 'Oliver Bramwell', sub: '5R · 10 yrs · Passport #KESW-Y5-0185',
-      status: 'green', tags: [
-        {c:'', t:'Creative thinker'},
-        {c:'mode', t:'Guidance Mode'},
-        {c:'status-amber', t:'● On track', style:'background:var(--moss);color:var(--cream);border-color:var(--moss);'}
-      ],
-      briefing: `<strong>Oliver is asking brilliant questions.</strong> He's pushed past the prompt to wonder <mark>"what if the dragon is the narrator"</mark> — genuine meta-narrative thinking. He'd enjoy a stretch task, and he's perfectly placed to help Priya.`,
-      meta: '15 msgs · 5 deep-question markers · sentiment 0.91',
-      passport: [
-        ['Reading age', '11y 1m'],
-        ['Preferred avatar', '"Atlas the Mage"'],
-        ['Preferred mode', 'Guidance · enjoys divergent'],
-        ['Language adaptation', 'Standard · rich vocab welcome'],
-        ['Strengths', 'Narrative voice · meta-thinking'],
-        ['Growth areas', 'Editing · concision']
-      ],
-      analysis: [
-        {l:'Cognitive Load', v:'Moderate', t:'up', tt:'productive', f:44, cls:'good'},
-        {l:'Engagement', v:'88%', t:'up', tt:'↑ consistently high', f:88, cls:'good'},
-        {l:'Help-Seeking', v:'0×', t:'up', tt:'self-directed', f:8, cls:'good'},
-        {l:'Misconception', v:'None', t:'up', tt:'on mastery', f:5, cls:'good'}
-      ],
-      transcript: [
-        ['ai', 'BRIDEWELL', "Try writing the very first sentence of your dragon's story."],
-        ['student', 'OLIVER', "what if the dragon was actually the narrator all along?"],
-        ['ai', 'BRIDEWELL', "Wow — that changes everything! How would the opening sound in the dragon's voice?"],
-        ['student', 'OLIVER', "'you think you know fear, human? let me show you what fear looked like when the mountains were young.'"],
-        ['ai', 'BRIDEWELL', "Chills. That's a brilliant opening — what comes next?"]
-      ]
-    }
+    students: []
+  },
+
+  geography: {
+    subject: 'Geography',
+    avatar: 'Year 5\nGeography',
+    sub: 'Year 5 · Rivers & Mountains · Sunday 10 May',
+    timeRange: { start: '09:20', end: '10:00' },
+    tags: [{c:'mode', t:'Lesson 2 of 4'}, {c:'', t:'Ended'}],
+    summary: '<strong>Lesson concluded.</strong> Pupils explored how rivers shape landscapes. Heavy Simplify-Answer usage suggests the geology terminology was challenging — worth revisiting glossary in the next lesson.',
+    rows: [
+      ['Pupils enrolled', '10'], ['Active now', '0 (ended)'],
+      ['Total messages', '71'], ['Avg session length', '28 min'],
+      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '9 May · Mr Brookes'],
+    ],
+    stats: {
+      title: 'Button-click signals · Geography',
+      freq: { total: 29, items: [['Rephrase Answer', 7, 50], ['Simplify Answer', 14, 100], ['Get a Hint', 8, 57]] },
+      struggle: { headline: 'Moderate', value: 48, trend: 'flat', trendText: '→ vocabulary heavy' , series: [22, 28, 38, 46, 50, 52, 50, 48] },
+      load:     { headline: 'High', value: 72, trend: 'warn', trendText: '↑ revisit glossary' , series: [28, 42, 58, 72, 78, 76, 74, 72] },
+      creative: { headline: 'Moderate', value: 52, trend: 'flat', trendText: '→ steady' , series: [20, 30, 42, 50, 56, 58, 54, 52] },
+    },
+    students: []
+  },
+};
+
+// ============ STATE ============
+let view = 'classrooms';        // 'classrooms' | 'students'
+let activeClassroom = 'english';
+let activeStudent = null;
+
+// ============ RENDER ============
+function renderRightPane() {
+  const pane = document.getElementById('rightPane');
+  if (view === 'students' && activeStudent) {
+    const s = classrooms[activeClassroom].students.find(x => x.id === activeStudent);
+    if (!s) return;
+    pane.innerHTML = renderStudentDetail(s);
+  } else {
+    const c = classrooms[activeClassroom];
+    pane.innerHTML = renderClassroomDetail(c);
+  }
+}
+
+function renderClassroomDetail(c) {
+  return `
+    <div class="detail-head">
+      <div class="detail-avatar classroom">${c.avatar.replace('\n','<br>')}</div>
+      <div class="detail-info">
+        <div class="detail-name">${c.subject}</div>
+        <div class="detail-sub">${c.sub}</div>
+        <div class="detail-tags">${c.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>What's happening</h3>
+      <div class="summary-prose">${c.summary}</div>
+    </div>
+    <div class="detail-section">
+      <h3>Lesson Details</h3>
+      ${c.rows.map(([l,v]) => `<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
+    </div>
+  `;
+}
+
+function renderStudentDetail(s) {
+  return `
+    <div class="detail-head">
+      <div class="detail-avatar">${s.initials}</div>
+      <div class="detail-info">
+        <div class="detail-name">${s.passportName}</div>
+        <div class="detail-sub">${s.passportSub}</div>
+        <div class="detail-tags">${s.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>Pupil Summary</h3>
+      <div class="summary-prose">${s.summary}</div>
+    </div>
+    <div class="detail-section">
+      <h3>Student Passport</h3>
+      ${s.rows.map(([l,v]) => `<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
+    </div>
+  `;
+}
+
+function renderStats(statsObj, timeRange) {
+  document.getElementById('statsTitle').textContent = statsObj.title;
+  document.getElementById('freqHeadline').textContent = `${statsObj.freq.total} clicks`;
+  const fb = document.getElementById('freqBars');
+  fb.innerHTML = statsObj.freq.items.map(([name, count, fill], i) => {
+    const cls = ['rephrase', 'simplify', 'hint'][i];
+    return `
+      <div class="freq-row ${cls}">
+        <span class="freq-name">${name}</span>
+        <span class="freq-count">${count}</span>
+        <div class="freq-bar" style="--f: ${fill}%;"></div>
+      </div>`;
+  }).join('');
+
+  // Update the time-axis labels on all three charts
+  const tr = timeRange || { start: '—', end: '—' };
+  ['Struggle', 'Load', 'Creative'].forEach(name => {
+    const startEl = document.getElementById('axisStart' + name);
+    const endEl   = document.getElementById('axisEnd' + name);
+    if (startEl) startEl.textContent = tr.start;
+    if (endEl)   endEl.textContent   = tr.end;
+  });
+
+  setChart('Struggle', statsObj.struggle, tr);
+  setChart('Load',     statsObj.load,     tr);
+  setChart('Creative', statsObj.creative, tr);
+}
+
+// Auto-generate a plausible 8-point series from a single value, biased so the
+// peak lands somewhere plausible. Used as a fallback when authored data omits series.
+function autoSeries(value, peakIdx = 5) {
+  const len = 8;
+  const out = [];
+  for (let i = 0; i < len; i++) {
+    const distFromPeak = Math.abs(i - peakIdx);
+    const peakBoost = Math.max(0, 18 - distFromPeak * 6);
+    const base = value * (0.45 + 0.6 * (i / (len - 1)));
+    out.push(Math.round(Math.max(4, Math.min(98, base + peakBoost))));
+  }
+  out[len - 1] = value;
+  return out;
+}
+
+// Linear-interpolate a "HH:MM" clock-time between start and end for point idx of total.
+function interpTime(start, end, idx, total) {
+  if (!start || !end || start === '—' || end === '—') return '';
+  const parse = s => {
+    const [h, m] = s.split(':').map(Number);
+    return h * 60 + m;
   };
+  const fmt = mins => {
+    const h = Math.floor(mins / 60), m = Math.round(mins % 60);
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+  };
+  const s = parse(start), e = parse(end);
+  const t = s + (e - s) * (idx / (total - 1));
+  return fmt(t);
+}
 
-  // Card selection
-  document.querySelectorAll('.stu-card').forEach(card => {
+function setChart(name, obj, timeRange) {
+  document.getElementById(name.toLowerCase() + 'Headline').textContent = obj.headline;
+  const trendEl = document.getElementById('trend' + name);
+  trendEl.textContent = obj.trendText;
+  trendEl.className = 'trend ' + obj.trend;
+
+  const series = obj.series && obj.series.length ? obj.series : autoSeries(obj.value);
+  const len = series.length;
+  const xStep = 100 / (len - 1);
+  const points = series.map((v, i) => [i * xStep, 100 - v]);
+
+  const linePath = points.map((p, i) =>
+    `${i === 0 ? 'M' : 'L'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`
+  ).join(' ');
+  const last = points[len - 1];
+  const first = points[0];
+  const areaPath = `${linePath} L ${last[0].toFixed(1)} 100 L ${first[0].toFixed(1)} 100 Z`;
+
+  const svg = `
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <line class="ts-grid" x1="0" y1="50" x2="100" y2="50"/>
+      <line class="ts-threshold" x1="0" y1="30" x2="100" y2="30"/>
+      <path class="ts-area" d="${areaPath}"/>
+      <path class="ts-line" d="${linePath}" vector-effect="non-scaling-stroke"/>
+      <line class="ts-hover-line" x1="0" y1="0" x2="0" y2="100" data-hover-line/>
+      <circle class="ts-hover-dot" cx="0" cy="0" r="2.6" vector-effect="non-scaling-stroke" data-hover-dot/>
+    </svg>
+    <div class="ts-tooltip" data-tooltip>—</div>`;
+  const container = document.getElementById('chart' + name);
+  container.innerHTML = svg;
+
+  // Attach hover interactivity
+  const tooltip = container.querySelector('[data-tooltip]');
+  const hLine = container.querySelector('[data-hover-line]');
+  const hDot  = container.querySelector('[data-hover-dot]');
+
+  function handleMove(evt) {
+    const rect = container.getBoundingClientRect();
+    const xPct = ((evt.clientX - rect.left) / rect.width) * 100;
+    // Snap to nearest data-point index
+    const idx = Math.max(0, Math.min(len - 1, Math.round(xPct / xStep)));
+    const p = points[idx];
+    const value = series[idx];
+    const time = interpTime(timeRange?.start, timeRange?.end, idx, len);
+
+    // Move SVG hover line + dot to that data point
+    hLine.setAttribute('x1', p[0].toFixed(1));
+    hLine.setAttribute('x2', p[0].toFixed(1));
+    hDot.setAttribute('cx', p[0].toFixed(1));
+    hDot.setAttribute('cy', p[1].toFixed(1));
+
+    // Position HTML tooltip above the dot using the container's pixel space
+    const xPx = (p[0] / 100) * rect.width;
+    const yPx = (p[1] / 100) * rect.height;
+    tooltip.style.left = xPx + 'px';
+    tooltip.style.top  = yPx + 'px';
+    tooltip.innerHTML = time
+      ? `<strong>${value}</strong> · ${time}`
+      : `<strong>${value}</strong>`;
+  }
+
+  container.addEventListener('mousemove', handleMove);
+  // Touch fallback — show value at last point on tap
+  container.addEventListener('touchstart', (evt) => {
+    if (evt.touches[0]) handleMove(evt.touches[0]);
+  });
+}
+
+function renderClassroomGrid() {
+  document.getElementById('classroomGrid').style.display = '';
+  document.getElementById('studentGrid').style.display = 'none';
+  document.getElementById('leftTitle').innerHTML = 'Classrooms <em>— today</em>';
+  document.getElementById('crumb').innerHTML = `<span>Year 5 Trial</span><span class="sep">/</span><span class="here">Classrooms</span>`;
+  document.getElementById('pageTitle').innerHTML = 'Good afternoon, <em>Jane.</em>';
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric"><div class="v">4</div><div class="l">Classrooms</div></div>
+    <div class="metric"><div class="v">10</div><div class="l">Pupils</div></div>
+    <div class="metric"><div class="v">127</div><div class="l">Msgs today</div></div>`;
+}
+
+function renderStudentGrid() {
+  const c = classrooms[activeClassroom];
+  const sg = document.getElementById('studentGrid');
+  sg.innerHTML = c.students.map(s => `
+    <div class="stu-card${s.id === activeStudent ? ' selected' : ''}" data-student="${s.id}">
+      <div class="stu-top">
+        <div class="stu-name">${s.name}</div>
+        <div class="stu-figure ${s.status}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+      </div>
+      <div class="stu-subject">${s.subject}</div>
+      <div class="stu-progress" style="--p: ${s.progress}%;"></div>
+    </div>`).join('');
+  document.getElementById('classroomGrid').style.display = 'none';
+  document.getElementById('studentGrid').style.display = '';
+  document.getElementById('leftTitle').innerHTML = `${c.subject} <em>— pupils</em>`;
+  document.getElementById('crumb').innerHTML = `
+    <button class="back-btn" id="backBtn">← Classrooms</button>
+    <span>Year 5 Trial</span>
+    <span class="sep">/</span>
+    <span class="here">${c.subject}</span>`;
+  document.getElementById('pageTitle').innerHTML = `${c.subject} <em>· pupils</em>`;
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric"><div class="v">${c.students.length}</div><div class="l">Active</div></div>
+    <div class="metric"><div class="v">${c.students.filter(s=>s.status==='red').length}</div><div class="l">Needs help</div></div>
+    <div class="metric"><div class="v">${c.students.filter(s=>s.status==='green').length}</div><div class="l">On track</div></div>`;
+  document.getElementById('backBtn').addEventListener('click', () => {
+    view = 'classrooms';
+    activeStudent = null;
+    renderClassroomGrid();
+    renderRightPane();
+    renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
+  });
+  sg.querySelectorAll('.stu-card').forEach(card => {
     card.addEventListener('click', () => {
-      document.querySelectorAll('.stu-card').forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      const id = card.dataset.id;
-      if (id && pupils[id]) renderPupil(pupils[id]);
+      activeStudent = card.dataset.student;
+      sg.querySelectorAll('.stu-card').forEach(c => c.classList.toggle('selected', c.dataset.student === activeStudent));
+      const stu = c.students.find(x => x.id === activeStudent);
+      renderRightPane();
+      renderStats(stu.stats, classrooms[activeClassroom].timeRange);
     });
   });
-
-  function renderPupil(p) {
-    const ind = document.getElementById('tab-individual');
-    const tagsHtml = p.tags.map(t => `<span class="tag ${t.c}" ${t.style ? `style="${t.style}"` : ''}>${t.t}</span>`).join('');
-    const passportRows = p.passport.map(([l,v]) => `<div class="passport-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('');
-    const anaCards = p.analysis.map(a => `
-      <div class="ana-card">
-        <div class="lbl">${a.l}</div>
-        <div class="val">${a.v}</div>
-        <div class="trend ${a.t}">${a.tt}</div>
-        <div class="ana-bar ${a.cls}" style="--f: ${a.f}%"></div>
-      </div>
-    `).join('');
-    const transcript = p.transcript.map(([who, label, text, flag]) => `
-      <div class="tr-msg">
-        <div class="tr-who ${who}">${label}</div>
-        <div class="tr-text">${text}${flag ? '<span class="tr-flag">⚑ Answer-seeking</span>' : ''}</div>
-      </div>
-    `).join('');
-
-    const avatarBg = p.status === 'red' ? 'var(--status-red)' : p.status === 'amber' ? 'var(--status-amber)' : 'var(--moss)';
-
-    ind.innerHTML = `
-      <div class="passport-head">
-        <div class="passport-avatar">${p.initials}
-          <span style="position:absolute;bottom:-3px;right:-3px;width:20px;height:20px;background:${avatarBg};border:3px solid var(--paper);border-radius:50%;"></span>
-        </div>
-        <div class="passport-info">
-          <div class="passport-name">${p.name}</div>
-          <div class="passport-sub">${p.sub}</div>
-          <div class="passport-tags">${tagsHtml}</div>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>AI Briefing · 12:26</h3>
-        <div class="ai-summary">
-          ${p.briefing}
-          <div class="meta">${p.meta}</div>
-        </div>
-      </div>
-
-      <div class="passport-section">
-        <h3>Student Passport</h3>
-        ${passportRows}
-      </div>
-
-      <div class="passport-section">
-        <h3>Teacher-in-the-Loop Actions</h3>
-        <div class="action-list">
-          <button class="action-btn warn">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9a2 2 0 01-2 2H5l-3 3V4a2 2 0 012-2h8a2 2 0 012 2v5z"/><path d="M18 9h2a2 2 0 012 2v11l-3-3h-7a2 2 0 01-2-2v-1"/></svg></div>
-            <div class="action-body"><div class="action-t">Send ${p.name.split(' ')[0]} an encouragement</div><div class="action-d">One-tap nudge</div></div>
-          </button>
-          <button class="action-btn primary" onclick="switchTab('pair')">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-            <div class="action-body"><div class="action-t">Pair ${p.name.split(' ')[0]} with a peer</div><div class="action-d">See suggestions in the Pair tab</div></div>
-          </button>
-          <button class="action-btn" onclick="openPromptModal()">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-            <div class="action-body"><div class="action-t">Adjust subject prompt</div><div class="action-d">Refine how Bridewell teaches</div></div>
-          </button>
-          <button class="action-btn">
-            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
-            <div class="action-body"><div class="action-t">Switch to Expert Mode (10 min)</div><div class="action-d">Temporary override</div></div>
-          </button>
-        </div>
-      </div>
-    `;
+  // Auto-select first student
+  if (c.students.length) {
+    activeStudent = c.students[0].id;
+    sg.querySelector('.stu-card')?.classList.add('selected');
+    renderRightPane();
+    renderStats(c.students[0].stats, classrooms[activeClassroom].timeRange);
   }
+}
 
-  // Tab switch
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+// ============ EVENTS ============
+document.querySelectorAll('.classroom-card').forEach(card => {
+  let clickTimer = null;
+  card.addEventListener('click', (e) => {
+    if (clickTimer) return; // double-click handled separately
+    clickTimer = setTimeout(() => {
+      // single click → select
+      activeClassroom = card.dataset.classroom;
+      document.querySelectorAll('.classroom-card').forEach(c => c.classList.toggle('selected', c === card));
+      renderRightPane();
+      renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
+      clickTimer = null;
+    }, 220);
   });
-  function switchTab(name) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === `tab-${name}`));
-  }
+  card.addEventListener('dblclick', () => {
+    clearTimeout(clickTimer);
+    clickTimer = null;
+    activeClassroom = card.dataset.classroom;
+    view = 'students';
+    renderStudentGrid();
+  });
+});
 
-  // Subject tabs in modal
-  document.querySelectorAll('.subject-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-  document.querySelectorAll('.mode-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('.mode-opt').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-    });
-  });
+// THEME TOGGLE
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const themeLabel = document.getElementById('themeLabel');
+const sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+  themeIcon.innerHTML = isDark ? moonIcon : sunIcon;
+  themeLabel.textContent = isDark ? 'Dark' : 'Light';
+  // Update theme-color meta for mobile chrome
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#faf6ee' : '#0f1a2e');
+});
 
-  function openPromptModal() { document.getElementById('promptModal').classList.add('open'); }
-  function closePromptModal() { document.getElementById('promptModal').classList.remove('open'); }
-  document.getElementById('promptModal').addEventListener('click', (e) => {
-    if (e.target.id === 'promptModal') closePromptModal();
-  });
+// INIT
+renderRightPane();
+renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
 </script>
 
 </body>
