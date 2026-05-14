@@ -17,6 +17,6 @@ You can set up this project using either a standard Python virtual environment (
 
 Once you're in an appropriate environment, run the following command using Streamlit:
 
-'''
+```
 streamlit run app.py
-'''
+```
