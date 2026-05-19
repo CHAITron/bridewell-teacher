@@ -15,15 +15,14 @@
     --gold: #b58a3c;
     --gold-light: #d4a858;
     --crimson: #8a1c2b;
-
-    /* Status colours — same in both themes */
     --green: #4a8a4c;
     --amber: #d89a2f;
     --red:   #b83b3b;
     --idle:  #8a8fa3;
+    --blue:  #4a9bbf;
+    --purple:#b06fc4;
   }
 
-  /* DARK THEME (default) */
   [data-theme="dark"] {
     --bg-deepest:  #0a1424;
     --bg-base:     #0f1a2e;
@@ -38,8 +37,6 @@
     --line-strong: rgba(181, 138, 60, 0.4);
     --shadow:      rgba(0, 0, 0, 0.4);
   }
-
-  /* LIGHT THEME */
   [data-theme="light"] {
     --bg-deepest:  #efe7d5;
     --bg-base:     #f3ece0;
@@ -83,43 +80,40 @@
   .crest-mini { width: 32px; height: 38px; }
   .brand-text .school {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold);
+    font-size: 9px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--gold);
   }
   .brand-text .product {
     font-family: 'Fraunces', serif;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: 17px; font-weight: 500; letter-spacing: -0.01em;
   }
   .brand-text .product em { font-style: italic; font-weight: 300; color: var(--gold); }
 
   .top-right { display: flex; align-items: center; gap: 12px; }
-  .theme-toggle {
+
+  .btn-pill {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--line);
     color: var(--text);
-    padding: 7px 10px;
+    padding: 7px 14px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex; align-items: center; gap: 7px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
     transition: all 0.15s;
   }
-  [data-theme="light"] .theme-toggle { background: rgba(15, 26, 46, 0.04); }
-  .theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
-  .theme-toggle svg { width: 13px; height: 13px; }
+  [data-theme="light"] .btn-pill { background: rgba(15, 26, 46, 0.04); }
+  .btn-pill:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-pill svg { width: 13px; height: 13px; }
+  .btn-pill.demo {
+    background: var(--gold);
+    color: var(--bg-deepest);
+    border-color: var(--gold);
+  }
+  .btn-pill.demo:hover { background: var(--gold-light); color: var(--bg-deepest); border-color: var(--gold-light); }
 
   .teacher-chip {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     padding: 5px 5px 5px 12px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--line);
@@ -128,18 +122,13 @@
   .teacher-chip .name { font-size: 12px; font-weight: 500; }
   .teacher-chip .role {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-muted);
   }
   .teacher-avatar {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--bg-deepest);
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--gold); color: var(--bg-deepest);
+    font-family: 'Fraunces', serif; font-weight: 600;
     display: flex; align-items: center; justify-content: center;
     font-size: 12px;
   }
@@ -149,76 +138,55 @@
     background: var(--bg-warm);
     padding: 24px 28px 18px;
     border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 32px;
-    flex-wrap: wrap;
+    display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 32px; flex-wrap: wrap;
   }
-  .page-head .crumb {
+  .crumb {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-muted);
     margin-bottom: 10px;
   }
-  .page-head .crumb .sep { margin: 0 8px; opacity: 0.5; }
-  .page-head .crumb .here { color: var(--gold); }
-  .page-head .crumb button.back-btn {
+  .crumb .sep { margin: 0 8px; opacity: 0.5; }
+  .crumb .here { color: var(--gold); }
+  .crumb button.back-btn {
     background: transparent;
     border: 1px solid var(--line-strong);
     color: var(--text);
-    padding: 5px 10px;
-    margin-right: 10px;
+    padding: 5px 10px; margin-right: 10px;
     cursor: pointer;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
     transition: all 0.15s;
   }
-  .page-head .crumb button.back-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .crumb button.back-btn:hover { border-color: var(--gold); color: var(--gold); }
 
   h1.page-title {
     font-family: 'Fraunces', serif;
-    font-size: 38px;
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.025em;
+    font-size: 38px; font-weight: 400;
+    line-height: 1; letter-spacing: -0.025em;
   }
   h1.page-title em {
     font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-weight: 300;
-    color: var(--gold);
+    font-style: italic; font-weight: 300; color: var(--gold);
   }
 
   .metrics { display: flex; gap: 28px; }
   .metric { text-align: right; }
   .metric .v {
     font-family: 'Fraunces', serif;
-    font-size: 26px;
-    font-weight: 500;
-    line-height: 1;
+    font-size: 26px; font-weight: 500; line-height: 1;
   }
   .metric .l {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-muted);
     margin-top: 5px;
   }
 
   /* ============ LAYOUT ============ */
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    min-height: calc(100vh - 200px);
-  }
+  .main { display: grid; grid-template-columns: 1fr 380px; min-height: calc(100vh - 200px); }
 
-  /* ============ LEFT PANEL ============ */
   .left-pane {
     background: var(--bg-base);
     padding: 22px 28px 28px;
@@ -226,39 +194,24 @@
   }
 
   .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 16px;
+    display: flex; justify-content: space-between;
+    align-items: baseline; margin-bottom: 16px;
   }
   .section-head h2 {
     font-family: 'Fraunces', serif;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: 20px; font-weight: 500; letter-spacing: -0.01em;
   }
-  .section-head h2 em {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--text-muted);
-  }
+  .section-head h2 em { font-style: italic; font-weight: 300; color: var(--text-muted); }
   .live {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    display: inline-flex; align-items: center; gap: 5px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #8fc28d;
-    font-weight: 600;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #8fc28d; font-weight: 600;
   }
   [data-theme="light"] .live { color: #3d6b3d; }
   .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 8px currentColor;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; box-shadow: 0 0 8px currentColor;
     animation: pulse 1.6s ease-in-out infinite;
   }
   @keyframes pulse {
@@ -280,9 +233,7 @@
     transition: all 0.15s;
     position: relative;
     min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: flex; flex-direction: column; justify-content: space-between;
   }
   .classroom-card:hover {
     background: var(--bg-elevated-2);
@@ -295,61 +246,41 @@
     box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.25);
   }
   .classroom-card .open-hint {
-    position: absolute;
-    top: 12px; right: 14px;
+    position: absolute; top: 12px; right: 14px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--text-faint);
-    opacity: 0;
-    transition: opacity 0.15s;
+    opacity: 0; transition: opacity 0.15s;
   }
   .classroom-card:hover .open-hint { opacity: 1; }
-
   .cl-subject {
     font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    font-size: 22px; font-weight: 500;
+    line-height: 1.1; letter-spacing: -0.015em;
   }
   .cl-meta {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-muted);
     margin-top: 6px;
   }
   .cl-foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 14px;
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-top: 14px;
   }
   .cl-pupils {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.1em; color: var(--text-muted);
   }
   .cl-pupils strong { color: var(--text); font-weight: 600; }
-  .cl-status {
-    display: flex;
-    gap: 4px;
-  }
-  .cl-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    border: 1.5px solid currentColor;
-  }
-  .cl-dot.green { color: var(--green); background: var(--green); }
-  .cl-dot.amber { color: var(--amber); background: var(--amber); }
-  .cl-dot.red { color: var(--red); background: var(--red); }
-  .cl-dot.idle { color: var(--idle); background: transparent; }
+  .cl-status { display: flex; gap: 4px; }
+  .cl-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .cl-dot.green { background: var(--green); }
+  .cl-dot.amber { background: var(--amber); }
+  .cl-dot.red { background: var(--red); }
+  .cl-dot.idle { background: transparent; border: 1.5px solid var(--idle); }
 
-  /* STUDENT GRID (drilled-in) */
+  /* STUDENT GRID */
   .student-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -363,40 +294,28 @@
     background: var(--bg-elevated);
     border: 1.5px solid var(--line);
     padding: 14px 14px 12px;
-    cursor: pointer;
-    transition: all 0.15s;
+    cursor: pointer; transition: all 0.15s;
     min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: flex; flex-direction: column; justify-content: space-between;
   }
-  .stu-card:hover {
-    background: var(--bg-elevated-2);
-    border-color: var(--gold);
-  }
+  .stu-card:hover { background: var(--bg-elevated-2); border-color: var(--gold); }
   .stu-card.selected {
     border-color: var(--gold);
     background: var(--bg-elevated-2);
     box-shadow: 0 0 0 3px rgba(212, 168, 88, 0.25);
   }
   .stu-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 8px;
   }
   .stu-name {
     font-family: 'Fraunces', serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.1;
+    font-size: 14px; font-weight: 600; line-height: 1.1;
   }
   .stu-figure {
-    width: 22px; height: 22px;
-    flex-shrink: 0;
+    width: 22px; height: 22px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    color: white;
+    border-radius: 50%; color: white;
   }
   .stu-figure.green { background: var(--green); }
   .stu-figure.amber { background: var(--amber); color: #0f1a2e; animation: pulseRing 2.2s ease-in-out infinite; }
@@ -411,190 +330,142 @@
     0%, 100% { box-shadow: 0 0 0 0 rgba(184, 59, 59, 0.6); }
     50% { box-shadow: 0 0 0 8px rgba(184, 59, 59, 0); }
   }
-  .stu-subject {
-    font-size: 10px;
-    color: var(--text-muted);
-    margin-top: 4px;
+  .stu-subject { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+  .stu-metric {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-muted); margin-top: 8px;
   }
-  .stu-progress {
-    height: 3px;
-    background: rgba(127, 127, 127, 0.18);
-    margin-top: 10px;
-    position: relative;
-  }
-  .stu-progress::after {
-    content: ""; position: absolute; inset: 0 auto 0 0;
-    background: var(--gold); width: var(--p, 50%);
-  }
+  .stu-metric strong { color: var(--text); }
 
-  /* ============ STATS ROW (bottom) ============ */
+  /* ============ STATS — TWO SUB-WINDOWS ============ */
   .stats-row {
     margin-top: 28px;
     padding-top: 22px;
     border-top: 1px solid var(--line);
   }
-  .stats-row .stats-title {
+  .stats-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 14px;
   }
-  .stats-grid {
+  .subwindows {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 16px;
   }
-  @media (max-width: 1100px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .stats-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1100px) { .subwindows { grid-template-columns: 1fr; } }
 
-  .stat-card {
+  .subwindow {
     background: var(--bg-elevated);
     border: 1px solid var(--line);
-    padding: 16px 18px;
-    display: flex;
-    flex-direction: column;
-    min-height: 180px;
+    padding: 18px 20px;
+    display: flex; flex-direction: column;
   }
-  .stat-card .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 8px;
+  .subwindow-head {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 16px;
   }
-  .stat-card .stat-headline {
+  .subwindow-head .sw-icon {
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(127,127,127,0.1);
+    border: 1px solid var(--line);
+  }
+  .subwindow-head .sw-icon svg { width: 14px; height: 14px; }
+  .subwindow-head .sw-title {
     font-family: 'Fraunces', serif;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.1;
+    font-size: 16px; font-weight: 500;
   }
-  .stat-card .stat-source {
+  .subwindow-head .sw-sub {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    color: var(--text-faint);
-    margin-top: auto;
-    padding-top: 12px;
+    font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-faint);
+    margin-left: auto;
   }
 
-  /* Frequency chart — horizontal bars for the 3 buttons */
-  .freq-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 14px;
-  }
-  .freq-row {
+  /* Prompt analysis — metric tiles */
+  .prompt-tiles {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
-    gap: 8px;
-    font-size: 11px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
-  .freq-row .freq-name { color: var(--text); }
-  .freq-row .freq-count {
+  .ptile {
+    background: rgba(127,127,127,0.06);
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+  }
+  .ptile.wide { grid-column: 1 / -1; }
+  .ptile .pt-label {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    color: var(--gold);
+    font-size: 9px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 6px;
   }
-  .freq-bar {
-    grid-column: 1 / -1;
-    height: 4px;
-    background: rgba(127, 127, 127, 0.18);
-    position: relative;
-    margin-top: 2px;
+  .ptile .pt-value {
+    font-family: 'Fraunces', serif;
+    font-size: 28px; font-weight: 500; line-height: 1;
   }
-  .freq-bar::after {
-    content: ""; position: absolute; inset: 0 auto 0 0;
-    background: var(--gold); width: var(--f, 40%);
+  .ptile .pt-value .pt-unit {
+    font-size: 13px; color: var(--text-muted); font-weight: 400;
   }
-  .freq-row.rephrase .freq-bar::after { background: var(--amber); }
-  .freq-row.simplify .freq-bar::after { background: #4a9bbf; }
-  .freq-row.hint .freq-bar::after { background: #b06fc4; }
-
-  /* Time-series line charts for the three derived metrics */
-  .ts-wrap { margin-top: 10px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .ts-chart {
-    position: relative;
-    width: 100%;
-    height: 64px;
-    margin: 4px 0 2px;
-    cursor: crosshair;
-  }
-  .ts-chart svg { width: 100%; height: 100%; display: block; overflow: visible; }
-  .ts-chart .ts-grid { stroke: rgba(127, 127, 127, 0.18); stroke-width: 1; }
-  .ts-chart .ts-threshold { stroke: rgba(184, 59, 59, 0.45); stroke-width: 1; stroke-dasharray: 3 3; }
-  .ts-chart .ts-area { fill: currentColor; fill-opacity: 0.12; }
-  .ts-chart .ts-line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-  /* Hover crosshair + dot inside the SVG */
-  .ts-chart .ts-hover-line {
-    stroke: var(--text);
-    stroke-width: 1;
-    stroke-dasharray: 2 2;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.1s;
-  }
-  .ts-chart .ts-hover-dot {
-    fill: currentColor;
-    stroke: var(--bg-elevated);
-    stroke-width: 1.5;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.1s;
-  }
-  .ts-chart:hover .ts-hover-line,
-  .ts-chart:hover .ts-hover-dot { opacity: 1; }
-
-  /* HTML tooltip overlay — not subject to SVG viewBox stretching */
-  .ts-tooltip {
-    position: absolute;
-    pointer-events: none;
-    background: var(--bg-deepest);
-    color: var(--text);
-    border: 1px solid var(--line-strong);
-    padding: 5px 9px;
+  .ptile .pt-note {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    transform: translate(-50%, calc(-100% - 10px));
-    opacity: 0;
-    transition: opacity 0.1s;
-    z-index: 5;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    font-size: 9px; color: var(--text-faint); margin-top: 5px;
   }
-  .ts-tooltip strong { color: currentColor; font-weight: 600; }
-  .ts-chart:hover .ts-tooltip { opacity: 1; }
-  .ts-chart.struggle .ts-tooltip strong { color: var(--amber); }
-  .ts-chart.load     .ts-tooltip strong { color: #4a9bbf; }
-  .ts-chart.creative .ts-tooltip strong { color: #b06fc4; }
-
-  .ts-chart.struggle { color: var(--amber); }
-  .ts-chart.load     { color: #4a9bbf; }
-  .ts-chart.creative { color: #b06fc4; }
-  .ts-axis {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 0.12em;
-    color: var(--text-faint);
-    margin-top: 4px;
-  }
-  .trend {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+  .ptile .pt-prompt-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic; font-size: 14px;
+    color: var(--text); line-height: 1.45;
     margin-top: 8px;
+    padding: 8px 10px;
+    background: rgba(181,138,60,0.07);
+    border-left: 2px solid var(--gold);
   }
-  .trend.up { color: var(--green); }
-  .trend.down { color: var(--red); }
-  .trend.warn { color: var(--amber); }
-  .trend.flat { color: var(--text-muted); }
+
+  /* Button analysis — bars */
+  .btn-bars { display: flex; flex-direction: column; gap: 14px; margin-top: 2px; }
+  .btn-bar-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; margin-bottom: 5px;
+  }
+  .btn-bar-name {
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .btn-bar-name .bdot { width: 9px; height: 9px; }
+  .btn-bar-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; font-weight: 600;
+  }
+  .btn-bar-track {
+    height: 8px;
+    background: rgba(127,127,127,0.16);
+    position: relative;
+  }
+  .btn-bar-fill {
+    position: absolute; inset: 0 auto 0 0;
+    width: var(--f, 40%);
+    transition: width 0.5s ease;
+  }
+  .btn-bar-row.rephrase .bdot,
+  .btn-bar-row.rephrase .btn-bar-fill { background: var(--amber); }
+  .btn-bar-row.rephrase .btn-bar-count { color: var(--amber); }
+  .btn-bar-row.simplify .bdot,
+  .btn-bar-row.simplify .btn-bar-fill { background: var(--blue); }
+  .btn-bar-row.simplify .btn-bar-count { color: var(--blue); }
+  .btn-bar-row.hint .bdot,
+  .btn-bar-row.hint .btn-bar-fill { background: var(--purple); }
+  .btn-bar-row.hint .btn-bar-count { color: var(--purple); }
+  .btn-total {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .btn-total strong { color: var(--text); font-size: 13px; }
 
   /* ============ RIGHT PANEL ============ */
   .right-pane {
@@ -602,63 +473,40 @@
     padding: 22px 24px;
     overflow-y: auto;
   }
-
   .detail-head {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
+    display: flex; gap: 14px; align-items: flex-start;
+    padding-bottom: 16px; border-bottom: 1px solid var(--line);
   }
   .detail-avatar {
     width: 60px; height: 60px;
-    background: var(--gold);
-    color: var(--bg-deepest);
+    background: var(--gold); color: var(--bg-deepest);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 500;
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
     flex-shrink: 0;
   }
   .detail-avatar.classroom {
-    background: var(--bg-elevated);
-    color: var(--gold);
+    background: var(--bg-elevated); color: var(--gold);
     border: 1.5px solid var(--gold);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    line-height: 1.15;
-    text-align: center;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    line-height: 1.15; text-align: center;
   }
   .detail-info { flex: 1; min-width: 0; }
   .detail-name {
     font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    font-size: 22px; font-weight: 500;
+    line-height: 1.1; letter-spacing: -0.015em;
   }
   .detail-sub {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted);
     margin-top: 5px;
   }
-  .detail-tags {
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
+  .detail-tags { display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap; }
   .tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 3px 7px;
     background: rgba(127, 127, 127, 0.1);
     border: 1px solid var(--line);
@@ -666,38 +514,28 @@
   }
   .tag.send { background: var(--crimson); color: #faf6ee; border-color: var(--crimson); }
   .tag.mode { background: var(--bg-deepest); color: var(--gold); border-color: var(--bg-deepest); }
+  .tag.red { background: var(--red); color: #faf6ee; border-color: var(--red); }
   .tag.amber { background: var(--amber); color: #0f1a2e; border-color: var(--amber); }
   .tag.green { background: var(--green); color: #faf6ee; border-color: var(--green); }
 
-  .detail-section {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-  }
+  .detail-section { padding: 16px 0; border-bottom: 1px solid var(--line); }
   .detail-section:last-child { border-bottom: none; }
   .detail-section h3 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
+    font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
     margin-bottom: 10px;
   }
   .detail-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    font-size: 13px;
-    gap: 16px;
+    display: flex; justify-content: space-between;
+    padding: 5px 0; font-size: 13px; gap: 16px;
   }
   .detail-row .l { color: var(--text-muted); }
   .detail-row .v { color: var(--text); font-weight: 500; text-align: right; }
-
   .summary-prose {
     font-family: 'Instrument Serif', serif;
-    font-size: 15px;
-    font-style: italic;
-    line-height: 1.55;
-    color: var(--text);
+    font-size: 15px; font-style: italic;
+    line-height: 1.55; color: var(--text);
     padding: 12px 14px;
     background: rgba(181, 138, 60, 0.06);
     border-left: 3px solid var(--gold);
@@ -706,9 +544,168 @@
   .summary-prose strong { font-style: normal; font-weight: 600; }
   .summary-prose mark {
     background: rgba(216, 154, 47, 0.3);
-    color: var(--text);
-    padding: 0 3px;
+    color: var(--text); padding: 0 3px;
   }
+
+  /* ============ DEMO OVERLAY ============ */
+  .demo-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--bg-base);
+    display: none;
+    flex-direction: column;
+  }
+  .demo-overlay.open { display: flex; }
+  .demo-topbar {
+    background: var(--bg-deepest);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  .demo-topbar .demo-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; font-weight: 500;
+  }
+  .demo-topbar .demo-title em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .demo-topbar .demo-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .demo-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  @media (max-width: 900px) { .demo-body { grid-template-columns: 1fr; overflow-y: auto; } }
+
+  .demo-panel {
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .demo-panel.student { background: var(--bg-warm); border-right: 1px solid var(--line); }
+  .demo-panel.teacher { background: var(--bg-tinted); }
+  .demo-panel-head {
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .demo-panel-head .dp-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 4px 8px;
+    background: var(--gold); color: var(--bg-deepest);
+    font-weight: 600;
+  }
+  .demo-panel-head .dp-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 500;
+  }
+  .demo-panel-head .dp-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    color: var(--text-faint); margin-left: auto;
+  }
+
+  /* Student chat */
+  .chat-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .msg { display: flex; gap: 10px; max-width: 88%; }
+  .msg.ai { align-self: flex-start; }
+  .msg.student { align-self: flex-end; flex-direction: row-reverse; }
+  .msg .msg-avatar {
+    width: 30px; height: 30px; flex-shrink: 0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 600;
+  }
+  .msg.ai .msg-avatar { background: var(--gold); color: var(--bg-deepest); }
+  .msg.student .msg-avatar { background: var(--bg-elevated-2); color: var(--text); border: 1px solid var(--line); }
+  .msg .bubble {
+    padding: 10px 14px;
+    font-size: 13px; line-height: 1.5;
+  }
+  .msg.ai .bubble {
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .msg.student .bubble {
+    background: var(--gold);
+    color: var(--bg-deepest);
+  }
+  .msg .bubble .bubble-tag {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 4px; opacity: 0.7;
+  }
+
+  /* helper + composer */
+  .helper-bar {
+    display: flex; gap: 8px;
+    padding: 12px 22px 0;
+    flex-wrap: wrap;
+  }
+  .helper-btn {
+    flex: 1; min-width: 100px;
+    padding: 9px 10px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: all 0.15s;
+  }
+  .helper-btn:hover:not(:disabled) { border-color: currentColor; }
+  .helper-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .helper-btn .hdot { width: 8px; height: 8px; }
+  .helper-btn.rephrase { color: var(--amber); }
+  .helper-btn.rephrase .hdot { background: var(--amber); }
+  .helper-btn.simplify { color: var(--blue); }
+  .helper-btn.simplify .hdot { background: var(--blue); }
+  .helper-btn.hint { color: var(--purple); }
+  .helper-btn.hint .hdot { background: var(--purple); }
+
+  .composer {
+    display: flex; gap: 8px;
+    padding: 12px 22px 20px;
+  }
+  .composer input {
+    flex: 1;
+    padding: 12px 14px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+    outline: none;
+  }
+  .composer input:focus { border-color: var(--gold); }
+  .composer input::placeholder { color: var(--text-faint); }
+  .composer .submit-btn {
+    padding: 12px 20px;
+    background: var(--gold);
+    color: var(--bg-deepest);
+    border: none; cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .composer .submit-btn:hover:not(:disabled) { background: var(--gold-light); }
+  .composer .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .demo-teacher-scroll { flex: 1; overflow-y: auto; padding: 20px 22px; }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
@@ -725,7 +722,6 @@
     .right-pane { padding: 18px; }
     .classroom-grid { grid-template-columns: 1fr; }
     .teacher-chip .role { display: none; }
-    .stat-card { min-height: 160px; }
   }
   @media (max-width: 560px) {
     body { overflow-x: hidden; }
@@ -733,6 +729,7 @@
     .metrics { justify-content: space-between; }
     .metric { text-align: left; }
     .brand-text .school { font-size: 8px; }
+    .prompt-tiles { grid-template-columns: 1fr; }
   }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -743,7 +740,7 @@
 </head>
 <body>
 
-<!-- TOP BAR -->
+<!-- ============ TOP BAR ============ -->
 <nav class="topbar">
   <div class="brand">
     <svg class="crest-mini" viewBox="0 0 150 180" xmlns="http://www.w3.org/2000/svg">
@@ -762,7 +759,11 @@
   </div>
 
   <div class="top-right">
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <button class="btn-pill demo" id="demoBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Demo
+    </button>
+    <button class="btn-pill" id="themeToggle" aria-label="Toggle theme">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
         <circle cx="12" cy="12" r="4"/>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
@@ -779,7 +780,7 @@
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- ============ PAGE HEADER ============ -->
 <header class="page-head">
   <div>
     <div class="crumb" id="crumb">
@@ -789,372 +790,349 @@
     </div>
     <h1 class="page-title" id="pageTitle">Good afternoon, <em>Jane.</em></h1>
   </div>
-  <div class="metrics" id="metrics">
-    <div class="metric"><div class="v">4</div><div class="l">Classrooms</div></div>
-    <div class="metric"><div class="v">10</div><div class="l">Pupils</div></div>
-    <div class="metric"><div class="v">127</div><div class="l">Msgs today</div></div>
-  </div>
+  <div class="metrics" id="metrics"></div>
 </header>
 
-<!-- MAIN -->
+<!-- ============ MAIN ============ -->
 <main class="main">
-
-  <!-- LEFT PANEL -->
   <section class="left-pane">
-
     <div class="section-head">
       <h2 id="leftTitle">Classrooms <em>— today</em></h2>
       <div class="live"><span class="live-dot"></span>Live</div>
     </div>
 
-    <!-- CLASSROOM VIEW (default) -->
-    <div class="classroom-grid" id="classroomGrid">
-      <div class="classroom-card selected" data-classroom="english">
-        <div class="open-hint">double-click to open ↗</div>
-        <div>
-          <div class="cl-subject">English</div>
-          <div class="cl-meta">Year 5 · Creative Writing · 12 May</div>
-        </div>
-        <div class="cl-foot">
-          <div class="cl-pupils"><strong>3</strong> / 10 active</div>
-          <div class="cl-status">
-            <span class="cl-dot amber" title="1 struggling"></span>
-            <span class="cl-dot green" title="2 on track"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="classroom-card" data-classroom="mathematics">
-        <div class="open-hint">double-click to open ↗</div>
-        <div>
-          <div class="cl-subject">Mathematics</div>
-          <div class="cl-meta">Year 5 · Fractions · 12 May</div>
-        </div>
-        <div class="cl-foot">
-          <div class="cl-pupils"><strong>4</strong> / 10 active</div>
-          <div class="cl-status">
-            <span class="cl-dot red" title="1 needs help"></span>
-            <span class="cl-dot green" title="3 on track"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="classroom-card" data-classroom="science">
-        <div class="open-hint">double-click to open ↗</div>
-        <div>
-          <div class="cl-subject">Science</div>
-          <div class="cl-meta">Year 5 · Ecosystems · 11 May</div>
-        </div>
-        <div class="cl-foot">
-          <div class="cl-pupils"><strong>0</strong> / 10 active</div>
-          <div class="cl-status">
-            <span class="cl-dot idle" title="ended"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="classroom-card" data-classroom="geography">
-        <div class="open-hint">double-click to open ↗</div>
-        <div>
-          <div class="cl-subject">Geography</div>
-          <div class="cl-meta">Year 5 · Rivers &amp; Mountains · 10 May</div>
-        </div>
-        <div class="cl-foot">
-          <div class="cl-pupils"><strong>0</strong> / 10 active</div>
-          <div class="cl-status">
-            <span class="cl-dot idle" title="ended"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STUDENT VIEW (drilled-in, hidden by default) -->
+    <div class="classroom-grid" id="classroomGrid"></div>
     <div class="student-grid" id="studentGrid" style="display: none;"></div>
 
-    <!-- STATS ROW -->
+    <!-- STATS — two sub-windows -->
     <div class="stats-row">
-      <div class="stats-title" id="statsTitle">Button-click signals · English</div>
-      <div class="stats-grid">
+      <div class="stats-title" id="statsTitle">Analysis · English</div>
+      <div class="subwindows">
 
-        <!-- 1. Frequency -->
-        <div class="stat-card">
-          <div class="stat-label">Frequency</div>
-          <div class="stat-headline" id="freqHeadline">22 clicks</div>
-          <div class="freq-bars" id="freqBars">
-            <div class="freq-row rephrase">
-              <span class="freq-name">Rephrase Answer</span>
-              <span class="freq-count">4</span>
-              <div class="freq-bar" style="--f: 33%;"></div>
+        <!-- Sub-window 1: Prompt Analysis -->
+        <div class="subwindow">
+          <div class="subwindow-head">
+            <div class="sw-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.17L4 17.17V4z"/><path d="M8 9h8M8 12h5"/></svg>
             </div>
-            <div class="freq-row simplify">
-              <span class="freq-name">Simplify Answer</span>
-              <span class="freq-count">6</span>
-              <div class="freq-bar" style="--f: 50%;"></div>
-            </div>
-            <div class="freq-row hint">
-              <span class="freq-name">Get a Hint</span>
-              <span class="freq-count">12</span>
-              <div class="freq-bar" style="--f: 100%;"></div>
-            </div>
+            <div class="sw-title">Prompt Analysis</div>
+            <div class="sw-sub">Submit-button activity</div>
           </div>
-          <div class="stat-source">Buttons used today</div>
+          <div class="prompt-tiles" id="promptTiles"></div>
         </div>
 
-        <!-- 2. Cognitive Struggle (rephrase) -->
-        <div class="stat-card">
-          <div class="stat-label">Cognitive Struggle</div>
-          <div class="stat-headline" id="struggleHeadline">Low</div>
-          <div class="ts-wrap">
-            <div class="ts-chart struggle" id="chartStruggle"></div>
-            <div class="ts-axis"><span class="ts-start" id="axisStartStruggle">10:15</span><span class="ts-end" id="axisEndStruggle">10:55</span></div>
-            <div class="trend flat" id="trendStruggle">→ understanding fine</div>
+        <!-- Sub-window 2: Button Analysis -->
+        <div class="subwindow">
+          <div class="subwindow-head">
+            <div class="sw-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="4" rx="1"/><rect x="3" y="14" width="12" height="4" rx="1"/></svg>
+            </div>
+            <div class="sw-title">Button Analysis</div>
+            <div class="sw-sub">Helper-button clicks</div>
           </div>
-          <div class="stat-source">Derived from Rephrase Answer</div>
-        </div>
-
-        <!-- 3. Cognitive Load (simplify) -->
-        <div class="stat-card">
-          <div class="stat-label">Cognitive Load</div>
-          <div class="stat-headline" id="loadHeadline">Moderate</div>
-          <div class="ts-wrap">
-            <div class="ts-chart load" id="chartLoad"></div>
-            <div class="ts-axis"><span class="ts-start" id="axisStartLoad">10:15</span><span class="ts-end" id="axisEndLoad">10:55</span></div>
-            <div class="trend flat" id="trendLoad">→ steady</div>
-          </div>
-          <div class="stat-source">Derived from Simplify Answer</div>
-        </div>
-
-        <!-- 4. Creative Struggle (hint) -->
-        <div class="stat-card">
-          <div class="stat-label">Creative Struggle</div>
-          <div class="stat-headline" id="creativeHeadline">High</div>
-          <div class="ts-wrap">
-            <div class="ts-chart creative" id="chartCreative"></div>
-            <div class="ts-axis"><span class="ts-start" id="axisStartCreative">10:15</span><span class="ts-end" id="axisEndCreative">10:55</span></div>
-            <div class="trend warn" id="trendCreative">↑ pupils hitting blocks</div>
-          </div>
-          <div class="stat-source">Derived from Get a Hint</div>
+          <div class="btn-bars" id="btnBars"></div>
+          <div class="btn-total" id="btnTotal"></div>
         </div>
 
       </div>
     </div>
-
   </section>
 
-  <!-- RIGHT PANEL -->
-  <aside class="right-pane" id="rightPane">
-    <!-- populated by JS -->
-  </aside>
-
+  <aside class="right-pane" id="rightPane"></aside>
 </main>
 
+<!-- ============ DEMO OVERLAY ============ -->
+<div class="demo-overlay" id="demoOverlay">
+  <div class="demo-topbar">
+    <div>
+      <div class="demo-title">Interactive <em>Demo</em></div>
+      <div class="demo-sub">Live prototype · student actions drive teacher metrics</div>
+    </div>
+    <button class="btn-pill" id="demoBackBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Dashboard
+    </button>
+  </div>
+  <div class="demo-body">
+
+    <!-- STUDENT PANEL -->
+    <div class="demo-panel student">
+      <div class="demo-panel-head">
+        <span class="dp-badge">Student</span>
+        <span class="dp-title">Bridewell AI</span>
+        <span class="dp-note">Year 5 · Science</span>
+      </div>
+      <div class="chat-scroll" id="chatScroll"></div>
+      <div class="helper-bar">
+        <button class="helper-btn rephrase" id="btnRephrase" disabled>
+          <span class="hdot"></span>Rephrase Answer
+        </button>
+        <button class="helper-btn simplify" id="btnSimplify" disabled>
+          <span class="hdot"></span>Simplify Answer
+        </button>
+        <button class="helper-btn hint" id="btnHint" disabled>
+          <span class="hdot"></span>Get a Hint
+        </button>
+      </div>
+      <div class="composer">
+        <input type="text" id="promptInput" placeholder="Type your question here…" autocomplete="off" />
+        <button class="submit-btn" id="submitBtn">Submit</button>
+      </div>
+    </div>
+
+    <!-- TEACHER PANEL -->
+    <div class="demo-panel teacher">
+      <div class="demo-panel-head">
+        <span class="dp-badge">Teacher</span>
+        <span class="dp-title">Live Analysis</span>
+        <span class="dp-note">Updates in real time</span>
+      </div>
+      <div class="demo-teacher-scroll" id="demoTeacherScroll"></div>
+    </div>
+
+  </div>
+</div>
+
 <script>
-// ============ DATA ============
+// ============================================================
+// DATA MODEL
+//   prompts: { count, avgTime, maxTime, maxPromptText }
+//   buttons: { rephrase, simplify, hint }
+// Status is DERIVED from these metrics (see computeStatus).
+// Classroom stats are AVERAGED across students.
+// ============================================================
 const classrooms = {
   english: {
-    subject: 'English',
-    avatar: 'Year 5\nEnglish',
+    subject: 'English', avatar: 'Year 5\nEnglish',
     sub: 'Year 5 · Creative Writing · Tuesday 12 May',
-    timeRange: { start: '10:15', end: '10:55' },
     tags: [{c:'', t:'Guidance Mode'}, {c:'mode', t:'Lesson 3 of 5'}],
-    summary: '<strong>Lesson focus:</strong> opening sentences for narrative fiction. <mark>Priya</mark> has clicked Get-a-Hint repeatedly — likely stuck on the creative leap. Oliver is pushing into meta-narrative territory.',
-    rows: [
-      ['Pupils enrolled', '10'], ['Active now', '3 of 10'],
-      ['Total messages today', '42'], ['Avg session length', '25 min'],
-      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '11 May · Ms Harrington'],
-    ],
-    stats: {
-      title: 'Button-click signals · English',
-      freq: { total: 22, items: [['Rephrase Answer', 4, 33], ['Simplify Answer', 6, 50], ['Get a Hint', 12, 100]] },
-      struggle: { headline: 'Low', value: 28, trend: 'flat', trendText: '→ understanding fine' , series: [10, 12, 18, 22, 24, 26, 30, 28] },
-      load:     { headline: 'Moderate', value: 48, trend: 'flat', trendText: '→ steady' , series: [22, 28, 35, 42, 48, 52, 50, 48] },
-      creative: { headline: 'High', value: 78, trend: 'warn', trendText: '↑ pupils hitting blocks' , series: [18, 24, 35, 48, 62, 78, 86, 78] },
-    },
+    summary: '<strong>Lesson focus:</strong> opening sentences for narrative fiction. Pupils are leaning on the Hint button — a sign the creative leap is the hard part today.',
+    rows: [['Pupils enrolled','10'], ['Active now','3 of 10'], ['Mode','Guidance (never gives answer)'], ['Last edited','11 May · Ms Harrington']],
     students: [
-      { id: 'priya', name: 'Priya N.', initials: 'PN', status: 'amber',
-        subject: 'Creative Writing · 26 min', progress: 55,
-        passportName: 'Priya Nair', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0227',
-        tags: [{c:'send', t:'SEND · dyslexia'}, {c:'amber', t:'● Focus'}],
-        summary: '<strong>Priya is hitting creative blocks.</strong> She has clicked Get-a-Hint <mark>4 times</mark> in 20 minutes. Strong imagery skills — but stuck on the opening.',
-        rows: [['Reading age', '9y 2m'], ['Avatar', 'Willow the Fox'], ['Strengths', 'Imagery, vocabulary'], ['Growth areas', 'Sentence structure']],
-        stats: {
-          title: 'Button-click signals · Priya N.',
-          freq: { total: 9, items: [['Rephrase Answer', 1, 17], ['Simplify Answer', 2, 33], ['Get a Hint', 6, 100]] },
-          struggle: { headline: 'Low', value: 18, trend: 'flat', trendText: '→ comprehending fine' , series: [22, 20, 18, 16, 16, 18, 18, 18] },
-          load:     { headline: 'Moderate', value: 42, trend: 'flat', trendText: '→ manageable' , series: [30, 36, 40, 44, 46, 44, 42, 42] },
-          creative: { headline: 'Very High', value: 86, trend: 'warn', trendText: '↑ stuck on opening' , series: [25, 38, 55, 70, 82, 88, 86, 86] },
-        }
-      },
-      { id: 'oliver', name: 'Oliver B.', initials: 'OB', status: 'green',
-        subject: 'Creative Writing · 24 min', progress: 78,
-        passportName: 'Oliver Bramwell', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0185',
-        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
-        summary: '<strong>Oliver is asking brilliant questions.</strong> Pushed past the prompt to <mark>"what if the dragon is the narrator"</mark> — genuine meta-thinking.',
-        rows: [['Reading age', '11y 1m'], ['Avatar', 'Atlas the Mage'], ['Strengths', 'Narrative voice'], ['Growth areas', 'Editing']],
-        stats: {
-          title: 'Button-click signals · Oliver B.',
-          freq: { total: 4, items: [['Rephrase Answer', 1, 25], ['Simplify Answer', 1, 25], ['Get a Hint', 2, 50]] },
-          struggle: { headline: 'Very Low', value: 12, trend: 'up', trendText: '↓ self-directed' , series: [18, 15, 12, 12, 12, 12, 12, 12] },
-          load:     { headline: 'Light', value: 28, trend: 'flat', trendText: '→ comfortable' , series: [25, 28, 30, 30, 28, 28, 28, 28] },
-          creative: { headline: 'Low', value: 30, trend: 'flat', trendText: '→ flowing' , series: [22, 26, 28, 30, 32, 32, 30, 30] },
-        }
-      },
-      { id: 'mia', name: 'Mia O.', initials: 'MO', status: 'green',
-        subject: 'Creative Writing · 20 min', progress: 44,
-        passportName: 'Mia Okafor', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0264',
-        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
-        summary: 'Exploring metaphor · engaged and steady.',
-        rows: [['Reading age', '10y 3m'], ['Avatar', 'Echo the Bard'], ['Strengths', 'Wordplay'], ['Growth areas', 'Plot structure']],
-        stats: {
-          title: 'Button-click signals · Mia O.',
-          freq: { total: 5, items: [['Rephrase Answer', 1, 33], ['Simplify Answer', 1, 33], ['Get a Hint', 3, 100]] },
-          struggle: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ comfortable' , series: [25, 24, 23, 22, 22, 22, 22, 22] },
-          load:     { headline: 'Light', value: 32, trend: 'flat', trendText: '→ steady' , series: [28, 30, 32, 34, 34, 32, 32, 32] },
-          creative: { headline: 'Moderate', value: 50, trend: 'flat', trendText: '→ working through it' , series: [30, 38, 44, 48, 52, 52, 50, 50] },
-        }
-      },
+      { id:'priya', name:'Priya N.', initials:'PN', passportName:'Priya Nair',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0227',
+        tags:[{c:'send',t:'SEND · dyslexia'}],
+        summary:'<strong>Priya takes a long time to compose prompts.</strong> Her longest took over two minutes. Strong imagery, but formulating questions is effortful.',
+        rows:[['Reading age','9y 2m'],['Avatar','Willow the Fox'],['Strengths','Imagery, vocabulary'],['Growth areas','Sentence structure']],
+        prompts:{ count:7, avgTime:84, maxTime:142, maxPromptText:'how do i make my dragon sound old and wise but not boring when he talks' },
+        buttons:{ rephrase:5, simplify:4, hint:9 } },
+      { id:'oliver', name:'Oliver B.', initials:'OB', passportName:'Oliver Bramwell',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0185',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'<strong>Oliver writes prompts quickly and confidently.</strong> Low button reliance — he is exploring independently.',
+        rows:[['Reading age','11y 1m'],['Avatar','Atlas the Mage'],['Strengths','Narrative voice'],['Growth areas','Editing']],
+        prompts:{ count:9, avgTime:28, maxTime:46, maxPromptText:'what if the dragon was actually the narrator of the whole story' },
+        buttons:{ rephrase:1, simplify:1, hint:3 } },
+      { id:'mia', name:'Mia O.', initials:'MO', passportName:'Mia Okafor',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0264',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Mia works at a steady pace. Moderate prompt-creation time, balanced button use.',
+        rows:[['Reading age','10y 3m'],['Avatar','Echo the Bard'],['Strengths','Wordplay'],['Growth areas','Plot structure']],
+        prompts:{ count:6, avgTime:52, maxTime:78, maxPromptText:'can you give me a metaphor for the sky at sunset' },
+        buttons:{ rephrase:2, simplify:3, hint:5 } },
     ]
   },
 
   mathematics: {
-    subject: 'Mathematics',
-    avatar: 'Year 5\nMaths',
+    subject: 'Mathematics', avatar: 'Year 5\nMaths',
     sub: 'Year 5 · Fractions · Tuesday 12 May',
-    timeRange: { start: '11:05', end: '11:50' },
-    tags: [{c: '', t: 'Guidance Mode'}, {c: 'mode', t: 'Lesson 4 of 6'}],
-    summary: '<strong>Lesson focus:</strong> comparing fractions and equivalents. <mark>Four pupils</mark> are mid-session; Tom is stuck on the same misconception (1/2 vs 1/4) — three rephrase requests in twelve minutes. Samira just had a breakthrough.',
-    rows: [
-      ['Pupils enrolled', '10'], ['Active now', '4 of 10'],
-      ['Total messages today', '69'], ['Avg session length', '24 min'],
-      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '11 May · Ms Harrington'],
-    ],
-    stats: {
-      title: 'Button-click signals · Mathematics',
-      freq: { total: 28, items: [['Rephrase Answer', 12, 100], ['Simplify Answer', 9, 75], ['Get a Hint', 7, 58]] },
-      struggle: { headline: 'High', value: 72, trend: 'warn', trendText: '↑ above class baseline' , series: [25, 32, 40, 48, 58, 66, 78, 72] },
-      load:     { headline: 'Moderate', value: 56, trend: 'flat', trendText: '→ steady' , series: [32, 40, 46, 54, 58, 60, 58, 56] },
-      creative: { headline: 'Moderate', value: 48, trend: 'down', trendText: '↓ down from morning' , series: [55, 60, 58, 54, 52, 50, 48, 48] },
-    },
+    tags: [{c:'',t:'Guidance Mode'}, {c:'mode',t:'Lesson 4 of 6'}],
+    summary: '<strong>Lesson focus:</strong> comparing fractions and equivalents. Tom is rephrasing repeatedly — a sign the explanations are not landing for him.',
+    rows: [['Pupils enrolled','10'], ['Active now','4 of 10'], ['Mode','Guidance (never gives answer)'], ['Last edited','11 May · Ms Harrington']],
     students: [
-      { id: 'tom', name: 'Tom W.', initials: 'TW', status: 'red',
-        subject: 'Fractions · 19 min', progress: 28,
-        passportName: 'Tom Whitmore', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0144',
-        tags: [{c:'amber', t:'● Needs help'}, {c:'mode', t:'Guidance'}],
-        summary: '<strong>Tom is stuck.</strong> He has asked Bridewell to <mark>rephrase the answer 3 times</mark> on the same fraction comparison. Frustration rising. Learns best with concrete props.',
-        rows: [['Reading age', '9y 8m'], ['Avatar', 'Rex the Knight'], ['Strengths', 'Pattern spotting'], ['Growth areas', 'Abstract reasoning']],
-        stats: {
-          title: 'Button-click signals · Tom W.',
-          freq: { total: 8, items: [['Rephrase Answer', 5, 100], ['Simplify Answer', 2, 40], ['Get a Hint', 1, 20]] },
-          struggle: { headline: 'Very High', value: 88, trend: 'warn', trendText: '↑ red flag' , series: [40, 52, 64, 72, 80, 88, 92, 88] },
-          load:     { headline: 'High', value: 62, trend: 'warn', trendText: '↑ rising' , series: [35, 42, 50, 56, 62, 66, 64, 62] },
-          creative: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ not asking for hints' , series: [18, 20, 22, 22, 22, 22, 22, 22] },
-        }
-      },
-      { id: 'samira', name: 'Samira K.', initials: 'SK', status: 'green',
-        subject: 'Fractions · 31 min', progress: 86,
-        passportName: 'Samira Khan', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0311',
-        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
-        summary: '<strong>Samira had a breakthrough.</strong> She explained back that "3 out of 8 slices is 3/8" — exactly the concrete anchoring we want.',
-        rows: [['Reading age', '10y 4m'], ['Avatar', 'Nova the Explorer'], ['Strengths', 'Clear explanations'], ['Growth areas', 'Formal notation']],
-        stats: {
-          title: 'Button-click signals · Samira K.',
-          freq: { total: 4, items: [['Rephrase Answer', 0, 0], ['Simplify Answer', 1, 25], ['Get a Hint', 3, 75]] },
-          struggle: { headline: 'Very Low', value: 8, trend: 'up', trendText: '↓ self-directed' , series: [25, 18, 14, 12, 10, 10, 8, 8] },
-          load:     { headline: 'Light', value: 22, trend: 'flat', trendText: '→ comfortable' , series: [30, 28, 26, 24, 22, 22, 22, 22] },
-          creative: { headline: 'Moderate', value: 52, trend: 'up', trendText: '↑ asking productively' , series: [20, 26, 35, 42, 48, 54, 56, 52] },
-        }
-      },
-      { id: 'freya', name: 'Freya M.', initials: 'FM', status: 'green',
-        subject: 'Fractions · 18 min', progress: 50,
-        passportName: 'Freya Martin', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0188',
-        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
-        summary: 'Steady pace · working on equivalents. No flags.',
-        rows: [['Reading age', '10y 0m'], ['Avatar', 'Quill the Scholar'], ['Strengths', 'Persistence'], ['Growth areas', 'Speed']],
-        stats: {
-          title: 'Button-click signals · Freya M.',
-          freq: { total: 6, items: [['Rephrase Answer', 2, 50], ['Simplify Answer', 3, 75], ['Get a Hint', 1, 25]] },
-          struggle: { headline: 'Moderate', value: 40, trend: 'flat', trendText: '→ normal range' , series: [30, 35, 38, 40, 42, 40, 40, 40] },
-          load:     { headline: 'Moderate', value: 50, trend: 'flat', trendText: '→ steady' , series: [38, 44, 48, 50, 52, 52, 50, 50] },
-          creative: { headline: 'Low', value: 20, trend: 'flat', trendText: '→ not stuck' , series: [25, 24, 22, 20, 20, 20, 20, 20] },
-        }
-      },
-      { id: 'jasper', name: 'Jasper D.', initials: 'JD', status: 'green',
-        subject: 'Fractions · 22 min', progress: 81,
-        passportName: 'Jasper Doyle', passportSub: '5R · 10 yrs · Passport #KESW-Y5-0091',
-        tags: [{c:'green', t:'● On track'}, {c:'mode', t:'Guidance'}],
-        summary: 'Working confidently · last 5 min showed strong number-line intuition.',
-        rows: [['Reading age', '10y 6m'], ['Avatar', 'Astra the Voyager'], ['Strengths', 'Visualisation'], ['Growth areas', 'Word problems']],
-        stats: {
-          title: 'Button-click signals · Jasper D.',
-          freq: { total: 5, items: [['Rephrase Answer', 1, 25], ['Simplify Answer', 1, 25], ['Get a Hint', 3, 75]] },
-          struggle: { headline: 'Low', value: 18, trend: 'flat', trendText: '→ comfortable' , series: [22, 20, 18, 18, 18, 18, 18, 18] },
-          load:     { headline: 'Light', value: 28, trend: 'flat', trendText: '→ steady' , series: [30, 32, 30, 28, 28, 28, 28, 28] },
-          creative: { headline: 'Moderate', value: 56, trend: 'up', trendText: '↑ stretching himself' , series: [30, 38, 46, 52, 56, 58, 56, 56] },
-        }
-      },
+      { id:'tom', name:'Tom W.', initials:'TW', passportName:'Tom Whitmore',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0144',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'<strong>Tom is struggling.</strong> His prompts take a long time to write and he has rephrased the answer many times on the same fraction question.',
+        rows:[['Reading age','9y 8m'],['Avatar','Rex the Knight'],['Strengths','Pattern spotting'],['Growth areas','Abstract reasoning']],
+        prompts:{ count:5, avgTime:96, maxTime:158, maxPromptText:'i still dont get why one half is bigger than one quarter can you explain it differently' },
+        buttons:{ rephrase:8, simplify:5, hint:2 } },
+      { id:'samira', name:'Samira K.', initials:'SK', passportName:'Samira Khan',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0311',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'<strong>Samira had a breakthrough.</strong> Fast prompt writing, very low button reliance.',
+        rows:[['Reading age','10y 4m'],['Avatar','Nova the Explorer'],['Strengths','Clear explanations'],['Growth areas','Formal notation']],
+        prompts:{ count:8, avgTime:24, maxTime:40, maxPromptText:'is three eighths smaller than one half because four eighths is one half' },
+        buttons:{ rephrase:0, simplify:1, hint:3 } },
+      { id:'freya', name:'Freya M.', initials:'FM', passportName:'Freya Martin',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0188',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Freya keeps a steady pace. Moderate metrics across the board.',
+        rows:[['Reading age','10y 0m'],['Avatar','Quill the Scholar'],['Strengths','Persistence'],['Growth areas','Speed']],
+        prompts:{ count:6, avgTime:55, maxTime:88, maxPromptText:'how do i find an equivalent fraction for two thirds' },
+        buttons:{ rephrase:2, simplify:3, hint:1 } },
+      { id:'jasper', name:'Jasper D.', initials:'JD', passportName:'Jasper Doyle',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0091',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Jasper is working confidently with strong number-line intuition.',
+        rows:[['Reading age','10y 6m'],['Avatar','Astra the Voyager'],['Strengths','Visualisation'],['Growth areas','Word problems']],
+        prompts:{ count:7, avgTime:33, maxTime:52, maxPromptText:'can you show me fractions on a number line' },
+        buttons:{ rephrase:1, simplify:1, hint:3 } },
     ]
   },
 
   science: {
-    subject: 'Science',
-    avatar: 'Year 5\nScience',
+    subject: 'Science', avatar: 'Year 5\nScience',
     sub: 'Year 5 · Ecosystems · Monday 11 May',
-    timeRange: { start: '13:30', end: '14:15' },
-    tags: [{c:'mode', t:'Lesson 5 of 5'}, {c:'', t:'Ended'}],
-    summary: '<strong>Lesson concluded yesterday.</strong> Strong overall engagement. Creative struggle dominated — pupils stretched themselves predicting ecosystem outcomes.',
-    rows: [
-      ['Pupils enrolled', '10'], ['Active now', '0 (ended)'],
-      ['Total messages', '94'], ['Avg session length', '32 min'],
-      ['Mode', 'Guidance + Expert (mixed)'], ['Last edited', '11 May · Mr Brookes'],
-    ],
-    stats: {
-      title: 'Button-click signals · Science',
-      freq: { total: 38, items: [['Rephrase Answer', 6, 32], ['Simplify Answer', 13, 68], ['Get a Hint', 19, 100]] },
-      struggle: { headline: 'Low', value: 22, trend: 'flat', trendText: '→ concepts landing' , series: [18, 20, 22, 26, 24, 22, 22, 22] },
-      load:     { headline: 'Moderate', value: 54, trend: 'flat', trendText: '→ rich content' , series: [40, 45, 52, 56, 58, 60, 56, 54] },
-      creative: { headline: 'High', value: 72, trend: 'up', trendText: '↑ healthy stretch' , series: [30, 38, 48, 58, 68, 76, 78, 72] },
-    },
-    students: []
+    tags: [{c:'mode',t:'Lesson 5 of 5'}, {c:'',t:'Ended'}],
+    summary: '<strong>Lesson concluded yesterday.</strong> Strong engagement; pupils stretched themselves predicting ecosystem outcomes.',
+    rows: [['Pupils enrolled','10'], ['Active now','0 (ended)'], ['Mode','Guidance + Expert (mixed)'], ['Last edited','11 May · Mr Brookes']],
+    students: [
+      { id:'noah', name:'Noah P.', initials:'NP', passportName:'Noah Pearce',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0402',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Noah asked rich follow-up questions about energy transfer.',
+        rows:[['Reading age','10y 5m'],['Avatar','Flint the Ranger'],['Strengths','Curiosity'],['Growth areas','Note-taking']],
+        prompts:{ count:8, avgTime:41, maxTime:63, maxPromptText:'what happens to the food chain if the apex predator disappears' },
+        buttons:{ rephrase:2, simplify:4, hint:6 } },
+      { id:'ava', name:'Ava L.', initials:'AL', passportName:'Ava Lawson',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0377',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Ava found the terminology heavy and simplified often.',
+        rows:[['Reading age','9y 6m'],['Avatar','Pebble the Otter'],['Strengths','Diagrams'],['Growth areas','Scientific vocabulary']],
+        prompts:{ count:6, avgTime:74, maxTime:120, maxPromptText:'what does a producer and a consumer mean in an ecosystem' },
+        buttons:{ rephrase:4, simplify:7, hint:3 } },
+    ]
   },
 
   geography: {
-    subject: 'Geography',
-    avatar: 'Year 5\nGeography',
+    subject: 'Geography', avatar: 'Year 5\nGeography',
     sub: 'Year 5 · Rivers & Mountains · Sunday 10 May',
-    timeRange: { start: '09:20', end: '10:00' },
-    tags: [{c:'mode', t:'Lesson 2 of 4'}, {c:'', t:'Ended'}],
-    summary: '<strong>Lesson concluded.</strong> Pupils explored how rivers shape landscapes. Heavy Simplify-Answer usage suggests the geology terminology was challenging — worth revisiting glossary in the next lesson.',
-    rows: [
-      ['Pupils enrolled', '10'], ['Active now', '0 (ended)'],
-      ['Total messages', '71'], ['Avg session length', '28 min'],
-      ['Mode', 'Guidance (never gives answer)'], ['Last edited', '9 May · Mr Brookes'],
-    ],
-    stats: {
-      title: 'Button-click signals · Geography',
-      freq: { total: 29, items: [['Rephrase Answer', 7, 50], ['Simplify Answer', 14, 100], ['Get a Hint', 8, 57]] },
-      struggle: { headline: 'Moderate', value: 48, trend: 'flat', trendText: '→ vocabulary heavy' , series: [22, 28, 38, 46, 50, 52, 50, 48] },
-      load:     { headline: 'High', value: 72, trend: 'warn', trendText: '↑ revisit glossary' , series: [28, 42, 58, 72, 78, 76, 74, 72] },
-      creative: { headline: 'Moderate', value: 52, trend: 'flat', trendText: '→ steady' , series: [20, 30, 42, 50, 56, 58, 54, 52] },
-    },
-    students: []
+    tags: [{c:'mode',t:'Lesson 2 of 4'}, {c:'',t:'Ended'}],
+    summary: '<strong>Lesson concluded.</strong> Pupils explored how rivers shape landscapes; geology terms were challenging.',
+    rows: [['Pupils enrolled','10'], ['Active now','0 (ended)'], ['Mode','Guidance (never gives answer)'], ['Last edited','9 May · Mr Brookes']],
+    students: [
+      { id:'leo', name:'Leo F.', initials:'LF', passportName:'Leo Fenwick',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0288',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Leo simplified frequently — the geology vocabulary was a barrier.',
+        rows:[['Reading age','9y 4m'],['Avatar','Ridge the Climber'],['Strengths','Map reading'],['Growth areas','Technical vocabulary']],
+        prompts:{ count:6, avgTime:79, maxTime:118, maxPromptText:'what is erosion and how does it change a river over time' },
+        buttons:{ rephrase:3, simplify:8, hint:4 } },
+      { id:'hana', name:'Hana T.', initials:'HT', passportName:'Hana Tanaka',
+        passportSub:'5R · 10 yrs · Passport #KESW-Y5-0319',
+        tags:[{c:'mode',t:'Guidance'}],
+        summary:'Hana worked confidently and quickly through the river-formation task.',
+        rows:[['Reading age','10y 8m'],['Avatar','Delta the Explorer'],['Strengths','Systems thinking'],['Growth areas','Handwriting']],
+        prompts:{ count:8, avgTime:31, maxTime:49, maxPromptText:'how does a meander form in a river' },
+        buttons:{ rephrase:1, simplify:2, hint:2 } },
+    ]
   },
 };
 
-// ============ STATE ============
-let view = 'classrooms';        // 'classrooms' | 'students'
+const classroomOrder = ['english','mathematics','science','geography'];
+const classroomCardMeta = {
+  english:     { meta:'Year 5 · Creative Writing · 12 May', active:'3 / 10 active' },
+  mathematics: { meta:'Year 5 · Fractions · 12 May',        active:'4 / 10 active' },
+  science:     { meta:'Year 5 · Ecosystems · 11 May',       active:'0 / 10 active' },
+  geography:   { meta:'Year 5 · Rivers & Mountains · 10 May',active:'0 / 10 active' },
+};
+
+// ============================================================
+// METRIC LOGIC — status derived from prompt-creation time +
+// rephrase reliance.
+// ============================================================
+function computeStatus(prompts, buttons) {
+  let score = 0;
+  if (prompts.avgTime >= 80) score += 2;
+  else if (prompts.avgTime >= 50) score += 1;
+  if (buttons.rephrase >= 6) score += 2;
+  else if (buttons.rephrase >= 3) score += 1;
+  if (score >= 3) return 'red';
+  if (score >= 1) return 'amber';
+  return 'green';
+}
+
+function classroomAggregate(c) {
+  const studs = c.students;
+  const n = studs.length || 1;
+  const sum = (f) => studs.reduce((a,s)=>a+f(s),0);
+  let maxStud = studs[0];
+  studs.forEach(s => { if (s.prompts.maxTime > maxStud.prompts.maxTime) maxStud = s; });
+  return {
+    prompts: {
+      count: sum(s=>s.prompts.count),
+      avgTime: Math.round(sum(s=>s.prompts.avgTime) / n),
+      maxTime: maxStud.prompts.maxTime,
+      maxPromptText: maxStud.prompts.maxPromptText,
+      maxOwner: maxStud.name,
+    },
+    buttons: {
+      rephrase: sum(s=>s.buttons.rephrase),
+      simplify: sum(s=>s.buttons.simplify),
+      hint: sum(s=>s.buttons.hint),
+    }
+  };
+}
+
+function fmtTime(sec) {
+  if (sec < 60) return sec + 's';
+  const m = Math.floor(sec/60), s = sec % 60;
+  return m + 'm ' + String(s).padStart(2,'0') + 's';
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let view = 'classrooms';
 let activeClassroom = 'english';
 let activeStudent = null;
 
-// ============ RENDER ============
+// ============================================================
+// RENDER — STATS SUB-WINDOWS
+// ============================================================
+function renderStats(prompts, buttons, scopeLabel) {
+  document.getElementById('statsTitle').textContent = 'Analysis · ' + scopeLabel;
+
+  const pt = document.getElementById('promptTiles');
+  const ownerNote = prompts.maxOwner ? `Longest prompt · ${prompts.maxOwner}` : 'Longest prompt this session';
+  pt.innerHTML = `
+    <div class="ptile">
+      <div class="pt-label">Total Prompts</div>
+      <div class="pt-value">${prompts.count}</div>
+      <div class="pt-note">Submit-button presses</div>
+    </div>
+    <div class="ptile">
+      <div class="pt-label">Avg Creation Time</div>
+      <div class="pt-value">${fmtTime(prompts.avgTime)}</div>
+      <div class="pt-note">Typing → submit</div>
+    </div>
+    <div class="ptile wide">
+      <div class="pt-label">Max Creation Time · ${fmtTime(prompts.maxTime)}</div>
+      <div class="pt-note">${ownerNote}</div>
+      <div class="pt-prompt-text">"${prompts.maxPromptText}"</div>
+    </div>`;
+
+  const total = buttons.rephrase + buttons.simplify + buttons.hint;
+  const max = Math.max(buttons.rephrase, buttons.simplify, buttons.hint, 1);
+  const bb = document.getElementById('btnBars');
+  const rows = [
+    ['rephrase','Rephrase Answer', buttons.rephrase],
+    ['simplify','Simplify Answer', buttons.simplify],
+    ['hint','Get a Hint', buttons.hint],
+  ];
+  bb.innerHTML = rows.map(([cls,name,count]) => `
+    <div class="btn-bar-row ${cls}">
+      <div class="btn-bar-head">
+        <div class="btn-bar-name"><span class="bdot"></span>${name}</div>
+        <div class="btn-bar-count">${count}</div>
+      </div>
+      <div class="btn-bar-track"><div class="btn-bar-fill" style="--f:${(count/max*100).toFixed(0)}%"></div></div>
+    </div>`).join('');
+  document.getElementById('btnTotal').innerHTML =
+    `<span>Total helper clicks</span><strong>${total}</strong>`;
+}
+
+// ============================================================
+// RENDER — RIGHT PANEL
+// ============================================================
 function renderRightPane() {
   const pane = document.getElementById('rightPane');
   if (view === 'students' && activeStudent) {
     const s = classrooms[activeClassroom].students.find(x => x.id === activeStudent);
-    if (!s) return;
-    pane.innerHTML = renderStudentDetail(s);
+    if (s) pane.innerHTML = renderStudentDetail(s);
   } else {
-    const c = classrooms[activeClassroom];
-    pane.innerHTML = renderClassroomDetail(c);
+    pane.innerHTML = renderClassroomDetail(classrooms[activeClassroom]);
   }
 }
 
@@ -1165,7 +1143,7 @@ function renderClassroomDetail(c) {
       <div class="detail-info">
         <div class="detail-name">${c.subject}</div>
         <div class="detail-sub">${c.sub}</div>
-        <div class="detail-tags">${c.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+        <div class="detail-tags">${c.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
       </div>
     </div>
     <div class="detail-section">
@@ -1174,19 +1152,23 @@ function renderClassroomDetail(c) {
     </div>
     <div class="detail-section">
       <h3>Lesson Details</h3>
-      ${c.rows.map(([l,v]) => `<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
-    </div>
-  `;
+      ${c.rows.map(([l,v])=>`<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
+    </div>`;
 }
 
 function renderStudentDetail(s) {
+  const st = computeStatus(s.prompts, s.buttons);
+  const statusLabel = { red:'● Needs help', amber:'● Struggling', green:'● On track' }[st];
   return `
     <div class="detail-head">
       <div class="detail-avatar">${s.initials}</div>
       <div class="detail-info">
         <div class="detail-name">${s.passportName}</div>
         <div class="detail-sub">${s.passportSub}</div>
-        <div class="detail-tags">${s.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+        <div class="detail-tags">
+          <span class="tag ${st}">${statusLabel}</span>
+          ${s.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}
+        </div>
       </div>
     </div>
     <div class="detail-section">
@@ -1195,226 +1177,139 @@ function renderStudentDetail(s) {
     </div>
     <div class="detail-section">
       <h3>Student Passport</h3>
-      ${s.rows.map(([l,v]) => `<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
-    </div>
-  `;
+      ${s.rows.map(([l,v])=>`<div class="detail-row"><span class="l">${l}</span><span class="v">${v}</span></div>`).join('')}
+    </div>`;
 }
 
-function renderStats(statsObj, timeRange) {
-  document.getElementById('statsTitle').textContent = statsObj.title;
-  document.getElementById('freqHeadline').textContent = `${statsObj.freq.total} clicks`;
-  const fb = document.getElementById('freqBars');
-  fb.innerHTML = statsObj.freq.items.map(([name, count, fill], i) => {
-    const cls = ['rephrase', 'simplify', 'hint'][i];
+// ============================================================
+// RENDER — CLASSROOM GRID
+// ============================================================
+function renderClassroomGrid() {
+  const grid = document.getElementById('classroomGrid');
+  grid.innerHTML = classroomOrder.map(key => {
+    const c = classrooms[key];
+    const meta = classroomCardMeta[key];
+    const dots = c.students.map(s => {
+      const st = computeStatus(s.prompts, s.buttons);
+      return `<span class="cl-dot ${st}"></span>`;
+    }).join('') || '<span class="cl-dot idle"></span>';
     return `
-      <div class="freq-row ${cls}">
-        <span class="freq-name">${name}</span>
-        <span class="freq-count">${count}</span>
-        <div class="freq-bar" style="--f: ${fill}%;"></div>
+      <div class="classroom-card${key===activeClassroom?' selected':''}" data-classroom="${key}">
+        <div class="open-hint">double-click to open ↗</div>
+        <div>
+          <div class="cl-subject">${c.subject}</div>
+          <div class="cl-meta">${meta.meta}</div>
+        </div>
+        <div class="cl-foot">
+          <div class="cl-pupils"><strong>${meta.active.split(' ')[0]}</strong> ${meta.active.substring(meta.active.indexOf(' ')+1)}</div>
+          <div class="cl-status">${dots}</div>
+        </div>
       </div>`;
   }).join('');
+  attachClassroomEvents();
 
-  // Update the time-axis labels on all three charts
-  const tr = timeRange || { start: '—', end: '—' };
-  ['Struggle', 'Load', 'Creative'].forEach(name => {
-    const startEl = document.getElementById('axisStart' + name);
-    const endEl   = document.getElementById('axisEnd' + name);
-    if (startEl) startEl.textContent = tr.start;
-    if (endEl)   endEl.textContent   = tr.end;
-  });
-
-  setChart('Struggle', statsObj.struggle, tr);
-  setChart('Load',     statsObj.load,     tr);
-  setChart('Creative', statsObj.creative, tr);
-}
-
-// Auto-generate a plausible 8-point series from a single value, biased so the
-// peak lands somewhere plausible. Used as a fallback when authored data omits series.
-function autoSeries(value, peakIdx = 5) {
-  const len = 8;
-  const out = [];
-  for (let i = 0; i < len; i++) {
-    const distFromPeak = Math.abs(i - peakIdx);
-    const peakBoost = Math.max(0, 18 - distFromPeak * 6);
-    const base = value * (0.45 + 0.6 * (i / (len - 1)));
-    out.push(Math.round(Math.max(4, Math.min(98, base + peakBoost))));
-  }
-  out[len - 1] = value;
-  return out;
-}
-
-// Linear-interpolate a "HH:MM" clock-time between start and end for point idx of total.
-function interpTime(start, end, idx, total) {
-  if (!start || !end || start === '—' || end === '—') return '';
-  const parse = s => {
-    const [h, m] = s.split(':').map(Number);
-    return h * 60 + m;
-  };
-  const fmt = mins => {
-    const h = Math.floor(mins / 60), m = Math.round(mins % 60);
-    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-  };
-  const s = parse(start), e = parse(end);
-  const t = s + (e - s) * (idx / (total - 1));
-  return fmt(t);
-}
-
-function setChart(name, obj, timeRange) {
-  document.getElementById(name.toLowerCase() + 'Headline').textContent = obj.headline;
-  const trendEl = document.getElementById('trend' + name);
-  trendEl.textContent = obj.trendText;
-  trendEl.className = 'trend ' + obj.trend;
-
-  const series = obj.series && obj.series.length ? obj.series : autoSeries(obj.value);
-  const len = series.length;
-  const xStep = 100 / (len - 1);
-  const points = series.map((v, i) => [i * xStep, 100 - v]);
-
-  const linePath = points.map((p, i) =>
-    `${i === 0 ? 'M' : 'L'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`
-  ).join(' ');
-  const last = points[len - 1];
-  const first = points[0];
-  const areaPath = `${linePath} L ${last[0].toFixed(1)} 100 L ${first[0].toFixed(1)} 100 Z`;
-
-  const svg = `
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <line class="ts-grid" x1="0" y1="50" x2="100" y2="50"/>
-      <line class="ts-threshold" x1="0" y1="30" x2="100" y2="30"/>
-      <path class="ts-area" d="${areaPath}"/>
-      <path class="ts-line" d="${linePath}" vector-effect="non-scaling-stroke"/>
-      <line class="ts-hover-line" x1="0" y1="0" x2="0" y2="100" data-hover-line/>
-      <circle class="ts-hover-dot" cx="0" cy="0" r="2.6" vector-effect="non-scaling-stroke" data-hover-dot/>
-    </svg>
-    <div class="ts-tooltip" data-tooltip>—</div>`;
-  const container = document.getElementById('chart' + name);
-  container.innerHTML = svg;
-
-  // Attach hover interactivity
-  const tooltip = container.querySelector('[data-tooltip]');
-  const hLine = container.querySelector('[data-hover-line]');
-  const hDot  = container.querySelector('[data-hover-dot]');
-
-  function handleMove(evt) {
-    const rect = container.getBoundingClientRect();
-    const xPct = ((evt.clientX - rect.left) / rect.width) * 100;
-    // Snap to nearest data-point index
-    const idx = Math.max(0, Math.min(len - 1, Math.round(xPct / xStep)));
-    const p = points[idx];
-    const value = series[idx];
-    const time = interpTime(timeRange?.start, timeRange?.end, idx, len);
-
-    // Move SVG hover line + dot to that data point
-    hLine.setAttribute('x1', p[0].toFixed(1));
-    hLine.setAttribute('x2', p[0].toFixed(1));
-    hDot.setAttribute('cx', p[0].toFixed(1));
-    hDot.setAttribute('cy', p[1].toFixed(1));
-
-    // Position HTML tooltip above the dot using the container's pixel space
-    const xPx = (p[0] / 100) * rect.width;
-    const yPx = (p[1] / 100) * rect.height;
-    tooltip.style.left = xPx + 'px';
-    tooltip.style.top  = yPx + 'px';
-    tooltip.innerHTML = time
-      ? `<strong>${value}</strong> · ${time}`
-      : `<strong>${value}</strong>`;
-  }
-
-  container.addEventListener('mousemove', handleMove);
-  // Touch fallback — show value at last point on tap
-  container.addEventListener('touchstart', (evt) => {
-    if (evt.touches[0]) handleMove(evt.touches[0]);
-  });
-}
-
-function renderClassroomGrid() {
   document.getElementById('classroomGrid').style.display = '';
   document.getElementById('studentGrid').style.display = 'none';
   document.getElementById('leftTitle').innerHTML = 'Classrooms <em>— today</em>';
-  document.getElementById('crumb').innerHTML = `<span>Year 5 Trial</span><span class="sep">/</span><span class="here">Classrooms</span>`;
+  document.getElementById('crumb').innerHTML =
+    `<span>Year 5 Trial</span><span class="sep">/</span><span class="here">Classrooms</span>`;
   document.getElementById('pageTitle').innerHTML = 'Good afternoon, <em>Jane.</em>';
   document.getElementById('metrics').innerHTML = `
     <div class="metric"><div class="v">4</div><div class="l">Classrooms</div></div>
-    <div class="metric"><div class="v">10</div><div class="l">Pupils</div></div>
-    <div class="metric"><div class="v">127</div><div class="l">Msgs today</div></div>`;
+    <div class="metric"><div class="v">${classroomOrder.reduce((a,k)=>a+classrooms[k].students.length,0)}</div><div class="l">Pupils shown</div></div>`;
 }
+
+// ============================================================
+// RENDER — STUDENT GRID (sorted: red first)
+// ============================================================
+const statusRank = { red:0, amber:1, green:2 };
 
 function renderStudentGrid() {
   const c = classrooms[activeClassroom];
+  const sorted = c.students
+    .map(s => ({ ...s, _status: computeStatus(s.prompts, s.buttons) }))
+    .sort((a,b) => statusRank[a._status] - statusRank[b._status]);
+
   const sg = document.getElementById('studentGrid');
-  sg.innerHTML = c.students.map(s => `
-    <div class="stu-card${s.id === activeStudent ? ' selected' : ''}" data-student="${s.id}">
+  sg.innerHTML = sorted.map(s => `
+    <div class="stu-card${s.id===activeStudent?' selected':''}" data-student="${s.id}">
       <div class="stu-top">
         <div class="stu-name">${s.name}</div>
-        <div class="stu-figure ${s.status}">
+        <div class="stu-figure ${s._status}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         </div>
       </div>
-      <div class="stu-subject">${s.subject}</div>
-      <div class="stu-progress" style="--p: ${s.progress}%;"></div>
+      <div class="stu-subject">${c.subject}</div>
+      <div class="stu-metric"><strong>${fmtTime(s.prompts.avgTime)}</strong> avg · <strong>${s.buttons.rephrase+s.buttons.simplify+s.buttons.hint}</strong> clicks</div>
     </div>`).join('');
+
   document.getElementById('classroomGrid').style.display = 'none';
   document.getElementById('studentGrid').style.display = '';
   document.getElementById('leftTitle').innerHTML = `${c.subject} <em>— pupils</em>`;
   document.getElementById('crumb').innerHTML = `
     <button class="back-btn" id="backBtn">← Classrooms</button>
-    <span>Year 5 Trial</span>
-    <span class="sep">/</span>
-    <span class="here">${c.subject}</span>`;
+    <span>Year 5 Trial</span><span class="sep">/</span><span class="here">${c.subject}</span>`;
   document.getElementById('pageTitle').innerHTML = `${c.subject} <em>· pupils</em>`;
+  const reds = sorted.filter(s=>s._status==='red').length;
   document.getElementById('metrics').innerHTML = `
-    <div class="metric"><div class="v">${c.students.length}</div><div class="l">Active</div></div>
-    <div class="metric"><div class="v">${c.students.filter(s=>s.status==='red').length}</div><div class="l">Needs help</div></div>
-    <div class="metric"><div class="v">${c.students.filter(s=>s.status==='green').length}</div><div class="l">On track</div></div>`;
+    <div class="metric"><div class="v">${sorted.length}</div><div class="l">Pupils</div></div>
+    <div class="metric"><div class="v">${reds}</div><div class="l">Needs help</div></div>`;
+
   document.getElementById('backBtn').addEventListener('click', () => {
-    view = 'classrooms';
-    activeStudent = null;
-    renderClassroomGrid();
-    renderRightPane();
-    renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
+    view = 'classrooms'; activeStudent = null;
+    renderClassroomGrid(); renderRightPane();
+    const agg = classroomAggregate(classrooms[activeClassroom]);
+    renderStats(agg.prompts, agg.buttons, classrooms[activeClassroom].subject);
   });
+
   sg.querySelectorAll('.stu-card').forEach(card => {
     card.addEventListener('click', () => {
       activeStudent = card.dataset.student;
-      sg.querySelectorAll('.stu-card').forEach(c => c.classList.toggle('selected', c.dataset.student === activeStudent));
-      const stu = c.students.find(x => x.id === activeStudent);
+      sg.querySelectorAll('.stu-card').forEach(x => x.classList.toggle('selected', x.dataset.student===activeStudent));
+      const stu = c.students.find(x => x.id===activeStudent);
       renderRightPane();
-      renderStats(stu.stats, classrooms[activeClassroom].timeRange);
+      renderStats(stu.prompts, stu.buttons, stu.name);
     });
   });
-  // Auto-select first student
-  if (c.students.length) {
-    activeStudent = c.students[0].id;
+
+  if (sorted.length) {
+    activeStudent = sorted[0].id;
     sg.querySelector('.stu-card')?.classList.add('selected');
+    const stu = c.students.find(x => x.id===activeStudent);
     renderRightPane();
-    renderStats(c.students[0].stats, classrooms[activeClassroom].timeRange);
+    renderStats(stu.prompts, stu.buttons, stu.name);
   }
 }
 
-// ============ EVENTS ============
-document.querySelectorAll('.classroom-card').forEach(card => {
-  let clickTimer = null;
-  card.addEventListener('click', (e) => {
-    if (clickTimer) return; // double-click handled separately
-    clickTimer = setTimeout(() => {
-      // single click → select
+// ============================================================
+// CLASSROOM CARD EVENTS
+// ============================================================
+function attachClassroomEvents() {
+  document.querySelectorAll('.classroom-card').forEach(card => {
+    let clickTimer = null;
+    card.addEventListener('click', () => {
+      if (clickTimer) return;
+      clickTimer = setTimeout(() => {
+        activeClassroom = card.dataset.classroom;
+        document.querySelectorAll('.classroom-card').forEach(c => c.classList.toggle('selected', c===card));
+        renderRightPane();
+        const agg = classroomAggregate(classrooms[activeClassroom]);
+        renderStats(agg.prompts, agg.buttons, classrooms[activeClassroom].subject);
+        clickTimer = null;
+      }, 220);
+    });
+    card.addEventListener('dblclick', () => {
+      clearTimeout(clickTimer); clickTimer = null;
       activeClassroom = card.dataset.classroom;
-      document.querySelectorAll('.classroom-card').forEach(c => c.classList.toggle('selected', c === card));
-      renderRightPane();
-      renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
-      clickTimer = null;
-    }, 220);
+      view = 'students';
+      renderStudentGrid();
+    });
   });
-  card.addEventListener('dblclick', () => {
-    clearTimeout(clickTimer);
-    clickTimer = null;
-    activeClassroom = card.dataset.classroom;
-    view = 'students';
-    renderStudentGrid();
-  });
-});
+}
 
+// ============================================================
 // THEME TOGGLE
+// ============================================================
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const themeLabel = document.getElementById('themeLabel');
@@ -1425,13 +1320,224 @@ themeToggle.addEventListener('click', () => {
   document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
   themeIcon.innerHTML = isDark ? moonIcon : sunIcon;
   themeLabel.textContent = isDark ? 'Dark' : 'Light';
-  // Update theme-color meta for mobile chrome
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#faf6ee' : '#0f1a2e');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#f3ece0' : '#0f1a2e');
 });
 
+// ============================================================
+// DEMO OVERLAY
+// ============================================================
+const demoOverlay = document.getElementById('demoOverlay');
+const demoBtn = document.getElementById('demoBtn');
+const demoBackBtn = document.getElementById('demoBackBtn');
+
+const AI_GREETING = "Welcome to Bridewell AI! I'm here to help you explore today's Science topic — ecosystems. Ask me anything, and I'll guide you to the answer.";
+const AI_SCIENCE_ANSWER = "Great question! An ecosystem is a community of living things — plants, animals and tiny organisms — together with the air, water and soil around them. Energy flows through it: producers like plants capture sunlight, then primary consumers eat the plants, and secondary consumers eat them. What part would you like to think about more?";
+const AI_REPHRASE = "Let me put that another way. Think of an ecosystem like a school: everyone has a role. Plants are the kitchen making the food, the small animals are the pupils eating lunch, and the bigger animals are like the staff. Energy — like the food — passes from one group to the next.";
+const AI_SIMPLIFY = "In simple words: an ecosystem is plants and animals living together. Plants make food from sunlight. Animals eat the plants. Bigger animals eat those animals. That is how energy moves.";
+const AI_HINT = "Here's a hint to get you started: picture a food chain. Try drawing an arrow from the Sun, to a plant, to a rabbit, to a fox. Each arrow shows energy moving. What would happen to the fox if the plants disappeared?";
+
+let demoState = null;
+
+function freshDemoState() {
+  return {
+    prompts: { count: 0, times: [], maxPromptText: '—' },
+    buttons: { rephrase: 0, simplify: 0, hint: 0 },
+    typingStart: null,
+    helpersEnabled: false,
+  };
+}
+
+function openDemo() {
+  demoState = freshDemoState();
+  const chat = document.getElementById('chatScroll');
+  chat.innerHTML = '';
+  addChatMessage('ai', AI_GREETING);
+  document.getElementById('promptInput').value = '';
+  setHelpersEnabled(false);
+  document.getElementById('submitBtn').disabled = false;
+  renderDemoTeacher();
+  demoOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDemo() {
+  demoOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  demoState = null;
+}
+
+demoBtn.addEventListener('click', openDemo);
+demoBackBtn.addEventListener('click', closeDemo);
+
+function addChatMessage(who, text, tag) {
+  const chat = document.getElementById('chatScroll');
+  const msg = document.createElement('div');
+  msg.className = 'msg ' + who;
+  const avatar = who === 'ai' ? 'AI' : 'YOU';
+  msg.innerHTML = `
+    <div class="msg-avatar">${avatar}</div>
+    <div class="bubble">${tag ? `<span class="bubble-tag">${tag}</span>` : ''}${text}</div>`;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function setHelpersEnabled(on) {
+  demoState.helpersEnabled = on;
+  ['btnRephrase','btnSimplify','btnHint'].forEach(id => {
+    document.getElementById(id).disabled = !on;
+  });
+}
+
+const promptInput = document.getElementById('promptInput');
+const submitBtn = document.getElementById('submitBtn');
+
+promptInput.addEventListener('input', () => {
+  if (!demoState) return;
+  if (demoState.typingStart === null && promptInput.value.trim().length > 0) {
+    demoState.typingStart = Date.now();
+  }
+  if (promptInput.value.trim().length === 0) {
+    demoState.typingStart = null;
+  }
+});
+
+function submitPrompt() {
+  if (!demoState) return;
+  const text = promptInput.value.trim();
+  if (!text) return;
+
+  const start = demoState.typingStart || Date.now();
+  const elapsed = Math.max(1, Math.round((Date.now() - start) / 1000));
+  demoState.prompts.count += 1;
+  demoState.prompts.times.push(elapsed);
+  const maxIdx = demoState.prompts.times.indexOf(Math.max(...demoState.prompts.times));
+  if (maxIdx === demoState.prompts.times.length - 1) {
+    demoState.prompts.maxPromptText = text;
+  }
+
+  addChatMessage('student', text);
+  demoState.typingStart = null;
+  promptInput.value = '';
+
+  setTimeout(() => {
+    addChatMessage('ai', AI_SCIENCE_ANSWER);
+    setHelpersEnabled(true);
+  }, 350);
+
+  renderDemoTeacher();
+}
+
+submitBtn.addEventListener('click', submitPrompt);
+promptInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitPrompt(); });
+
+function useHelper(kind) {
+  if (!demoState || !demoState.helpersEnabled) return;
+  demoState.buttons[kind] += 1;
+  const labels = { rephrase:'Rephrase Answer', simplify:'Simplify Answer', hint:'Get a Hint' };
+  const answers = { rephrase:AI_REPHRASE, simplify:AI_SIMPLIFY, hint:AI_HINT };
+  addChatMessage('student', labels[kind] + ' →', 'Helper button');
+  setTimeout(() => addChatMessage('ai', answers[kind], labels[kind]), 300);
+  renderDemoTeacher();
+}
+document.getElementById('btnRephrase').addEventListener('click', () => useHelper('rephrase'));
+document.getElementById('btnSimplify').addEventListener('click', () => useHelper('simplify'));
+document.getElementById('btnHint').addEventListener('click', () => useHelper('hint'));
+
+function renderDemoTeacher() {
+  const p = demoState.prompts;
+  const b = demoState.buttons;
+  const count = p.count;
+  const avg = count ? Math.round(p.times.reduce((a,t)=>a+t,0)/count) : 0;
+  const max = count ? Math.max(...p.times) : 0;
+  const status = computeStatus({ avgTime: avg }, b);
+  const statusLabel = { red:'● Needs help', amber:'● Struggling', green:'● On track' }[status];
+  const totalClicks = b.rephrase + b.simplify + b.hint;
+  const maxBtn = Math.max(b.rephrase, b.simplify, b.hint, 1);
+
+  document.getElementById('demoTeacherScroll').innerHTML = `
+    <div class="detail-head">
+      <div class="detail-avatar">S?</div>
+      <div class="detail-info">
+        <div class="detail-name">Demo Pupil</div>
+        <div class="detail-sub">Year 5 · Science · Live session</div>
+        <div class="detail-tags">
+          <span class="tag ${status}">${statusLabel}</span>
+          <span class="tag mode">Guidance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3>Prompt Analysis</h3>
+      <div class="prompt-tiles">
+        <div class="ptile">
+          <div class="pt-label">Total Prompts</div>
+          <div class="pt-value">${count}</div>
+          <div class="pt-note">Submit-button presses</div>
+        </div>
+        <div class="ptile">
+          <div class="pt-label">Avg Creation Time</div>
+          <div class="pt-value">${count ? fmtTime(avg) : '—'}</div>
+          <div class="pt-note">Typing → submit</div>
+        </div>
+        <div class="ptile wide">
+          <div class="pt-label">Max Creation Time · ${count ? fmtTime(max) : '—'}</div>
+          <div class="pt-note">Longest prompt this session</div>
+          <div class="pt-prompt-text">"${p.maxPromptText}"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3>Button Analysis</h3>
+      <div class="btn-bars">
+        <div class="btn-bar-row rephrase">
+          <div class="btn-bar-head">
+            <div class="btn-bar-name"><span class="bdot"></span>Rephrase Answer</div>
+            <div class="btn-bar-count">${b.rephrase}</div>
+          </div>
+          <div class="btn-bar-track"><div class="btn-bar-fill" style="--f:${(b.rephrase/maxBtn*100).toFixed(0)}%"></div></div>
+        </div>
+        <div class="btn-bar-row simplify">
+          <div class="btn-bar-head">
+            <div class="btn-bar-name"><span class="bdot"></span>Simplify Answer</div>
+            <div class="btn-bar-count">${b.simplify}</div>
+          </div>
+          <div class="btn-bar-track"><div class="btn-bar-fill" style="--f:${(b.simplify/maxBtn*100).toFixed(0)}%"></div></div>
+        </div>
+        <div class="btn-bar-row hint">
+          <div class="btn-bar-head">
+            <div class="btn-bar-name"><span class="bdot"></span>Get a Hint</div>
+            <div class="btn-bar-count">${b.hint}</div>
+          </div>
+          <div class="btn-bar-track"><div class="btn-bar-fill" style="--f:${(b.hint/maxBtn*100).toFixed(0)}%"></div></div>
+        </div>
+      </div>
+      <div class="btn-total"><span>Total helper clicks</span><strong>${totalClicks}</strong></div>
+    </div>
+
+    <div class="detail-section">
+      <h3>Reading the signals</h3>
+      <div class="summary-prose">
+        ${count === 0
+          ? 'Waiting for the pupil to send their first prompt. Metrics will update here in real time.'
+          : `The pupil has sent <strong>${count}</strong> prompt${count>1?'s':''} and used the helper buttons <strong>${totalClicks}</strong> time${totalClicks!==1?'s':''}. ` +
+            (status==='red' ? 'Long prompt-writing time and heavy rephrasing suggest they are struggling — worth a check-in.'
+             : status==='amber' ? 'Some signs of effort — keep an eye on them.'
+             : 'Prompts are flowing well with light button use — the pupil looks comfortable.')}
+      </div>
+    </div>`;
+}
+
+// ============================================================
 // INIT
+// ============================================================
+renderClassroomGrid();
 renderRightPane();
-renderStats(classrooms[activeClassroom].stats, classrooms[activeClassroom].timeRange);
+(function(){
+  const agg = classroomAggregate(classrooms[activeClassroom]);
+  renderStats(agg.prompts, agg.buttons, classrooms[activeClassroom].subject);
+})();
 </script>
 
 </body>
